@@ -114,13 +114,6 @@
   setInterval(appendLog, 1100);
   appendLog(); appendLog(); appendLog(); appendLog();
 
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  }
-
   // Back to Top
   const backToTop = document.getElementById('back-to-top');
   backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));

@@ -47,6 +47,9 @@
       <a href="#platform">플랫폼</a>
       <a href="#architecture">아키텍처</a>
       <a href="#benefits">도입 효과</a>
+      <a href="#personas">산업</a>
+      <a href="#target">대상</a>
+      <a href="#adoption">도입</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="메뉴">
       <span></span><span></span><span></span>
@@ -58,6 +61,9 @@
   <a href="#platform" class="mobile-nav-link">플랫폼</a>
   <a href="#architecture" class="mobile-nav-link">아키텍처</a>
   <a href="#benefits" class="mobile-nav-link">도입 효과</a>
+  <a href="#personas" class="mobile-nav-link">산업</a>
+  <a href="#target" class="mobile-nav-link">대상</a>
+  <a href="#adoption" class="mobile-nav-link">도입</a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -241,18 +247,22 @@
 <!-- ===== STATS ===== -->
 <section id="stats">
   <div class="container">
+    <div class="section-header stats-header" data-animate>
+      <h2 class="section-title">한눈에 보는 구성</h2>
+      <p class="section-sub">Nova가 어떤 범위의 기능과 사용 맥락을 담고 있는지 먼저 정리합니다.</p>
+    </div>
     <div class="stats-row">
       <div class="stat-item" data-animate>
-        <div class="stat-value">실시간 이벤트 처리</div>
-        <div class="stat-label">설비 상태 변화를 지연 없이 감지하고<br>즉시 운영에 반영합니다</div>
+        <div class="stat-value" data-count="6">6</div>
+        <div class="stat-label">핵심 플랫폼 모듈<br>IAM, Audit, Notification 등</div>
       </div>
       <div class="stat-item" data-animate data-delay="2">
-        <div class="stat-value">고가용성 아키텍처</div>
-        <div class="stat-label">장애 격리 설계로 단일 오류가<br>전체 운영에 전파되지 않습니다</div>
+        <div class="stat-value" data-count="3">3</div>
+        <div class="stat-label">주요 사용자 그룹<br>운영팀, 관리자, 의사결정자</div>
       </div>
       <div class="stat-item" data-animate data-delay="4">
-        <div class="stat-value">모듈러 확장 설계</div>
-        <div class="stat-label">신규 설비와 기능을 기존 운영에<br>영향 없이 독립적으로 추가합니다</div>
+        <div class="stat-value" data-count="5">5</div>
+        <div class="stat-label">업무 흐름 단계<br>입고부터 설비 관리까지</div>
       </div>
     </div>
   </div>
@@ -762,6 +772,74 @@
 <section id="personas" class="section">
   <div class="container">
     <div class="section-header" data-animate>
+      <h2 class="section-title">이런 산업에 추천합니다</h2>
+      <p class="section-sub">Nova는 물류 자동화와 운영 통합의 필요성이 큰 산업군에서 특히 효과적입니다.</p>
+    </div>
+    <div class="personas-grid">
+      <div class="persona-card" data-animate data-delay="1">
+        <div class="persona-role">3PL · 물류센터</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="12" width="38" height="18" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <path d="M8 30 V35 M36 30 V35" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 18 H33" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="14" cy="24" r="2" fill="#2563EB"/>
+          <circle cx="22" cy="24" r="2" fill="#2563EB"/>
+          <circle cx="30" cy="24" r="2" fill="#2563EB"/>
+        </svg>
+        <h3>멀티센터와 다수 설비를 함께 운영하는 곳</h3>
+        <p class="persona-desc">센터별 운영 화면이 따로 있고, 물동량 변동과 설비 장애 대응을 하나의 시스템으로 묶어야 하는 환경</p>
+        <ul class="persona-needs">
+          <li>센터별 작업과 설비 상태를 통합 관제해야 할 때</li>
+          <li>피크 시간대에 태스크 자동 재배분이 필요할 때</li>
+          <li>고객사별 운영 기준과 알림 체계를 분리해야 할 때</li>
+        </ul>
+      </div>
+      <div class="persona-card" data-animate data-delay="2">
+        <div class="persona-role">제조 · 공장 물류</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="8" width="34" height="12" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <rect x="5" y="24" width="34" height="12" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <line x1="12" y1="14" x2="28" y2="14" stroke="#2563EB" stroke-width="1" opacity="0.5"/>
+          <line x1="12" y1="30" x2="28" y2="30" stroke="#2563EB" stroke-width="1" opacity="0.5"/>
+          <circle cx="32" cy="14" r="2" fill="#2563EB"/>
+          <circle cx="32" cy="30" r="2" fill="#2563EB"/>
+          <path d="M21 20 V24" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M17 38 H27" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>생산 라인과 창고 연계가 필요한 곳</h3>
+        <p class="persona-desc">입출고와 설비 제어가 생산 계획과 직접 연결되어 있어, 현장 흐름을 실시간으로 맞춰야 하는 환경</p>
+        <ul class="persona-needs">
+          <li>생산 계획 변경이 곧바로 물류 작업에 반영되어야 할 때</li>
+          <li>AGV, 컨베이어, 소터 같은 설비 연동이 많을 때</li>
+          <li>설비 상태와 작업 지시를 같은 기준으로 관리해야 할 때</li>
+        </ul>
+      </div>
+      <div class="persona-card" data-animate data-delay="3">
+        <div class="persona-role">이커머스 · 풀필먼트</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="9" width="32" height="26" rx="3" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.05)"/>
+          <path d="M12 15 H32" stroke="#2563EB" stroke-width="1.2" opacity="0.5"/>
+          <path d="M12 21 H26" stroke="#2563EB" stroke-width="1.2" opacity="0.5"/>
+          <path d="M12 27 H22" stroke="#2563EB" stroke-width="1.2" opacity="0.5"/>
+          <circle cx="31" cy="28" r="4" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <path d="M29.5 28 L30.8 29.3 L32.6 26.7" stroke="#2563EB" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>주문 변동이 크고 처리 속도가 중요한 곳</h3>
+        <p class="persona-desc">오더 수요가 크게 흔들리고, 피킹·분류·출고 흐름을 빠르게 조정해야 하는 운영 환경</p>
+        <ul class="persona-needs">
+          <li>주문 폭증 시 작업 우선순위를 즉시 바꿔야 할 때</li>
+          <li>피킹·분류·출고 상태를 실시간으로 추적해야 할 때</li>
+          <li>대량 알림과 예외 대응을 자동화해야 할 때</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TARGET ROLES ===== -->
+<section id="target" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
       <h2 class="section-title">누구를 위한 솔루션인가</h2>
       <p class="section-sub">Nova는 창고 현장의 운영팀부터 시스템 관리자, 의사결정자까지 각 역할의 핵심 과제를 해소합니다.</p>
     </div>
@@ -794,8 +872,8 @@
           <line x1="22" y1="32" x2="22" y2="40" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="14" y1="40" x2="30" y2="40" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <h3>IT · 시스템 관리자</h3>
-        <p class="persona-desc">안정적이고 확장 가능한 물류 플랫폼을 구축·운영하며 보안과 이력 관리까지 책임지는 담당자</p>
+        <h3>안정적이고 확장 가능한 플랫폼이 필요한 조직</h3>
+        <p class="persona-desc">보안과 이력 관리, 확장성까지 고려해 물류 플랫폼을 구축·운영해야 하는 담당자</p>
         <ul class="persona-needs">
           <li>모듈러 아키텍처로 신규 설비 독립 연동</li>
           <li>RBAC·감사 로그로 접근 이력 관리</li>
@@ -810,13 +888,53 @@
           <polyline points="13,30 18,24 22,27 30,20" stroke="#2563EB" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <polyline points="26,20 30,20 30,24" stroke="#2563EB" stroke-width="1.8" fill="none" stroke-linecap="round"/>
         </svg>
-        <h3>물류 관리자 · 의사결정자</h3>
-        <p class="persona-desc">운영 비용을 최적화하고 리스크를 데이터로 관리하며 경영진에 보고해야 하는 관리자</p>
+        <h3>비용과 리스크를 함께 관리해야 하는 의사결정자</h3>
+        <p class="persona-desc">운영 비용을 최적화하고, 리스크를 데이터로 관리하며, 경영진에 보고해야 하는 담당자</p>
         <ul class="persona-needs">
           <li>실시간 KPI로 데이터 기반 의사결정</li>
           <li>예측 가능한 비용 구조로 예산 관리</li>
           <li>컴플라이언스 감사 즉시 대응</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADOPTION PROCESS ===== -->
+<section id="adoption" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">도입 프로세스</h2>
+      <p class="section-sub">Nova는 현황 파악부터 파일럿 오픈, 운영 확장까지 단계적으로 진행해 리스크를 줄입니다.</p>
+    </div>
+    <div class="adoption-timeline">
+      <div class="adoption-step" data-animate data-delay="1">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">01</div>
+          <h4>현황 진단</h4>
+        </div>
+        <p>설비 구성, 업무 흐름, 연동 대상, 운영 병목을 먼저 정리합니다.</p>
+      </div>
+      <div class="adoption-step" data-animate data-delay="2">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">02</div>
+          <h4>범위 설계</h4>
+        </div>
+        <p>우선 적용할 모듈과 화면, 연동 범위, 단계별 오픈 계획을 정의합니다.</p>
+      </div>
+      <div class="adoption-step" data-animate data-delay="3">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">03</div>
+          <h4>연동 · 설정</h4>
+        </div>
+        <p>설비, 권한, 알림, 감사 로그, 운영 기준을 실제 환경에 맞게 연결합니다.</p>
+      </div>
+      <div class="adoption-step" data-animate data-delay="4">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">04</div>
+          <h4>파일럿 오픈</h4>
+        </div>
+        <p>한 센터 또는 일부 업무부터 먼저 적용해 안정성을 검증합니다.</p>
       </div>
     </div>
   </div>
@@ -952,6 +1070,11 @@
         <a href="#platform">플랫폼</a>
         <a href="#architecture">아키텍처</a>
         <a href="#benefits">도입 효과</a>
+        <a href="#personas">산업</a>
+        <a href="#target">대상</a>
+        <a href="#adoption">도입</a>
+        <a href="#process">업무 흐름</a>
+        <a href="#scenarios">시나리오</a>
       </nav>
       <div class="footer-copy">
         <p>© 2025 Idenflu. All rights reserved.</p>
