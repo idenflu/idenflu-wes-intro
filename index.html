@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nova — WES/WCS 물류 자동화 플랫폼</title>
   <meta name="description" content="실시간 설비 모니터링부터 작업 지시·스케줄링까지, 스마트 창고 운영의 새로운 기준">
+  <!-- SEO -->
+  <meta name="keywords" content="WES, WCS, 물류 자동화, 창고 관리, Nova, Idenflu, 스마트 물류">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://idenflu.com/nova">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nova — WES/WCS 물류 자동화 플랫폼">
+  <meta property="og:description" content="실시간 설비 모니터링부터 작업 지시·스케줄링까지, 스마트 창고 운영의 새로운 기준">
+  <meta property="og:url" content="https://idenflu.com/nova">
+  <meta property="og:image" content="https://idenflu.com/nova/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Idenflu Nova">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nova — WES/WCS 물류 자동화 플랫폼">
+  <meta name="twitter:description" content="실시간 설비 모니터링부터 작업 지시·스케줄링까지, 스마트 창고 운영의 새로운 기준">
+  <meta name="twitter:image" content="https://idenflu.com/nova/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -393,9 +410,52 @@
       .form-row { grid-template-columns: 1fr; }
       .hero-h1 { font-size: 2rem; }
     }
+
+    /* ===== Scroll Progress Bar ===== */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ===== Back to Top Button ===== */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.4);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 1000;
+    }
+    #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #back-to-top:hover {
+      background: var(--accent-glow);
+    }
   </style>
 </head>
 <body>
+
+<div id="scroll-progress"></div>
 
 <!-- ===== NAV ===== -->
 <nav id="nav">
@@ -1095,10 +1155,14 @@
 </footer>
 
 <script>
-  // Nav scroll
+  // Nav scroll + progress bar + back-to-top
   const nav = document.getElementById('nav');
+  const scrollBar = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    scrollBar.style.width = pct + '%';
+    backToTop.classList.toggle('visible', window.scrollY > 300);
   });
 
   // Hamburger
@@ -1213,6 +1277,17 @@
     document.getElementById('contact-form').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
   }
+
+  // Back to Top
+  const backToTop = document.getElementById('back-to-top');
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
+
+<button id="back-to-top" aria-label="맨 위로">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M10 15V5M10 5L5 10M10 5l5 5" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 </body>
 </html>
