@@ -177,8 +177,8 @@
     }
     .stat-item:last-child { border-right: none; }
     .stat-item::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: var(--accent-primary); border-radius: 0 0 3px 3px; }
-    .stat-value { font-family: var(--font-mono); font-size: 2.8rem; font-weight: 600; color: var(--text-primary); line-height: 1; margin-bottom: 8px; }
-    .stat-label { font-size: 0.88rem; color: var(--text-secondary); }
+    .stat-value { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 6px; }
+    .stat-label { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; }
 
     /* ===== 7. Problem Section ===== */
     #problem { padding: 96px 0; }
@@ -669,16 +669,16 @@
   <div class="container">
     <div class="stats-row">
       <div class="stat-item" data-animate>
-        <div class="stat-value" data-count="99.9" data-suffix="%">0%</div>
-        <div class="stat-label">시스템 가용성 SLA</div>
+        <div class="stat-value">실시간 이벤트 처리</div>
+        <div class="stat-label">설비 상태 변화를 지연 없이 감지하고<br>즉시 운영에 반영합니다</div>
       </div>
       <div class="stat-item" data-animate data-delay="2">
-        <div class="stat-value" data-count="50" data-prefix="<" data-suffix="ms">&lt;50ms</div>
-        <div class="stat-label">실시간 이벤트 지연 시간</div>
+        <div class="stat-value">고가용성 아키텍처</div>
+        <div class="stat-label">장애 격리 설계로 단일 오류가<br>전체 운영에 전파되지 않습니다</div>
       </div>
       <div class="stat-item" data-animate data-delay="4">
-        <div class="stat-value" data-count="6" data-suffix="개">0개</div>
-        <div class="stat-label">통합 플랫폼 모듈</div>
+        <div class="stat-value">모듈러 확장 설계</div>
+        <div class="stat-label">신규 설비와 기능을 기존 운영에<br>영향 없이 독립적으로 추가합니다</div>
       </div>
     </div>
   </div>
@@ -787,7 +787,7 @@
           <div class="feature-dot" style="background:var(--accent-primary);box-shadow:0 0 8px rgba(59,130,246,0.6)"></div>
           <div>
             <h4>실시간 설비 모니터링</h4>
-            <p>AGV, 컨베이어 등 각 설비의 상태를 50ms 미만 지연으로 확인합니다. 이상 징후를 조기에 감지해 장애를 예방합니다.</p>
+            <p>AGV, 컨베이어 등 각 설비의 상태를 10ms 수준의 빠른 응답으로 확인합니다. 이상 징후를 조기에 감지해 장애를 예방합니다.</p>
           </div>
         </div>
         <div class="feature-item" data-animate data-delay="3">
@@ -916,7 +916,7 @@
 <section id="platform" class="section">
   <div class="container">
     <div class="section-header" data-animate>
-      <h2 class="section-title">6개의 통합 플랫폼 모듈</h2>
+      <h2 class="section-title">통합 플랫폼 모듈</h2>
       <p class="section-sub">각 모듈은 독립적으로 설계되어 있으며, 함께 사용할 때 완전한 WES 운영 환경을 제공합니다.</p>
     </div>
     <div class="modules-grid">
@@ -1128,6 +1128,20 @@
     </div>
     <div class="benefits-grid">
       <div class="benefit-card" data-animate data-delay="1">
+        <svg class="benefit-icon" style="background:rgba(20,184,166,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <rect x="15" y="3" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <rect x="3" y="15" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <rect x="15" y="15" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <line x1="13" y1="8" x2="15" y2="8" stroke="#14B8A6" stroke-width="1.5"/>
+          <line x1="8" y1="13" x2="8" y2="15" stroke="#14B8A6" stroke-width="1.5"/>
+          <line x1="20" y1="13" x2="20" y2="15" stroke="#14B8A6" stroke-width="1.5"/>
+          <line x1="13" y1="20" x2="15" y2="20" stroke="#14B8A6" stroke-width="1.5"/>
+        </svg>
+        <h3>통합 운영 가시성</h3>
+        <p>설비 모니터링·작업 지시·알림을 하나의 콘솔에서 관리합니다. 분산된 시스템 없이 전체 현장을 한눈에 파악합니다.</p>
+      </div>
+      <div class="benefit-card" data-animate data-delay="2">
         <svg class="benefit-icon" style="background:rgba(59,130,246,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polyline points="4,20 10,12 16,16 24,6" stroke="#3B82F6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <polyline points="20,6 24,6 24,10" stroke="#3B82F6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1140,7 +1154,7 @@
           <path d="M16 3 L8 15 H14 L12 25 L20 13 H14 Z" stroke="#06B6D4" stroke-width="1.8" fill="rgba(6,182,212,0.1)" stroke-linejoin="round" stroke-linecap="round"/>
         </svg>
         <h3>실시간 의사결정</h3>
-        <p>&lt;50ms 이벤트 스트림으로 장애를 즉각 인지하고 대응합니다. 보고서가 아닌 데이터가 운영을 이끕니다.</p>
+        <p>10ms 수준의 이벤트 스트림으로 장애를 즉각 인지하고 대응합니다. 보고서가 아닌 데이터가 운영을 이끕니다.</p>
       </div>
       <div class="benefit-card" data-animate data-delay="3">
         <svg class="benefit-icon" style="background:rgba(16,185,129,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
