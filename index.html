@@ -185,14 +185,14 @@
     .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .problem-card {
       background: var(--bg-surface); border-radius: var(--radius-card);
-      padding: 32px 28px; border: 1px solid var(--bg-border);
-      border-left: 3px solid var(--accent-warning);
+      padding: 36px 24px; border: 1px solid var(--bg-border);
+      text-align: center;
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-    .problem-icon { width: 44px; height: 44px; margin-bottom: 20px; opacity: 0.85; }
+    .problem-icon { width: 44px; height: 44px; margin: 0 auto 20px; display: block; opacity: 0.85; }
     .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; }
-    .problem-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+    .problem-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
 
     /* ===== 8. Features Section ===== */
     #features { padding: 96px 0; background: var(--bg-surface); }
@@ -213,18 +213,18 @@
     .feature-item h4 { font-size: 0.97rem; font-weight: 600; margin-bottom: 6px; }
     .feature-item p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.65; }
 
-    /* Mock Console Panel — kept dark regardless of theme */
+    /* Mock Console Panel */
     .mock-panel {
-      --bg-base: #0A0E1A; --bg-surface: #0F1629; --bg-elevated: #162040; --bg-border: #1E2D52;
-      --text-primary: #F0F4FF; --text-secondary: #94A3B8; --text-muted: #475569; --accent-glow: #60A5FA;
+      --bg-base: #F8FAFC; --bg-surface: #FFFFFF; --bg-elevated: #F1F5F9; --bg-border: #E2E8F0;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-muted: #94A3B8; --accent-glow: #2563EB;
     }
     .log-panel {
-      --bg-elevated: #162040; --bg-border: #1E2D52; --text-muted: #475569;
+      --bg-elevated: #F1F5F9; --bg-border: #E2E8F0; --text-muted: #94A3B8;
     }
     .mock-panel {
       background: var(--bg-base); border: 1px solid var(--bg-border);
       border-radius: var(--radius-card); overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
     }
     .mock-titlebar {
       background: var(--bg-elevated); padding: 10px 16px;
@@ -242,16 +242,16 @@
     .mock-iso-mini { width: 100%; height: 130px; background: var(--bg-elevated); border-radius: 8px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .mock-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
     .mock-table th { color: var(--text-muted); font-weight: 500; padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--bg-border); }
-    .mock-table td { padding: 7px 8px; color: var(--text-secondary); border-bottom: 1px solid rgba(30,45,82,0.5); }
+    .mock-table td { padding: 7px 8px; color: var(--text-secondary); border-bottom: 1px solid var(--bg-border); }
     .status-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; }
     .s-ok   { background: rgba(16,185,129,0.15); color: var(--accent-secondary); }
     .s-warn { background: rgba(245,158,11,0.15);  color: var(--accent-warning); }
-    .s-err  { background: rgba(239,68,68,0.15);   color: #F87171; }
+    .s-err  { background: rgba(239,68,68,0.12);   color: #DC2626; }
     .notif-slide {
       position: absolute; bottom: 16px; right: -260px;
       background: var(--bg-elevated); border: 1px solid var(--accent-primary);
       border-radius: 10px; padding: 10px 14px; width: 240px;
-      font-size: 0.78rem; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      font-size: 0.78rem; box-shadow: 0 8px 24px rgba(0,0,0,0.1);
       animation: notif-in 5s ease-in-out infinite;
     }
     @keyframes notif-in {
@@ -264,9 +264,9 @@
 
     /* Log stream panel */
     .log-panel {
-      background: #050810; border: 1px solid var(--bg-border);
+      background: var(--bg-base); border: 1px solid var(--bg-border);
       border-radius: var(--radius-card); overflow: hidden; height: 360px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
     }
     .log-titlebar {
       background: var(--bg-elevated); padding: 10px 16px;
@@ -278,7 +278,7 @@
       display: flex; flex-direction: column; gap: 4px; justify-content: flex-end;
     }
     .log-line {
-      font-family: var(--font-mono); font-size: 0.78rem; color: #4ADE80;
+      font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary);
       opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
@@ -689,7 +689,7 @@
   <div class="container">
     <div class="section-header" data-animate>
       <h2 class="section-title">기존 창고 시스템의 한계</h2>
-      <p class="section-sub">분산된 레거시 시스템은 운영 가시성을 떨어뜨리고, 비용·안정성·확장성 모든 면에서 성장을 가로막습니다.</p>
+      <p class="section-sub">운영 가시성·의사결정 속도·보안·비용·안정성·확장성 — 레거시 시스템은 물류 경쟁력의 핵심 축들을 잠식합니다.</p>
     </div>
     <div class="problem-grid">
       <div class="problem-card" data-animate data-delay="1">
@@ -702,7 +702,7 @@
           <line x1="10" y1="18" x2="10" y2="26" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="2,2"/>
         </svg>
         <h3>파편화된 시스템</h3>
-        <p>설비 모니터링, 작업 지시, 알림이 각기 다른 솔루션에 흩어져 통합 가시성이 없습니다.</p>
+        <p>설비 모니터링·작업 지시·알림이 각기 다른 솔루션에 분산되어 통합 가시성이 없습니다.</p>
       </div>
       <div class="problem-card" data-animate data-delay="2">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -712,7 +712,7 @@
           <circle cx="22" cy="22" r="2.5" fill="#F59E0B"/>
         </svg>
         <h3>지연된 의사결정</h3>
-        <p>실시간 데이터 없이 보고서 기반으로 운영하면 장애 대응과 처리량 최적화가 모두 늦어집니다.</p>
+        <p>보고서 기반 운영은 병목 감지와 장애 대응을 늦춰 처리량 손실을 누적시킵니다.</p>
       </div>
       <div class="problem-card" data-animate data-delay="3">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -722,7 +722,7 @@
           <line x1="22" y1="33" x2="22" y2="36" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
         <h3>보안·감사의 공백</h3>
-        <p>누가, 언제, 무엇을 변경했는지 추적하지 못하면 규정 준수와 사고 조사가 불가능합니다.</p>
+        <p>변경 이력을 추적하지 못하면 컴플라이언스 감사와 사고 원인 조사가 불가능해집니다.</p>
       </div>
       <div class="problem-card" data-animate data-delay="1">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -735,7 +735,7 @@
           <ellipse cx="22" cy="12" rx="13" ry="4.5" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.13)"/>
         </svg>
         <h3>예측 불가한 운영 비용</h3>
-        <p>벤더별 라이선스, 연동 커스터마이징, 유지보수 계약이 중첩되며 TCO가 통제 범위를 벗어납니다.</p>
+        <p>벤더별 라이선스·커스터마이징·유지보수 계약이 중첩되며 TCO가 통제 범위를 벗어납니다.</p>
       </div>
       <div class="problem-card" data-animate data-delay="2">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -744,7 +744,7 @@
           <circle cx="22" cy="32" r="1.8" fill="#F59E0B"/>
         </svg>
         <h3>취약한 시스템 안정성</h3>
-        <p>설비 연동 장애가 전체 운영을 멈추는 단일 장애 지점(SPOF)이 되어, 예기치 못한 다운타임이 반복됩니다.</p>
+        <p>단일 설비 연동 장애가 SPOF가 되어 전체 운영이 중단되고 예기치 못한 다운타임이 반복됩니다.</p>
       </div>
       <div class="problem-card" data-animate data-delay="3">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -832,9 +832,9 @@
             <!-- Mini ISO map -->
             <div class="mock-iso-mini">
               <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                <polygon points="140,15 210,52 140,89 70,52" fill="#162040" stroke="#1E3A6E" stroke-width="0.6"/>
-                <polygon points="70,52 140,89 140,105 70,68" fill="#0D1830" stroke="#1E3A6E" stroke-width="0.6"/>
-                <polygon points="210,52 140,89 140,105 210,68" fill="#111E3A" stroke="#1E3A6E" stroke-width="0.6"/>
+                <polygon points="140,15 210,52 140,89 70,52" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="0.6"/>
+                <polygon points="70,52 140,89 140,105 70,68" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="0.6"/>
+                <polygon points="210,52 140,89 140,105 210,68" fill="#E0ECFF" stroke="#BFDBFE" stroke-width="0.6"/>
                 <rect x="88" y="44" width="22" height="14" rx="1" fill="#1D4ED8" stroke="#2A4A9E" stroke-width="0.5"/>
                 <rect x="115" y="37" width="22" height="14" rx="1" fill="#1D4ED8" stroke="#2A4A9E" stroke-width="0.5"/>
                 <rect x="150" y="44" width="22" height="14" rx="1" fill="#1D4ED8" stroke="#2A4A9E" stroke-width="0.5"/>
@@ -1124,36 +1124,47 @@
   <div class="container">
     <div class="section-header" data-animate>
       <h2 class="section-title">Nova 도입 효과</h2>
-      <p class="section-sub">검증된 아키텍처와 통합 플랫폼으로 창고 운영의 경쟁력을 높입니다.</p>
+      <p class="section-sub">Nova는 레거시 시스템의 6가지 한계를 하나씩 해소하며, 운영 효율과 비용·안정성을 동시에 끌어올립니다.</p>
     </div>
     <div class="benefits-grid">
       <div class="benefit-card" data-animate data-delay="1">
-        <svg class="benefit-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="benefit-icon" style="background:rgba(59,130,246,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polyline points="4,20 10,12 16,16 24,6" stroke="#3B82F6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <polyline points="20,6 24,6 24,10" stroke="#3B82F6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <h3>처리량 최적화</h3>
-        <p>실시간 태스크 배분과 설비 모니터링으로 창고 처리량을 향상시킵니다. 병목 구간을 즉시 감지하고 재배분합니다.</p>
+        <p>실시간 태스크 배분과 설비 모니터링으로 병목 구간을 즉시 감지하고 작업을 재배분해 창고 처리량을 높입니다.</p>
       </div>
       <div class="benefit-card" data-animate data-delay="2">
-        <svg class="benefit-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="benefit-icon" style="background:rgba(6,182,212,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3 L8 15 H14 L12 25 L20 13 H14 Z" stroke="#06B6D4" stroke-width="1.8" fill="rgba(6,182,212,0.1)" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <h3>실시간 의사결정</h3>
+        <p>&lt;50ms 이벤트 스트림으로 장애를 즉각 인지하고 대응합니다. 보고서가 아닌 데이터가 운영을 이끕니다.</p>
+      </div>
+      <div class="benefit-card" data-animate data-delay="3">
+        <svg class="benefit-icon" style="background:rgba(16,185,129,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14,3 L22,6.5 L22,15 C22,19.5 18.5,23 14,25 C9.5,23 6,19.5 6,15 L6,6.5 Z" stroke="#10B981" stroke-width="1.8" fill="rgba(16,185,129,0.1)"/>
           <path d="M10,14 L13,17 L18,11" stroke="#10B981" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <h3>운영 리스크 감소</h3>
-        <p>멀티채널 알림과 전사 감사 추적으로 장애 대응 시간을 최소화합니다. 이상 징후를 사전에 감지해 사고를 예방합니다.</p>
+        <h3>감사 추적·컴플라이언스</h3>
+        <p>변경·접근 이력을 자동 기록해 누가, 언제, 무엇을 바꿨는지 추적할 수 있습니다. 규정 감사와 사고 조사에 필요한 근거를 즉시 제공합니다.</p>
       </div>
-      <div class="benefit-card" data-animate data-delay="3">
-        <svg class="benefit-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="14" width="10" height="10" rx="2" stroke="#8B5CF6" stroke-width="1.8" fill="rgba(139,92,246,0.1)"/>
-          <rect x="15" y="14" width="10" height="10" rx="2" stroke="#8B5CF6" stroke-width="1.8" fill="rgba(139,92,246,0.08)"/>
-          <rect x="9" y="4" width="10" height="10" rx="2" stroke="#8B5CF6" stroke-width="1.8" fill="rgba(139,92,246,0.12)"/>
-          <line x1="14" y1="14" x2="14" y2="10" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="2,2"/>
-          <line x1="9" y1="19" x2="13" y2="19" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="2,2"/>
-          <line x1="15" y1="19" x2="19" y2="19" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <div class="benefit-card" data-animate data-delay="1">
+        <svg class="benefit-icon" style="background:rgba(249,115,22,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="4,18 10,10 16,14 24,4" stroke="#F97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="20,4 24,4 24,8" stroke="#F97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" y1="24" x2="24" y2="24" stroke="#F97316" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <h3>빠른 시스템 확장</h3>
-        <p>모듈러 아키텍처로 신규 설비 유형을 기존 플랫폼에 독립적으로 추가합니다. 기존 운영에 영향 없이 점진적으로 확장합니다.</p>
+        <h3>TCO 절감·비용 예측</h3>
+        <p>단일 통합 플랫폼으로 벤더별 라이선스와 커스터마이징 비용을 통합해 비용 구조를 단순화하고 운영 예산을 예측 가능하게 합니다.</p>
+      </div>
+      <div class="benefit-card" data-animate data-delay="2">
+        <svg class="benefit-icon" style="background:rgba(13,148,136,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="2,14 6,14 9,7 12,21 15,10 18,17 21,14 26,14" stroke="#0D9488" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>99.9% 고가용성 보장</h3>
+        <p>장애 격리 설계로 단일 설비 오류가 전체 운영에 전파되지 않습니다. SLA 99.9%로 안정적인 연속 운영을 보장합니다.</p>
       </div>
     </div>
   </div>
