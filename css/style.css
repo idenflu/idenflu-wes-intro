@@ -92,7 +92,7 @@
     .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-secondary); animation: pulse-dot 2s ease-in-out infinite; }
     @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
     .hero-h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700;
+      font-size: clamp(2.3rem, 4.8vw, 3.6rem); font-weight: 700;
       line-height: 1.15; letter-spacing: -0.03em;
       margin-bottom: 24px;
     }
@@ -430,7 +430,7 @@
     @media (max-width: 560px) {
       .modules-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .hero-h1 { font-size: 2rem; }
+      .hero-h1 { font-size: 1.9rem; }
     }
 
     /* ===== Scroll Progress Bar ===== */
