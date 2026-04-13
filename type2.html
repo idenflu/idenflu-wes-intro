@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Story Deck — Type 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-deep: #030912;
+      --bg-elevated: #0b1728;
+      --bg-soft: #10213a;
+      --panel: rgba(12, 24, 42, 0.82);
+      --panel-strong: rgba(10, 20, 36, 0.94);
+      --panel-muted: rgba(255, 255, 255, 0.04);
+      --line: rgba(184, 204, 255, 0.12);
+      --line-strong: rgba(184, 204, 255, 0.2);
+      --ink: #eef4ff;
+      --ink-soft: rgba(222, 232, 255, 0.72);
+      --ink-muted: rgba(222, 232, 255, 0.54);
+      --blue: #4b8dff;
+      --cyan: #1ec7c3;
+      --amber: #ff8d63;
+      --green: #23c08b;
+      --red: #ff6e61;
+      --navy: #dfe9ff;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --space-1: 12px;
+      --space-2: 16px;
+      --space-3: 20px;
+      --space-4: 24px;
+      --space-5: 32px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: "IBM Plex Sans KR", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(75, 141, 255, 0.22), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(30, 199, 195, 0.12), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(255, 141, 99, 0.16), transparent 28%),
+        linear-gradient(180deg, #091220 0%, #050b14 55%, #030912 100%);
+    }
+
+    h1, h2, h3, h4, .display, .counter {
+      font-family: "Space Grotesk", "IBM Plex Sans KR", sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    .deck-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      pointer-events: none;
+    }
+
+    .brand-chip,
+    .hint-chip,
+    .counter {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(8, 17, 31, 0.74);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .brand-chip {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--amber));
+      box-shadow: 0 0 0 6px rgba(75, 141, 255, 0.12);
+    }
+
+    .hint-chip {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .counter {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .progress-wrap {
+      position: fixed;
+      left: 28px;
+      right: 28px;
+      bottom: 22px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .progress-track {
+      position: relative;
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .progress-bar {
+      width: 12.5%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--amber));
+      transition: width 0.35s ease;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      width: 52px;
+      height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(8, 17, 31, 0.92);
+      color: #fff;
+      box-shadow: 0 16px 32px rgba(14, 26, 46, 0.2);
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      background: #183156;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .viewport {
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      width: 800vw;
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: transform;
+    }
+
+    .slide {
+      position: relative;
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100dvh;
+      padding: 92px 28px 94px;
+      overflow-y: auto;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 32px;
+      border: 1px solid rgba(184, 204, 255, 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
+        linear-gradient(180deg, rgba(9, 18, 32, 0.34), rgba(3, 9, 18, 0.12));
+      pointer-events: none;
+    }
+
+    .slide-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1240px, 100%);
+      min-height: calc(100dvh - 178px);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-5);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(75, 141, 255, 0.14);
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow.alt {
+      background: rgba(255, 141, 99, 0.14);
+      color: #ffb190;
+    }
+
+    .display {
+      font-size: clamp(3rem, 5.8vw, 5.5rem);
+      line-height: 0.96;
+      max-width: 11ch;
+    }
+
+    .display-wide {
+      max-width: 14ch;
+    }
+
+    .lead {
+      max-width: 760px;
+      font-size: clamp(1rem, 1.65vw, 1.3rem);
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    .hero-grid,
+    .split-grid,
+    .compare-grid,
+    .timeline-grid {
+      display: grid;
+      gap: var(--space-4);
+      align-items: stretch;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .split-grid {
+      grid-template-columns: 0.94fr 1.06fr;
+    }
+
+    .compare-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .timeline-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .panel {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel.strong {
+      background: var(--panel-strong);
+    }
+
+    .panel.dark {
+      background:
+        radial-gradient(circle at top right, rgba(30, 199, 195, 0.16), transparent 34%),
+        linear-gradient(160deg, #10213b 0%, #07111f 100%);
+      color: #eff5ff;
+      border-color: var(--line);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+    }
+
+    .panel.dark .muted,
+    .panel.dark p,
+    .panel.dark .mini-label,
+    .panel.dark .flow-copy,
+    .panel.dark .card-copy {
+      color: rgba(239, 245, 255, 0.72);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.55rem;
+      color: var(--ink);
+    }
+
+    .metric span {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .signal-stack {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .signal-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2);
+    }
+
+    .signal-card {
+      position: relative;
+      min-height: 152px;
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .signal-card.primary {
+      grid-column: span 2;
+      min-height: 224px;
+      background: linear-gradient(135deg, rgba(75, 141, 255, 0.26), rgba(30, 199, 195, 0.15));
+    }
+
+    .mini-label {
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(239, 245, 255, 0.58);
+    }
+
+    .signal-title {
+      margin-top: 12px;
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.18;
+    }
+
+    .signal-bar {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .signal-line {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .signal-line::after {
+      content: "";
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan), #8df5f0);
+      animation: pulseBar 2.4s ease-in-out infinite;
+    }
+
+    .signal-line:nth-child(2)::after {
+      width: 78%;
+      background: linear-gradient(90deg, var(--amber), #ffb18b);
+      animation-delay: 0.4s;
+    }
+
+    .signal-line:nth-child(3)::after {
+      width: 58%;
+      background: linear-gradient(90deg, #7cb0ff, #b5d1ff);
+      animation-delay: 0.8s;
+    }
+
+    @keyframes pulseBar {
+      0%, 100% { width: 66%; }
+      50% { width: 88%; }
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 3.15rem);
+      line-height: 1.08;
+      max-width: 11ch;
+      color: var(--ink);
+    }
+
+    .section-copy {
+      max-width: 680px;
+      color: var(--ink-soft);
+      font-size: 1.03rem;
+      line-height: 1.72;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2);
+    }
+
+    .pain-card,
+    .pillar-card,
+    .persona-card {
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      min-height: 184px;
+    }
+
+    .pain-num,
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: rgba(255, 110, 97, 0.14);
+      color: var(--red);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .pain-card h3,
+    .pillar-card h3,
+    .persona-card h3,
+    .compare-card h3,
+    .timeline-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.18rem;
+      line-height: 1.28;
+      color: var(--ink);
+    }
+
+    .card-copy {
+      font-size: 0.96rem;
+      line-height: 1.64;
+      color: var(--ink-soft);
+    }
+
+    .cost-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+      align-items: center;
+    }
+
+    .ribbon-step {
+      position: relative;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--line);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .ribbon-step::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      transform: translateY(-50%);
+      color: rgba(222, 232, 255, 0.24);
+      font-size: 1.25rem;
+    }
+
+    .ribbon-step:last-child::after {
+      display: none;
+    }
+
+    .legacy-map {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .legacy-node,
+    .stack-layer,
+    .flow-step,
+    .timeline-card,
+    .compare-card {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .legacy-node {
+      position: relative;
+      padding: 20px 20px 20px 64px;
+      min-height: 92px;
+    }
+
+    .legacy-node::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(21, 101, 255, 0.85), rgba(255, 136, 85, 0.85));
+    }
+
+    .legacy-node small {
+      display: block;
+      margin-top: 8px;
+      color: #ffaf8f;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .connector-note {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 34px;
+      color: #ff9f90;
+      font-size: 0.87rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .reason-list {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .reason-item {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+    }
+
+    .reason-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .stack-diagram {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .stack-layer {
+      padding: 20px;
+    }
+
+    .stack-layer.console {
+      background: linear-gradient(135deg, rgba(75, 141, 255, 0.16), rgba(30, 199, 195, 0.12));
+    }
+
+    .stack-layer.platform {
+      background: linear-gradient(135deg, rgba(8, 17, 31, 0.96), rgba(16, 33, 58, 0.96));
+      color: #f6f9ff;
+      border-color: var(--line);
+    }
+
+    .stack-layer.domain {
+      background: linear-gradient(135deg, rgba(35, 192, 139, 0.16), rgba(30, 199, 195, 0.09));
+    }
+
+    .stack-layer.edge {
+      background: linear-gradient(135deg, rgba(255, 141, 99, 0.16), rgba(255, 110, 97, 0.1));
+    }
+
+    .stack-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .stack-head h3 {
+      font-size: 1.18rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .platform .chip {
+      background: rgba(255, 255, 255, 0.08);
+      color: #eff5ff;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .principle-list {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .principle-item {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+    }
+
+    .principle-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .flow-rail {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-2);
+      align-items: stretch;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 20px;
+      min-height: 216px;
+    }
+
+    .step-num {
+      background: rgba(21, 101, 255, 0.12);
+      color: var(--blue);
+    }
+
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -7px;
+      width: 14px;
+      height: 14px;
+      border-top: 2px solid rgba(222, 232, 255, 0.18);
+      border-right: 2px solid rgba(222, 232, 255, 0.18);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .flow-step:last-child::after {
+      display: none;
+    }
+
+    .event-feed {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .event-item {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: var(--space-2);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .event-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .event-time {
+      color: #88a7e8;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.96rem;
+    }
+
+    .compare-card {
+      padding: 24px;
+      min-height: 336px;
+    }
+
+    .compare-card.nova {
+      background: linear-gradient(180deg, rgba(75, 141, 255, 0.1), rgba(30, 199, 195, 0.08));
+      border-color: rgba(75, 141, 255, 0.24);
+    }
+
+    .proof-list,
+    .mini-list,
+    .timeline-steps {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .mini-list div,
+    .proof-list div,
+    .timeline-step {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.94rem;
+      line-height: 1.58;
+    }
+
+    .timeline-card {
+      padding: 28px;
+      min-height: 100%;
+    }
+
+    .timeline-step strong {
+      color: var(--ink);
+      margin-right: 8px;
+    }
+
+    .timeline-step span {
+      color: #ffb190;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2);
+    }
+
+    .persona-card {
+      min-height: 216px;
+    }
+
+    .persona-role {
+      display: inline-flex;
+      margin-bottom: 16px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(75, 141, 255, 0.14);
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .closing-panel {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-4);
+    }
+
+    .closing-points {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .closing-points div {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(239, 245, 255, 0.78);
+    }
+
+    .quote-box {
+      padding: 32px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .quote-box p {
+      font-size: clamp(1.4rem, 2.7vw, 2.6rem);
+      line-height: 1.16;
+      color: #fff;
+    }
+
+    .quote-box strong {
+      color: #93f5ef;
+    }
+
+    .footer-note {
+      color: rgba(239, 245, 255, 0.6);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .split-grid,
+      .timeline-grid,
+      .closing-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-grid,
+      .pain-grid,
+      .persona-grid,
+      .flow-rail {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-metrics,
+      .cost-ribbon {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .display {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .deck-topbar {
+        padding: 14px 16px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .hint-chip {
+        display: none;
+      }
+
+      .slide {
+        padding: 96px 16px 94px;
+      }
+
+      .slide::before {
+        inset: 10px;
+        border-radius: 24px;
+      }
+
+      .slide-inner {
+        min-height: calc(100dvh - 200px);
+      }
+
+      .panel,
+      .compare-card,
+      .timeline-card {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .pain-grid,
+      .compare-grid,
+      .persona-grid,
+      .flow-rail,
+      .hero-metrics,
+      .cost-ribbon,
+      .signal-board {
+        grid-template-columns: 1fr;
+      }
+
+      .metric strong {
+        font-size: 1.3rem;
+      }
+
+      .legacy-node {
+        padding-left: 56px;
+      }
+
+      .flow-step::after,
+      .ribbon-step::after {
+        display: none;
+      }
+
+      .progress-wrap {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck-topbar">
+    <div class="brand-chip"><span class="brand-dot"></span> Nova Story Deck / Type 2</div>
+    <div class="hint-chip">Arrow / Space / Swipe</div>
+    <div class="counter"><span id="currentSlide">01</span> / <span id="totalSlides">08</span></div>
+  </div>
+
+  <div class="viewport">
+    <div class="slider" id="slider">
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="hero-grid">
+            <div class="panel strong">
+              <div class="eyebrow">Problem to Proof</div>
+              <h1 class="display">흩어진 물류 운영을<br>하나의 콘솔로</h1>
+              <p class="lead">
+                Nova는 설비 모니터링, 작업 지시, 알림, 보안, 감사, 스케줄링을
+                표준화된 플랫폼으로 통합합니다. 운영팀은 화면을 오가지 않고,
+                장애는 보고서가 아니라 이벤트 스트림으로 감지합니다.
+              </p>
+              <div class="hero-metrics">
+                <div class="metric">
+                  <strong>8+</strong>
+                  <span>통합 엔터프라이즈 모듈</span>
+                </div>
+                <div class="metric">
+                  <strong>1</strong>
+                  <span>단일 콘솔, 단일 운영 기준</span>
+                </div>
+                <div class="metric">
+                  <strong>Live</strong>
+                  <span>실시간 이벤트 중심 운영</span>
+                </div>
+                <div class="metric">
+                  <strong>Scale</strong>
+                  <span>설비 추가 시 모듈만 확장</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel dark">
+              <div class="signal-stack">
+                <div class="mini-label">Realtime Control Surface</div>
+                <div class="signal-board">
+                  <div class="signal-card primary">
+                    <div class="mini-label">Unified Operations</div>
+                    <div class="signal-title">감지하고<br>지시하고<br>추적합니다</div>
+                    <div class="signal-bar">
+                      <div class="signal-line"></div>
+                      <div class="signal-line"></div>
+                      <div class="signal-line"></div>
+                    </div>
+                  </div>
+                  <div class="signal-card">
+                    <div class="mini-label">Alert</div>
+                    <div class="signal-title">Critical issue<br>detected</div>
+                  </div>
+                  <div class="signal-card">
+                    <div class="mini-label">Audit</div>
+                    <div class="signal-title">who changed<br>what, when</div>
+                  </div>
+                </div>
+                <p class="muted">
+                  결과는 단순합니다. 장애 인지는 빨라지고, 재배분은 자동화되며,
+                  감사 준비는 수작업 취합에서 즉시 조회로 바뀝니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="eyebrow alt">Hidden Cost</div>
+          <h2 class="section-title">레거시의 문제는<br>불편이 아니라 비용 누수입니다</h2>
+          <p class="section-copy">
+            현장 고통은 눈에 잘 보이지 않습니다. 하지만 파편화된 시스템,
+            지연된 판단, 감사 공백, 확장 장벽이 매일 조금씩 처리량과 시간을 잃게 만듭니다.
+          </p>
+          <div class="pain-grid">
+            <article class="pain-card">
+              <div class="pain-num">01</div>
+              <h3>파편화된 시스템</h3>
+              <p class="card-copy">모니터링, 작업 지시, 알림 앱을 번갈아 열어야 합니다.</p>
+            </article>
+            <article class="pain-card">
+              <div class="pain-num">02</div>
+              <h3>지연된 의사결정</h3>
+              <p class="card-copy">어제의 보고서로 오늘의 병목을 판단합니다.</p>
+            </article>
+            <article class="pain-card">
+              <div class="pain-num">03</div>
+              <h3>보안·감사 공백</h3>
+              <p class="card-copy">누가 설정을 바꿨는지 즉시 답하지 못합니다.</p>
+            </article>
+            <article class="pain-card">
+              <div class="pain-num">04</div>
+              <h3>예측 불가한 비용</h3>
+              <p class="card-copy">벤더별 라이선스와 유지보수가 계속 누적됩니다.</p>
+            </article>
+            <article class="pain-card">
+              <div class="pain-num">05</div>
+              <h3>취약한 안정성</h3>
+              <p class="card-copy">연동 하나의 장애가 전체 운영 리스크로 번집니다.</p>
+            </article>
+            <article class="pain-card">
+              <div class="pain-num">06</div>
+              <h3>높은 확장 장벽</h3>
+              <p class="card-copy">새 설비를 붙일 때마다 재개발 프로젝트가 시작됩니다.</p>
+            </article>
+          </div>
+          <div class="cost-ribbon">
+            <div class="ribbon-step">인지 지연</div>
+            <div class="ribbon-step">판단 오류</div>
+            <div class="ribbon-step">다운타임 확대</div>
+            <div class="ribbon-step">조용한 비용 누수</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="split-grid">
+            <div class="panel strong">
+              <div class="eyebrow alt">Legacy Structure</div>
+              <h2 class="section-title">문제가 반복되는 이유는<br>구조가 분리돼 있기 때문입니다</h2>
+              <div class="legacy-map">
+                <div class="legacy-node">
+                  <h3>모니터링 툴</h3>
+                  <p class="card-copy">설비 상태만 보여주고 작업 흐름은 모릅니다.</p>
+                  <small>Vendor A</small>
+                </div>
+                <div class="connector-note">데이터와 책임이 끊겨 있습니다</div>
+                <div class="legacy-node">
+                  <h3>작업 지시 시스템</h3>
+                  <p class="card-copy">장애 원인을 모르고 수동 재배분에 의존합니다.</p>
+                  <small>Vendor B</small>
+                </div>
+                <div class="connector-note">알림과 감사는 사후 대응으로 남습니다</div>
+                <div class="legacy-node">
+                  <h3>알림 / 감사 도구</h3>
+                  <p class="card-copy">운영 맥락과 연결되지 않아 원인 추적이 늦습니다.</p>
+                  <small>Vendor C</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="eyebrow">Why It Breaks</div>
+              <div class="reason-list">
+                <div class="reason-item">
+                  <strong>운영 화면과 설비 연동이 분리돼 있습니다</strong>
+                  사용자는 여러 화면을 보고, 실제 연동은 다른 시스템이 처리합니다.
+                </div>
+                <div class="reason-item">
+                  <strong>공통 기능이 플랫폼이 아니라 프로젝트별 부속물입니다</strong>
+                  인증, 권한, 알림, 감사, 스케줄링이 반복 구축됩니다.
+                </div>
+                <div class="reason-item">
+                  <strong>새 설비 추가가 확장이 아니라 재개발이 됩니다</strong>
+                  기존 운영 영향 범위를 다시 검토하고 일정이 길어집니다.
+                </div>
+                <div class="reason-item">
+                  <strong>결국 운영팀은 시스템을 관리하는 대신 예외를 수습합니다</strong>
+                  늦게 감지하고, 늦게 판단하고, 늦게 대응하는 구조가 고착됩니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="split-grid">
+            <div class="panel dark">
+              <div class="eyebrow">Platform Architecture</div>
+              <h2 class="section-title">Nova는 공통 기능을 표준화하고<br>설비 연동은 모듈로 분리합니다</h2>
+              <div class="stack-diagram">
+                <div class="stack-layer console">
+                  <div class="stack-head">
+                    <h3>Nova Console</h3>
+                    <span class="mini-label">Monitoring / Work / Alert / Audit</span>
+                  </div>
+                  <div class="chip-row">
+                    <span class="chip">2.5D Console</span>
+                    <span class="chip">Task Control</span>
+                    <span class="chip">KPI Dashboard</span>
+                  </div>
+                </div>
+                <div class="stack-layer platform">
+                  <div class="stack-head">
+                    <h3>공통 플랫폼 계층</h3>
+                    <span class="mini-label">Standardized once, reused everywhere</span>
+                  </div>
+                  <div class="chip-row">
+                    <span class="chip">IAM</span>
+                    <span class="chip">Audit</span>
+                    <span class="chip">Notification</span>
+                    <span class="chip">Realtime</span>
+                    <span class="chip">Scheduler</span>
+                    <span class="chip">API Gateway</span>
+                  </div>
+                </div>
+                <div class="stack-layer domain">
+                  <div class="stack-head">
+                    <h3>도메인 모듈 계층</h3>
+                    <span class="mini-label">Independent bounded contexts</span>
+                  </div>
+                  <div class="chip-row">
+                    <span class="chip">Operation</span>
+                    <span class="chip">Agent</span>
+                    <span class="chip">Facility BC</span>
+                    <span class="chip">Integration BC</span>
+                  </div>
+                </div>
+                <div class="stack-layer edge">
+                  <div class="stack-head">
+                    <h3>현장 설비 및 외부 시스템</h3>
+                    <span class="mini-label">AGV / AMR / Conveyor / Sorter / WMS / ERP / MES</span>
+                  </div>
+                  <div class="chip-row">
+                    <span class="chip">AGV</span>
+                    <span class="chip">AMR</span>
+                    <span class="chip">Conveyor</span>
+                    <span class="chip">Sorter</span>
+                    <span class="chip">WMS</span>
+                    <span class="chip">ERP</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel strong">
+              <div class="eyebrow alt">Architecture Principles</div>
+              <div class="principle-list">
+                <div class="principle-item">
+                  <strong>공통 기능 표준화</strong>
+                  인증, 권한, 감사, 알림, 스케줄링, 실시간 스트림을 플랫폼 기본값으로 제공합니다.
+                </div>
+                <div class="principle-item">
+                  <strong>운영과 연동의 분리</strong>
+                  콘솔 경험과 설비 연동 계층을 분리해 변경 영향을 최소화합니다.
+                </div>
+                <div class="principle-item">
+                  <strong>도메인 모듈 독립성</strong>
+                  설비별 요구사항은 BC 단위로 수용하고 기존 운영은 흔들지 않습니다.
+                </div>
+                <div class="principle-item">
+                  <strong>새 센터에 같은 구조를 반복 적용</strong>
+                  한번 검증한 플랫폼을 다른 설비와 다른 센터로 확장합니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="eyebrow">Realtime Loop</div>
+          <h2 class="section-title">실시간 운영은 보고가 아니라<br>이벤트 흐름으로 움직입니다</h2>
+          <p class="section-copy">
+            Snapshot-first Delta push 구조로 화면과 현장을 지속 동기화합니다.
+            장애는 감지되고, 알림은 전달되고, 재배분은 실행되고, 이력은 자동으로 남습니다.
+          </p>
+          <div class="timeline-grid">
+            <div class="panel strong">
+              <div class="flow-rail">
+                <article class="flow-step">
+                  <div class="step-num">01</div>
+                  <h3>설비 이벤트 수집</h3>
+                  <p class="flow-copy">AGV·컨베이어·소터 상태를 실시간 스트림으로 수신합니다.</p>
+                </article>
+                <article class="flow-step">
+                  <div class="step-num">02</div>
+                  <h3>이상 징후 감지</h3>
+                  <p class="flow-copy">임계치와 예외 조건을 기준으로 이상 상태를 즉시 판별합니다.</p>
+                </article>
+                <article class="flow-step">
+                  <div class="step-num">03</div>
+                  <h3>멀티채널 알림</h3>
+                  <p class="flow-copy">심각도 기준으로 운영자와 관리자에게 자동 전파합니다.</p>
+                </article>
+                <article class="flow-step">
+                  <div class="step-num">04</div>
+                  <h3>작업 재배분</h3>
+                  <p class="flow-copy">유휴 설비나 대체 라인으로 태스크를 신속히 분산합니다.</p>
+                </article>
+                <article class="flow-step">
+                  <div class="step-num">05</div>
+                  <h3>감사 이력 기록</h3>
+                  <p class="flow-copy">누가 무엇을 조치했는지 자동으로 추적하고 내보냅니다.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="panel dark">
+              <div class="eyebrow">Live Timeline</div>
+              <div class="event-feed">
+                <div class="event-item">
+                  <div class="event-time">09:14</div>
+                  <div>
+                    <h3>Sorter-02 overload detected</h3>
+                    <p class="card-copy">이벤트 스트림이 임계치 초과를 감지합니다.</p>
+                  </div>
+                </div>
+                <div class="event-item">
+                  <div class="event-time">09:14</div>
+                  <div>
+                    <h3>Ops alert sent</h3>
+                    <p class="card-copy">운영팀과 관리자에게 심각도 기반 알림이 전파됩니다.</p>
+                  </div>
+                </div>
+                <div class="event-item">
+                  <div class="event-time">09:15</div>
+                  <div>
+                    <h3>Task rerouted to idle lane</h3>
+                    <p class="card-copy">병목을 우회하도록 작업이 재배분됩니다.</p>
+                  </div>
+                </div>
+                <div class="event-item">
+                  <div class="event-time">09:16</div>
+                  <div>
+                    <h3>Audit log exported</h3>
+                    <p class="card-copy">조치 이력과 변경 로그가 즉시 조회 가능한 상태로 남습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="eyebrow alt">Core Messages</div>
+          <h2 class="section-title">Nova의 가치는 세 가지로 압축됩니다</h2>
+          <div class="compare-grid">
+            <article class="compare-card">
+              <h3>통합</h3>
+              <p class="card-copy">모니터링, 작업, 알림, 보안, 감사, 스케줄링을 하나의 운영 구조로 묶습니다.</p>
+              <div class="proof-list">
+                <div>단일 콘솔에서 설비 상태와 태스크를 함께 제어</div>
+                <div>공통 플랫폼 계층으로 반복 구축 제거</div>
+                <div>단일 계약 구조로 운영 복잡도 축소</div>
+              </div>
+            </article>
+            <article class="compare-card nova">
+              <h3>안정성</h3>
+              <p class="card-copy">운영 판단의 기준을 보고서에서 이벤트 스트림으로 바꿉니다.</p>
+              <div class="proof-list">
+                <div>Snapshot-first Delta push 기반 동기화</div>
+                <div>WebSocket 실시간 스트림과 멀티채널 자동 알림</div>
+                <div>장애 감지부터 조치 이력까지 연속 추적</div>
+              </div>
+            </article>
+            <article class="compare-card">
+              <h3>확장성</h3>
+              <p class="card-copy">새 설비나 새 센터를 붙여도 플랫폼 전체를 다시 만들지 않습니다.</p>
+              <div class="proof-list">
+                <div>독립 설비 BC 구조</div>
+                <div>기존 운영 영향 최소화</div>
+                <div>수평 확장 가능한 모듈형 아키텍처</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="timeline-grid">
+            <div class="timeline-card">
+              <div class="eyebrow">Adoption Timeline</div>
+              <h2 class="section-title">도입은 일괄 전환이 아니라<br>작게 검증하고 안정적으로 확장합니다</h2>
+              <div class="timeline-steps">
+                <div class="timeline-step"><strong>01 진단</strong><span>1~2주</span><br>운영 구조, 설비 인터페이스, 보안 요구사항을 정리합니다.</div>
+                <div class="timeline-step"><strong>02 파일럿 범위 확정</strong><span>2~3주</span><br>대상 구간, KPI, 테스트 시나리오를 명확히 정의합니다.</div>
+                <div class="timeline-step"><strong>03 플랫폼 연결</strong><span>4~8주</span><br>공통 플랫폼과 현장 설비를 실제 데이터로 연동합니다.</div>
+                <div class="timeline-step"><strong>04 안정화</strong><span>2~4주</span><br>운영팀이 기준 시스템으로 사용할 수 있게 예외를 다듬습니다.</div>
+                <div class="timeline-step"><strong>05 확장</strong><span>이후 지속</span><br>검증된 구조를 다른 설비와 다른 센터로 반복 적용합니다.</div>
+              </div>
+            </div>
+
+            <div class="panel strong">
+              <div class="eyebrow alt">Persona Fit</div>
+              <div class="persona-grid">
+                <article class="persona-card">
+                  <div class="persona-role">현장 운영팀</div>
+                  <h3>한 화면에서 대응합니다</h3>
+                  <p class="card-copy">설비 상태, 태스크, 심각도 알림을 한 시야에서 보고 즉시 조치합니다.</p>
+                </article>
+                <article class="persona-card">
+                  <div class="persona-role">IT 관리자</div>
+                  <h3>기존 운영을 멈추지 않고 확장합니다</h3>
+                  <p class="card-copy">독립 모듈 구조와 RBAC, Audit이 플랫폼 기본 기능으로 제공됩니다.</p>
+                </article>
+                <article class="persona-card">
+                  <div class="persona-role">의사결정자</div>
+                  <h3>비용과 리스크를 더 빨리 봅니다</h3>
+                  <p class="card-copy">단일 계약 구조와 즉시 조회 가능한 감사 이력으로 예측 가능성을 높입니다.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-inner">
+          <div class="panel dark">
+            <div class="closing-panel">
+              <div>
+                <div class="eyebrow">Closing Message</div>
+                <h2 class="display display-wide">센터가 늘어도<br>콘솔은 하나</h2>
+                <p class="lead">
+                  Nova는 운영팀이 여러 시스템을 오가며 뒤늦게 대응하던 구조를,
+                  하나의 콘솔에서 실시간으로 감지하고 지시하고 추적하는 구조로 바꿉니다.
+                </p>
+                <div class="closing-points">
+                  <div>표준화된 플랫폼 위에서 공통 기능을 한 번만 구축합니다.</div>
+                  <div>이벤트 기반 운영으로 장애 대응 속도와 의사결정 품질을 끌어올립니다.</div>
+                  <div>새 설비와 새 센터를 독립 모듈 단위로 확장합니다.</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="quote-box">
+                  <p><strong>실시간성</strong>, <strong>통합성</strong>, <strong>확장성</strong>을 동시에 확보하는 WES/WCS 플랫폼</p>
+                </div>
+                <p class="footer-note" style="margin-top: 18px;">
+                  기준 문서: docs/storytelling.md<br>
+                  메시지 흐름: 문제 → 원인 → 결과 → Nova의 해결 → 증명
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prevBtn" aria-label="이전 슬라이드">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"></path>
+        </svg>
+      </button>
+      <button class="nav-btn" id="nextBtn" aria-label="다음 슬라이드">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById("slider");
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressBar = document.getElementById("progressBar");
+    const currentSlide = document.getElementById("currentSlide");
+    const totalSlides = document.getElementById("totalSlides");
+
+    let index = 0;
+    let wheelLock = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    totalSlides.textContent = String(slides.length).padStart(2, "0");
+
+    function updateDeck() {
+      slider.style.transform = `translateX(-${index * 100}vw)`;
+      currentSlide.textContent = String(index + 1).padStart(2, "0");
+      progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === slides.length - 1;
+    }
+
+    function goTo(nextIndex) {
+      index = Math.max(0, Math.min(nextIndex, slides.length - 1));
+      updateDeck();
+    }
+
+    function next() {
+      goTo(index + 1);
+    }
+
+    function prev() {
+      goTo(index - 1);
+    }
+
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        next();
+      }
+
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        prev();
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goTo(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goTo(slides.length - 1);
+      }
+    });
+
+    document.addEventListener("wheel", (event) => {
+      if (wheelLock) return;
+      if (Math.abs(event.deltaY) < 50) return;
+      wheelLock = true;
+      event.deltaY > 0 ? next() : prev();
+      window.setTimeout(() => {
+        wheelLock = false;
+      }, 750);
+    }, { passive: true });
+
+    slider.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slider.addEventListener("touchend", (event) => {
+      touchEndX = event.changedTouches[0].screenX;
+      const delta = touchStartX - touchEndX;
+      if (delta > 50) next();
+      if (delta < -50) prev();
+    }, { passive: true });
+
+    updateDeck();
+  </script>
+</body>
+</html>
