@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Pitch Deck — WES/WCS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0A0F1C;
+      --bg-panel: #111827;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-primary: #3B82F6;
+      --accent-secondary: #10B981;
+      --font-sans: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow: hidden; /* Prevent native scroll */
+      line-height: 1.6;
+    }
+
+    #slider-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      will-change: transform;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .slide {
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem;
+      position: relative;
+    }
+
+    /* Inner Container */
+    .slide-content {
+      max-width: 1000px;
+      width: 100%;
+      z-index: 2;
+    }
+
+    h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
+    
+    /* Cover Slide */
+    .slide-cover h1 { font-size: 4.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff, #94A3B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .slide-cover p { font-size: 1.5rem; color: var(--text-muted); font-weight: 300; }
+    .badge { display: inline-block; padding: 0.3rem 1rem; border: 1px solid rgba(59,130,246,0.3); border-radius: 999px; background: rgba(59,130,246,0.1); color: var(--accent-primary); font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+
+    /* Standard Slide Typography */
+    .slide-title { font-size: 3rem; margin-bottom: 3rem; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    
+    .list-item { background: var(--bg-panel); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem; }
+    .list-item h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-primary); }
+    .list-item p { font-size: 1.125rem; color: var(--text-muted); }
+
+    /* Modules Grid */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .module-card { background: var(--bg-panel); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .module-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; color: white; }
+    .module-card p { font-size: 0.95rem; color: var(--text-muted); }
+
+    /* Values Grid */
+    .value-card { background: var(--bg-panel); padding: 2.5rem 2rem; border-radius: 16px; border-top: 3px solid var(--accent-secondary); text-align: center; }
+    .value-card h3 { font-size: 1.75rem; margin-bottom: 1rem; color: white; }
+    .value-card p { color: var(--text-muted); font-size: 1.1rem; }
+
+    /* Architecture Visual */
+    .arch-box { border: 2px dashed rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; text-align: center; }
+
+    /* Controls */
+    .controls { position: fixed; bottom: 2rem; right: 3rem; display: flex; gap: 1rem; z-index: 100; }
+    .btn-nav { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.2s; }
+    .btn-nav:hover { background: var(--accent-primary); border-color: var(--accent-primary); }
+    .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+    
+    .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-primary); z-index: 100; transition: width 0.3s; }
+    .slide-counter { position: fixed; bottom: 3rem; left: 3rem; color: var(--text-muted); font-weight: 500; font-variant-numeric: tabular-nums; z-index: 100; }
+    
+    /* Decoration */
+    .bg-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(10,15,28,0) 70%); top: -200px; right: -200px; z-index: 1; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progress"></div>
+  <div class="slide-counter"><span id="curr-num">1</span> / <span id="total-num">7</span></div>
+  
+  <div class="controls">
+    <button class="btn-nav" id="btn-prev" disabled>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="btn-nav" id="btn-next">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+
+  <div id="slider-container">
+    
+    <!-- Slide 1: Cover -->
+    <div class="slide slide-cover">
+      <div class="bg-glow"></div>
+      <div class="slide-content text-center" style="text-align: center;">
+        <div class="badge">WES / WCS Platform</div>
+        <h1>스마트 물류 제어의<br>새로운 기준, Nova</h1>
+        <p>End-to-End 통합 물류 제어를 지원하는 엔터프라이즈 솔루션</p>
+      </div>
+    </div>
+
+    <!-- Slide 2: Problem -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-title">물류 현장의 한계</h2>
+        <div class="grid-2">
+          <div class="list-item">
+            <h3>파편화된 시스템</h3>
+            <p>모니터링, 작업 지시, 알림이 각기 다른 솔루션에 분산되어 통합 가시성이 결여되어 있습니다.</p>
+          </div>
+          <div class="list-item">
+            <h3>단절된 의사결정</h3>
+            <p>실시간 데이터가 부재하여 병목을 즉시 파악하지 못하고 아날로그 보고서에 의존합니다.</p>
+          </div>
+          <div class="list-item">
+            <h3>취약한 통제력</h3>
+            <p>단일 설비의 장애가 전체 프로세스로 전파되며 예기치 못한 다운타임이 누적됩니다.</p>
+          </div>
+          <div class="list-item">
+            <h3>높은 확장 장벽</h3>
+            <p>새로운 설비나 센터를 추가할 때마다 대규모 재개발 비용과 시간이 소요됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Solution Narrative -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-title">하나의 플랫폼으로 통제하다</h2>
+        <div class="grid-2" style="align-items: center;">
+          <div>
+            <h3 style="color:#EF4444; margin-bottom: 1rem;">기존 WCS / WES 시스템</h3>
+            <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem; margin-top:1.5rem;">경직된 사일로(Silo) 환경</h4>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">이기종 설비(AGV, 컨베이어)마다 제조사 시스템이 분리되어 <strong>교차 제어 불가능</strong></p>
+            
+            <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem; margin-top:1.5rem;">높은 벤더(Vendor) 종속성</h4>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">작은 에러나 병목 발생 시에도 스스로 해결하지 못하고 <strong>설비 제조사 엔지니어에 전적으로 의존</strong></p>
+            
+            <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem; margin-top:1.5rem;">새로운 투자에 대한 높은 장벽</h4>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">피크 시즌에 로봇 1대를 추가하려 해도 <strong>수개월의 대규모 IT 연동 프로젝트(SI) 동반</strong></p>
+          </div>
+          <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 3rem;">
+            <h3 style="color:var(--accent-secondary); margin-bottom: 1rem;">Nova 플랫폼 도입 후</h3>
+            <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem; margin-top:1.5rem;">단일 지점에서의 통합 제어</h4>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">제조사가 달라도 Nova의 <strong>단일 생태계 안에서 최적화된 오케스트레이션 수행</strong></p>
+            
+            <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem; margin-top:1.5rem;">자기 주도적(Self-Control) 운영</h4>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">벤더 개입 없이 현장 운영팀이 직접 트래픽을 분산하고 <strong>직관적인 콘솔로 설비 제어</strong></p>
+            
+            <h4 style="color:white; font-size:1.1rem; margin-bottom:0.5rem; margin-top:1.5rem;">Plug & Play 방식의 확장</h4>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">새로운 벤더의 설비도 API 인프라에 레고 블록처럼 <strong>플러그인 형태로 즉시 연동 및 투입</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Values -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-title">엔터프라이즈 물류의 핵심 원칙</h2>
+        <div class="grid-3">
+          <div class="value-card" style="border-top-color: #3B82F6;">
+            <h3>표준화</h3>
+            <p>다양한 종류의 제조사 설비와 WMS/ERP 백엔드 인프라를 하나의 표준화된 인터페이스로 묶습니다.</p>
+          </div>
+          <div class="value-card" style="border-top-color: #10B981;">
+            <h3>안정성</h3>
+            <p>장애 격리 설계와 독립된 컨텍스트(BC)를 통해 단일 에러가 치명적인 다운타임으로 이어지지 않습니다.</p>
+          </div>
+          <div class="value-card" style="border-top-color: #8B5CF6;">
+            <h3>확장성</h3>
+            <p>플랫폼 전체를 중단시키지 않고도 필요한 물류 모듈만 조립식으로 쉽게 추가하고 교체할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Modules -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-title">6개의 통합 제어 모듈</h2>
+        <div class="grid-3">
+          <div class="module-card">
+            <h4 style="color:#3B82F6">IAM</h4>
+            <p>RBAC 기반 사용자 인증 및 역할 제어</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#10B981">Audit</h4>
+            <p>변경 이력 추적 및 무결성 감사 로그</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#F59E0B">Notification</h4>
+            <p>Email/SMS 등 멀티채널 자동 알림</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#8B5CF6">Realtime</h4>
+            <p>이벤트 기반의 쌍방향 실시간 동기화</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#06B6D4">Configuration</h4>
+            <p>안전한 타입 검증이 포함된 전역 설정 패널</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#EC4899">Scheduling</h4>
+            <p>Cron 기반 예측 가능한 배치 처리 엔진</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Architecture -->
+    <div class="slide">
+      <div class="slide-content">
+        <h2 class="slide-title">엔터프라이즈 아키텍처 다이어그램</h2>
+        <div class="arch-container" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+          
+          <!-- Layer 1: Client & External -->
+          <div class="arch-layer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px;">
+            <h4 style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Client & External Systems</h4>
+            <div style="display: flex; gap: 1rem;">
+              <span class="badge" style="margin:0;">Web Console (대시보드)</span>
+              <span class="badge" style="margin:0;">Mobile PDA</span>
+              <span class="badge" style="margin:0; border-color: #F59E0B; color: #F59E0B; background: rgba(245,158,11,0.1);">WMS / ERP 연동 API</span>
+            </div>
+          </div>
+
+          <!-- Gateway -->
+          <div style="text-align: center; color: var(--accent-primary); font-size: 0.9rem;">▼ 고성능 API 통신 (gRPC / WebSocket)</div>
+
+          <!-- Layer 2: Core Platform -->
+          <div class="arch-layer" style="background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.3); padding: 1.5rem; border-radius: 12px;">
+            <h4 style="color: var(--accent-primary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Nova Platform (Micro Bounded Contexts)</h4>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+              <div style="padding: 0.8rem; background: var(--bg-panel); border-radius: 8px; font-size: 0.9rem;"><strong>보안/감사</strong><br><span style="color:var(--text-muted); font-size:0.8rem;">IAM, Audit</span></div>
+              <div style="padding: 0.8rem; background: var(--bg-panel); border-radius: 8px; font-size: 0.9rem;"><strong>알림/통신</strong><br><span style="color:var(--text-muted); font-size:0.8rem;">Notification, Realtime</span></div>
+              <div style="padding: 0.8rem; background: var(--bg-panel); border-radius: 8px; font-size: 0.9rem;"><strong>설정/제어</strong><br><span style="color:var(--text-muted); font-size:0.8rem;">Config, Scheduling</span></div>
+              <div style="padding: 0.8rem; background: rgba(139,92,246,0.15); border: 1px solid #8B5CF6; border-radius: 8px; font-size: 0.9rem; color: white;"><strong>오케스트레이터</strong><br><span style="color:#D8B4FE; font-size:0.8rem;">멀티 설비 트랜잭션 조정</span></div>
+            </div>
+          </div>
+
+          <!-- Layer 3: Edge Agents -->
+          <div style="text-align: center; color: var(--accent-secondary); font-size: 0.9rem;">▼ 독립적인 에이전트 확장 통신 (Kafka / MQTT)</div>
+
+          <div class="arch-layer" style="background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.3); padding: 1.5rem; border-radius: 12px;">
+            <h4 style="color: var(--accent-secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Edge & Equipment Layer</h4>
+            <div style="display: flex; gap: 1rem;">
+              <div style="flex:1; padding: 1rem; background: var(--bg-panel); border-left: 3px solid #10B981; border-radius: 4px;"><strong>AGV Agent</strong><p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem;">VDA5050 규격 제어</p></div>
+              <div style="flex:1; padding: 1rem; background: var(--bg-panel); border-left: 3px solid #10B981; border-radius: 4px;"><strong>Conveyor Agent</strong><p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem;">PLC 프로토콜 통신</p></div>
+              <div style="flex:1; padding: 1rem; background: var(--bg-panel); border-left: 3px solid #10B981; border-radius: 4px;"><strong>Sorter Agent</strong><p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem;">TCP/Socket 연동</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: CTA -->
+    <div class="slide text-center" style="text-align: center;">
+      <div class="slide-content">
+        <h2 style="font-size: 3.5rem; margin-bottom: 1.5rem;">다음 단계로 나아갈 준비가 되셨나요?</h2>
+        <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 3rem;">현장 진단부터 파일럿 테스트 설계까지, 물류 자동화 전문가가 함께합니다.</p>
+        <div style="display: inline-block; padding: 1rem 2.5rem; background: var(--accent-primary); color: white; border-radius: 999px; font-weight: 600; font-size: 1.2rem; cursor: pointer;">
+          무료 성숙도 진단 신청하기
+        </div>
+        <p style="margin-top: 1.5rem; color: #64748B; font-size: 0.9rem;">ops-team@idenflu.com | 02-XXXX-XXXX</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const container = document.getElementById('slider-container');
+    const slides = document.querySelectorAll('.slide');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const progress = document.getElementById('progress');
+    const currNum = document.getElementById('curr-num');
+    const totalNumSpan = document.getElementById('total-num');
+    
+    let currentIdx = 0;
+    const totalSlides = slides.length;
+    totalNumSpan.textContent = totalSlides;
+
+    function updateSlider() {
+      // Move slider
+      container.style.transform = `translateX(-${currentIdx * 100}vw)`;
+      
+      // Update controls
+      btnPrev.disabled = currentIdx === 0;
+      btnNext.disabled = currentIdx === totalSlides - 1;
+      
+      // Update counters & progress
+      currNum.textContent = currentIdx + 1;
+      progress.style.width = `${((currentIdx + 1) / totalSlides) * 100}%`;
+    }
+
+    function goNext() {
+      if (currentIdx < totalSlides - 1) { currentIdx++; updateSlider(); }
+    }
+    
+    function goPrev() {
+      if (currentIdx > 0) { currentIdx--; updateSlider(); }
+    }
+
+    btnNext.addEventListener('click', goNext);
+    btnPrev.addEventListener('click', goPrev);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        goNext();
+      } else if (e.key === 'ArrowLeft') {
+        goPrev();
+      }
+    });
+
+    // Optional mouse wheel support (debounced)
+    let isScrolling = false;
+    document.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+      isScrolling = true;
+      if (e.deltaY > 50) { goNext(); }
+      else if (e.deltaY < -50) { goPrev(); }
+      setTimeout(() => { isScrolling = false; }, 800);
+    });
+
+    // Init
+    updateSlider();
+  </script>
+</body>
+</html>
