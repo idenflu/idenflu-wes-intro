@@ -48,7 +48,6 @@
       <a href="#architecture">아키텍처</a>
       <a href="#benefits">도입 효과</a>
       <a href="#personas">산업</a>
-      <a href="#target">대상</a>
       <a href="#adoption">도입</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="메뉴">
@@ -62,7 +61,6 @@
   <a href="#architecture" class="mobile-nav-link">아키텍처</a>
   <a href="#benefits" class="mobile-nav-link">도입 효과</a>
   <a href="#personas" class="mobile-nav-link">산업</a>
-  <a href="#target" class="mobile-nav-link">대상</a>
   <a href="#adoption" class="mobile-nav-link">도입</a>
 </div>
 
@@ -74,12 +72,16 @@
       <h1 class="hero-h1">스마트 물류 자동화의<br><span class="highlight">새로운 기준, Nova</span></h1>
       <p class="hero-sub">실시간 설비 모니터링부터 작업 지시·스케줄링까지 —<br>창고 운영 전 영역을 하나의 플랫폼으로 통합합니다.</p>
       <div class="hero-actions">
-<a href="#features" class="btn btn-ghost">기능 살펴보기</a>
+        <a href="#adoption" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          우리 센터 무료 진단받기
+        </a>
+        <a href="#features" class="btn btn-ghost">기능 살펴보기</a>
       </div>
       <div class="hero-trust">
-        <span class="hero-trust-item">모듈러 아키텍처</span>
-        <span class="hero-trust-item">실시간 대시보드</span>
-        <span class="hero-trust-item">엔터프라이즈 보안</span>
+        <span class="hero-trust-item">국내 물류 자동화 전문 팀</span>
+        <span class="hero-trust-item">엔터프라이즈 보안 아키텍처</span>
+        <span class="hero-trust-item">클라우드 네이티브 설계</span>
       </div>
     </div>
     <div class="hero-visual" style="padding-right:max(24px, calc((100vw - 1200px)/2 + 24px));">
@@ -244,12 +246,39 @@
   </div>
 </section>
 
+<!-- ===== TRUST BAR ===== -->
+<div id="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5 5.1 17.2 6 11.7 2 7.8l5.5-.8z" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/></svg>
+        <span>국내 물류 자동화 전문 팀</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/><path d="M7 10l2.5 2.5 3.5-4" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>엔터프라이즈 보안 아키텍처</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/><path d="M10 6v4l2.5 2.5" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>24/7 실시간 모니터링</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/><path d="M7 10l2 2 4-4" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>클라우드 네이티브 아키텍처</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ===== STATS ===== -->
 <section id="stats">
   <div class="container">
     <div class="section-header stats-header" data-animate>
-      <h2 class="section-title">한눈에 보는 구성</h2>
-      <p class="section-sub">Nova가 어떤 범위의 기능과 사용 맥락을 담고 있는지 먼저 정리합니다.</p>
+      <h2 class="section-title">Nova 플랫폼 핵심 구성</h2>
+      <p class="section-sub">모듈, 사용자 그룹, 업무 흐름 — Nova가 커버하는 운영 범위를 한눈에 확인하세요.</p>
     </div>
     <div class="stats-row">
       <div class="stat-item" data-animate>
@@ -272,8 +301,8 @@
 <section id="problem" class="section">
   <div class="container">
     <div class="section-header" data-animate>
-      <h2 class="section-title">기존 창고 시스템의 한계</h2>
-      <p class="section-sub">운영 가시성·의사결정 속도·보안·비용·안정성·확장성 — 레거시 시스템은 물류 경쟁력의 핵심 축들을 잠식합니다.</p>
+      <h2 class="section-title">레거시 시스템이 만드는 운영 손실</h2>
+      <p class="section-sub">파편화된 시스템은 장애 대응을 지연시키고, 의사결정 속도를 떨어뜨립니다. 경쟁력의 핵심 축들이 조용히 잠식되고 있습니다.</p>
     </div>
     <div class="problem-grid">
       <div class="problem-card" data-animate data-delay="1">
@@ -287,6 +316,7 @@
         </svg>
         <h3>파편화된 시스템</h3>
         <p>설비 모니터링·작업 지시·알림이 각기 다른 솔루션에 분산되어 통합 가시성이 없습니다.</p>
+        <div class="problem-tag">설비 장애 인지까지 여러 시스템을 번갈아 확인해야 함</div>
       </div>
       <div class="problem-card" data-animate data-delay="2">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -297,6 +327,7 @@
         </svg>
         <h3>지연된 의사결정</h3>
         <p>보고서 기반 운영은 병목 감지와 장애 대응을 늦춰 처리량 손실을 누적시킵니다.</p>
+        <div class="problem-tag">장애 인지 후 대응까지 수동 보고 프로세스 대기</div>
       </div>
       <div class="problem-card" data-animate data-delay="3">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -307,6 +338,7 @@
         </svg>
         <h3>보안·감사의 공백</h3>
         <p>변경 이력을 추적하지 못하면 컴플라이언스 감사와 사고 원인 조사가 불가능해집니다.</p>
+        <div class="problem-tag">감사 준비 시 수동으로 로그를 취합해야 하는 구조</div>
       </div>
       <div class="problem-card" data-animate data-delay="1">
         <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -700,6 +732,17 @@
         <line x1="700" y1="200" x2="730" y2="200" stroke="#CBD5E1" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
       </svg>
     </div>
+    <div class="eco-strip" data-animate>
+      <div class="eco-strip-label">연동 설비 생태계</div>
+      <div class="eco-items">
+        <div class="eco-item"><div class="eco-dot" style="background:#3B82F6"></div><span>AGV / AMR</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#10B981"></div><span>컨베이어</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#F59E0B"></div><span>소터 (DWS)</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#8B5CF6"></div><span>바코드 스캐너</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#06B6D4"></div><span>ERP / WMS</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#EC4899"></div><span>MES 연동</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -724,6 +767,7 @@
         </svg>
         <h3>통합 운영 가시성</h3>
         <p>설비 모니터링·작업 지시·알림을 하나의 콘솔에서 관리합니다. 분산된 시스템 없이 전체 현장을 한눈에 파악합니다.</p>
+        <span class="benefit-keyword">단일 콘솔</span>
       </div>
       <div class="benefit-card" data-animate data-delay="2">
         <svg class="benefit-icon" style="background:rgba(59,130,246,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -732,6 +776,7 @@
         </svg>
         <h3>처리량 최적화</h3>
         <p>실시간 태스크 배분과 설비 모니터링으로 병목 구간을 즉시 감지하고 작업을 재배분해 창고 처리량을 높입니다.</p>
+        <span class="benefit-keyword">병목 즉시 감지</span>
       </div>
       <div class="benefit-card" data-animate data-delay="2">
         <svg class="benefit-icon" style="background:rgba(6,182,212,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -739,6 +784,7 @@
         </svg>
         <h3>실시간 의사결정</h3>
         <p>10ms 수준의 이벤트 스트림으로 장애를 즉각 인지하고 대응합니다. 보고서가 아닌 데이터가 운영을 이끕니다.</p>
+        <span class="benefit-keyword">10ms 이하 응답</span>
       </div>
       <div class="benefit-card" data-animate data-delay="3">
         <svg class="benefit-icon" style="background:rgba(16,185,129,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -747,6 +793,7 @@
         </svg>
         <h3>감사 추적·컴플라이언스</h3>
         <p>변경·접근 이력을 자동 기록해 누가, 언제, 무엇을 바꿨는지 추적할 수 있습니다. 규정 감사와 사고 조사에 필요한 근거를 즉시 제공합니다.</p>
+        <span class="benefit-keyword">변경 이력 전수 기록</span>
       </div>
       <div class="benefit-card" data-animate data-delay="1">
         <svg class="benefit-icon" style="background:rgba(249,115,22,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -756,6 +803,7 @@
         </svg>
         <h3>TCO 절감·비용 예측</h3>
         <p>단일 통합 플랫폼으로 벤더별 라이선스와 커스터마이징 비용을 통합해 비용 구조를 단순화하고 운영 예산을 예측 가능하게 합니다.</p>
+        <span class="benefit-keyword">벤더 통합 운영</span>
       </div>
       <div class="benefit-card" data-animate data-delay="2">
         <svg class="benefit-icon" style="background:rgba(13,148,136,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -763,6 +811,7 @@
         </svg>
         <h3>99.9% 고가용성 보장</h3>
         <p>장애 격리 설계로 단일 설비 오류가 전체 운영에 전파되지 않습니다. SLA 99.9%로 안정적인 연속 운영을 보장합니다.</p>
+        <span class="benefit-keyword">무중단 연속 운영</span>
       </div>
     </div>
   </div>
@@ -1028,25 +1077,87 @@
         </ul>
       </div>
       <div class="scenario-card" data-animate data-delay="2">
-        <div class="scenario-tag" style="background:rgba(139,92,246,0.1);color:#7C3AED;">야간 자동화</div>
-        <h3>야간 무인 배치 운영</h3>
+        <div class="scenario-tag" style="background:rgba(139,92,246,0.1);color:#7C3AED;">피크 대응</div>
+        <h3>물동량 급증 — 실시간 재배분</h3>
         <ul class="scenario-steps">
-          <li><span class="step-num">01</span>스케줄러가 야간 배치 작업 자동 실행</li>
-          <li><span class="step-num">02</span>설비 상태 주기적 자동 점검</li>
-          <li><span class="step-num">03</span>이상 감지 시 담당자에게 긴급 알림</li>
-          <li><span class="step-num">04</span>작업 완료 후 운영 리포트 자동 생성</li>
+          <li><span class="step-num">01</span>처리 대기 태스크 임계치 초과 감지</li>
+          <li><span class="step-num">02</span>유휴 설비·인력에 태스크 자동 재배분</li>
+          <li><span class="step-num">03</span>병목 구간 알림으로 관리자에게 현황 공유</li>
+          <li><span class="step-num">04</span>처리량 회복 후 정상 운영 모드 자동 전환</li>
         </ul>
       </div>
       <div class="scenario-card" data-animate data-delay="3">
-        <div class="scenario-tag" style="background:rgba(16,185,129,0.1);color:#059669;">센터 확장</div>
-        <h3>신규 물류센터 온보딩</h3>
+        <div class="scenario-tag" style="background:rgba(16,185,129,0.1);color:#059669;">감사 대응</div>
+        <h3>컴플라이언스 감사 — 즉시 대응</h3>
         <ul class="scenario-steps">
-          <li><span class="step-num">01</span>신규 설비 에이전트 모듈 독립 추가</li>
-          <li><span class="step-num">02</span>기존 운영 중단 없이 플랫폼에 연결</li>
-          <li><span class="step-num">03</span>RBAC으로 신규 운영팀 접근 권한 설정</li>
-          <li><span class="step-num">04</span>동일 콘솔에서 다중 센터 통합 관리 시작</li>
+          <li><span class="step-num">01</span>감사 범위에 해당하는 기간·대상 조건 설정</li>
+          <li><span class="step-num">02</span>변경·접근 이력 자동 취합 및 내보내기</li>
+          <li><span class="step-num">03</span>이상 접근 또는 미승인 변경 항목 필터링</li>
+          <li><span class="step-num">04</span>감사 보고서 생성 및 담당자에게 전달</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MATURITY MODEL ===== -->
+<section id="maturity" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">물류 자동화 성숙도 모델</h2>
+      <p class="section-sub">현재 단계를 진단하고, Nova와 함께 다음 단계로 나아가세요.</p>
+    </div>
+    <div class="maturity-track">
+      <div class="maturity-step" data-animate data-delay="1">
+        <div class="maturity-step-num">1</div>
+        <div class="maturity-label">수동 운영</div>
+        <p class="maturity-desc">엑셀·구두·전화로 설비 상태와 작업을 관리</p>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step" data-animate data-delay="2">
+        <div class="maturity-step-num">2</div>
+        <div class="maturity-label">부분 자동화</div>
+        <p class="maturity-desc">설비별 개별 솔루션, 통합 가시성 부재</p>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step maturity-step--active" data-animate data-delay="3">
+        <div class="maturity-step-num">3</div>
+        <div class="maturity-label">통합 자동화</div>
+        <p class="maturity-desc">모든 설비·업무를 단일 플랫폼으로 통합</p>
+        <div class="maturity-nova-badge">Nova 도입 단계</div>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step" data-animate data-delay="4">
+        <div class="maturity-step-num">4</div>
+        <div class="maturity-label">예측 최적화</div>
+        <p class="maturity-desc">데이터 기반 예측·최적화, 선제적 장애 예방</p>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step" data-animate data-delay="5">
+        <div class="maturity-step-num">5</div>
+        <div class="maturity-label">AI 자율 운영</div>
+        <p class="maturity-desc">AI가 스케줄·배분·이상 감지를 자율 제어</p>
+      </div>
+    </div>
+    <div class="maturity-cta" data-animate>
+      <p>현재 단계를 모르거나 다음 단계로 가는 경로가 궁금하신가요?</p>
+      <a href="#adoption" class="btn btn-primary">무료 성숙도 진단 신청</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT CTA ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-cta-inner" data-animate>
+      <h2 class="contact-cta-title">Nova로 물류 운영을 바꿀 준비가 되셨나요?</h2>
+      <p class="contact-cta-sub">현황 진단부터 파일럿 설계까지 — 운영 전문가가 함께합니다.</p>
+      <div class="contact-form-row">
+        <input type="text" class="contact-input" placeholder="회사명 또는 담당자 이름">
+        <input type="email" class="contact-input" placeholder="업무용 이메일">
+        <button class="btn-white">무료 진단 신청하기</button>
+      </div>
+      <p class="contact-disclaimer">영업일 1일 이내 연락드립니다.</p>
     </div>
   </div>
 </section>

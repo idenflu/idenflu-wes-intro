@@ -117,3 +117,42 @@
   // Back to Top
   const backToTop = document.getElementById('back-to-top');
   backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Contact form soft validation
+  const contactFormRow = document.querySelector('.contact-form-row');
+  if (contactFormRow) {
+    const submitBtn = contactFormRow.querySelector('.btn-white');
+    submitBtn.addEventListener('click', () => {
+      const inputs = contactFormRow.querySelectorAll('.contact-input');
+      let valid = true;
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.style.borderColor = 'rgba(239,68,68,0.7)';
+          valid = false;
+        } else {
+          input.style.borderColor = '';
+        }
+      });
+      if (valid) {
+        submitBtn.textContent = '접수되었습니다 ✓';
+        submitBtn.style.background = '#D1FAE5';
+        submitBtn.style.color = '#065F46';
+        submitBtn.disabled = true;
+      }
+    });
+  }
+
+  // Nav scroll spy
+  const spySections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a, .mobile-nav a');
+  const spyObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navAnchors.forEach(link => {
+          link.classList.toggle('nav-active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  spySections.forEach(s => spyObserver.observe(s));
