@@ -71,7 +71,7 @@
     .list-item p { font-size: 1.125rem; color: var(--text-muted); }
 
     /* Modules Grid */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
     .module-card { background: var(--bg-panel); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
     .module-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; color: white; }
     .module-card p { font-size: 0.95rem; color: var(--text-muted); }
@@ -182,19 +182,19 @@
     <!-- Slide 4: Values -->
     <div class="slide">
       <div class="slide-content">
-        <h2 class="slide-title">엔터프라이즈 물류의 핵심 원칙</h2>
+        <h2 class="slide-title">새로운 기준을 만드는 Nova의 3가지 철학</h2>
         <div class="grid-3">
           <div class="value-card" style="border-top-color: #3B82F6;">
-            <h3>표준화</h3>
-            <p>다양한 종류의 제조사 설비와 WMS/ERP 백엔드 인프라를 하나의 표준화된 인터페이스로 묶습니다.</p>
+            <h3>모든 것의 표준화</h3>
+            <p>특정 벤더에 얽매이지 않고, 파편화된 다양한 제조사 설비와 이기종 백엔드 인프라를 오직 하나의 표준 인터페이스로 통일하는 것을 추구합니다.</p>
           </div>
           <div class="value-card" style="border-top-color: #10B981;">
-            <h3>안정성</h3>
-            <p>장애 격리 설계와 독립된 컨텍스트(BC)를 통해 단일 에러가 치명적인 다운타임으로 이어지지 않습니다.</p>
+            <h3>타협 없는 안정성</h3>
+            <p>장애 격리 설계와 독립된 컨텍스트를 구조화하여, 단일 설비의 에러가 전체 라인을 마비시키지 않도록 '무중단 운영의 가치'를 최우선으로 여깁니다.</p>
           </div>
           <div class="value-card" style="border-top-color: #8B5CF6;">
-            <h3>확장성</h3>
-            <p>플랫폼 전체를 중단시키지 않고도 필요한 물류 모듈만 조립식으로 쉽게 추가하고 교체할 수 있습니다.</p>
+            <h3>중단 없는 유연함</h3>
+            <p>플랫폼의 대규모 재개발을 지양합니다. 고객의 비즈니스가 성장할 때 꼭 필요한 모듈과 장비만 레고 블록처럼 투입할 수 있는 유연한 생태계를 지향합니다.</p>
           </div>
         </div>
       </div>
@@ -203,15 +203,19 @@
     <!-- Slide 5: Modules -->
     <div class="slide">
       <div class="slide-content">
-        <h2 class="slide-title">6개의 통합 제어 모듈</h2>
-        <div class="grid-3">
+        <h2 class="slide-title">엔터프라이즈 통합 제어 모듈</h2>
+        <div class="grid-4">
+          <div class="module-card">
+            <h4 style="color:#06B6D4">Operation</h4>
+            <p>다양한 물류 현장에 최적화된 입출고 및 라우팅 제어</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#10B981">Agent</h4>
+            <p>이기종 설비 프로토콜 표준화 지원 및 직접 통신</p>
+          </div>
           <div class="module-card">
             <h4 style="color:#3B82F6">IAM</h4>
             <p>RBAC 기반 사용자 인증 및 역할 제어</p>
-          </div>
-          <div class="module-card">
-            <h4 style="color:#10B981">Audit</h4>
-            <p>변경 이력 추적 및 무결성 감사 로그</p>
           </div>
           <div class="module-card">
             <h4 style="color:#F59E0B">Notification</h4>
@@ -222,12 +226,16 @@
             <p>이벤트 기반의 쌍방향 실시간 동기화</p>
           </div>
           <div class="module-card">
-            <h4 style="color:#06B6D4">Configuration</h4>
+            <h4 style="color:#EC4899">Scheduling</h4>
+            <p>Cron 기반 예측 가능한 배치 처리 엔진</p>
+          </div>
+          <div class="module-card">
+            <h4 style="color:#6366F1">Configuration</h4>
             <p>안전한 타입 검증이 포함된 전역 설정 패널</p>
           </div>
           <div class="module-card">
-            <h4 style="color:#EC4899">Scheduling</h4>
-            <p>Cron 기반 예측 가능한 배치 처리 엔진</p>
+            <h4 style="color:#EF4444">Audit</h4>
+            <p>변경 이력 추적 및 무결성 감사 로그</p>
           </div>
         </div>
       </div>
