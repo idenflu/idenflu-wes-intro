@@ -9,25 +9,27 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #07111f;
-      --bg-deep: #030912;
-      --bg-elevated: #0b1728;
-      --bg-soft: #10213a;
-      --panel: rgba(12, 24, 42, 0.82);
-      --panel-strong: rgba(10, 20, 36, 0.94);
-      --panel-muted: rgba(255, 255, 255, 0.04);
-      --line: rgba(184, 204, 255, 0.12);
-      --line-strong: rgba(184, 204, 255, 0.2);
-      --ink: #eef4ff;
-      --ink-soft: rgba(222, 232, 255, 0.72);
-      --ink-muted: rgba(222, 232, 255, 0.54);
-      --blue: #4b8dff;
-      --cyan: #1ec7c3;
-      --amber: #ff8d63;
-      --green: #23c08b;
-      --red: #ff6e61;
-      --navy: #dfe9ff;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --bg: #FAFBFC;
+      --bg-deep: #F3F5F8;
+      --bg-elevated: #FFFFFF;
+      --bg-soft: #F6F8FB;
+      --panel: #FFFFFF;
+      --panel-strong: #FFFFFF;
+      --panel-muted: #F7F9FC;
+      --line: rgba(15, 23, 42, 0.08);
+      --line-strong: rgba(15, 23, 42, 0.14);
+      --ink: #0F172A;
+      --ink-soft: rgba(15, 23, 42, 0.72);
+      --ink-muted: rgba(15, 23, 42, 0.54);
+      --blue: #2563EB;
+      --blue-soft: #3B82F6;
+      --cyan: #0891B2;
+      --amber: #B45309;
+      --green: #059669;
+      --red: #DC2626;
+      --navy: #1E293B;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 6px 20px rgba(15, 23, 42, 0.05);
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 16px;
@@ -54,10 +56,10 @@
       font-family: "IBM Plex Sans KR", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(75, 141, 255, 0.22), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(30, 199, 195, 0.12), transparent 22%),
-        radial-gradient(circle at bottom right, rgba(255, 141, 99, 0.16), transparent 28%),
-        linear-gradient(180deg, #091220 0%, #050b14 55%, #030912 100%);
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.05), transparent 35%),
+        radial-gradient(circle at 82% 12%, rgba(8, 145, 178, 0.04), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(180, 83, 9, 0.03), transparent 35%),
+        linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 55%, #F3F5F8 100%);
     }
 
     h1, h2, h3, h4, .display, .counter {
@@ -72,116 +74,53 @@
       cursor: pointer;
     }
 
-    .deck-topbar {
+    .progress-bar {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 28px;
-      pointer-events: none;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      z-index: 100;
+      transition: width 0.3s;
     }
 
-    .brand-chip,
-    .hint-chip,
-    .counter {
-      pointer-events: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(8, 17, 31, 0.74);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
-    }
-
-    .brand-chip {
-      font-size: 0.84rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-
-    .brand-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--amber));
-      box-shadow: 0 0 0 6px rgba(75, 141, 255, 0.12);
-    }
-
-    .hint-chip {
-      font-size: 0.82rem;
-      color: var(--ink-muted);
-    }
-
-    .counter {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--navy);
-    }
-
-    .progress-wrap {
+    .slide-counter {
       position: fixed;
-      left: 28px;
-      right: 28px;
-      bottom: 22px;
-      z-index: 20;
+      bottom: 3rem;
+      left: 3rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.04em;
+      z-index: 100;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 2rem;
+      right: 3rem;
       display: flex;
-      align-items: center;
-      gap: 16px;
+      gap: 0.75rem;
+      z-index: 100;
     }
 
-    .progress-track {
-      position: relative;
-      flex: 1;
-      height: 8px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .progress-bar {
-      width: 12.5%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--blue), var(--amber));
-      transition: width 0.35s ease;
-    }
-
-    .nav-buttons {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .nav-btn {
-      width: 52px;
-      height: 52px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .btn-nav {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: rgba(8, 17, 31, 0.92);
-      color: #fff;
-      box-shadow: 0 16px 32px rgba(14, 26, 46, 0.2);
-      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: var(--shadow-soft);
     }
 
-    .nav-btn:hover:not(:disabled) {
-      transform: translateY(-2px);
-      background: #183156;
-    }
-
-    .nav-btn:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-    }
+    .btn-nav:hover { background: var(--blue); border-color: var(--blue); color: #FFFFFF; }
+    .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 
     .viewport {
       width: 100vw;
@@ -202,32 +141,28 @@
       flex: 0 0 100vw;
       width: 100vw;
       height: 100dvh;
-      padding: 92px 28px 94px;
-      overflow-y: auto;
-    }
-
-    .slide::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 32px;
-      border: 1px solid rgba(184, 204, 255, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
-        linear-gradient(180deg, rgba(9, 18, 32, 0.34), rgba(3, 9, 18, 0.12));
-      pointer-events: none;
+      padding: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .slide-inner {
       position: relative;
       z-index: 1;
-      width: min(1240px, 100%);
-      min-height: calc(100dvh - 178px);
+      width: min(100%, calc((100dvh - 6rem) * 16 / 9), 1600px);
+      aspect-ratio: 16 / 9;
       margin: 0 auto;
+      padding: clamp(1.5rem, 3vw, 3rem);
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: var(--space-5);
+      gap: var(--space-4);
+      overflow: hidden;
     }
 
     .eyebrow {
@@ -237,7 +172,7 @@
       width: fit-content;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(75, 141, 255, 0.14);
+      background: rgba(37, 99, 235, 0.08);
       color: var(--blue);
       font-size: 0.82rem;
       font-weight: 700;
@@ -246,8 +181,8 @@
     }
 
     .eyebrow.alt {
-      background: rgba(255, 141, 99, 0.14);
-      color: #ffb190;
+      background: rgba(180, 83, 9, 0.08);
+      color: var(--amber);
     }
 
     .display {
@@ -295,25 +230,25 @@
     .panel {
       position: relative;
       border-radius: var(--radius-xl);
-      padding: 28px;
+      padding: 32px;
       background: var(--panel);
       border: 1px solid var(--line);
-      backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
     .panel.strong {
       background: var(--panel-strong);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.06);
     }
 
     .panel.dark {
       background:
-        radial-gradient(circle at top right, rgba(30, 199, 195, 0.16), transparent 34%),
-        linear-gradient(160deg, #10213b 0%, #07111f 100%);
-      color: #eff5ff;
-      border-color: var(--line);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+        radial-gradient(circle at top right, rgba(8, 145, 178, 0.06), transparent 40%),
+        linear-gradient(160deg, #0F172A 0%, #1E293B 100%);
+      color: #F8FAFC;
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 60px rgba(15, 23, 42, 0.18);
     }
 
     .panel.dark .muted,
@@ -321,7 +256,13 @@
     .panel.dark .mini-label,
     .panel.dark .flow-copy,
     .panel.dark .card-copy {
-      color: rgba(239, 245, 255, 0.72);
+      color: rgba(248, 250, 252, 0.72);
+    }
+
+    .panel.dark h3,
+    .panel.dark h2,
+    .panel.dark h1 {
+      color: #F8FAFC;
     }
 
     .hero-metrics {
@@ -333,7 +274,7 @@
     .metric {
       padding: 18px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--bg-soft);
       border: 1px solid var(--line);
     }
 
@@ -367,21 +308,22 @@
       min-height: 152px;
       border-radius: 22px;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .signal-card.primary {
       grid-column: span 2;
       min-height: 224px;
-      background: linear-gradient(135deg, rgba(75, 141, 255, 0.26), rgba(30, 199, 195, 0.15));
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.32), rgba(8, 145, 178, 0.18));
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .mini-label {
       font-size: 0.76rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(239, 245, 255, 0.58);
+      color: var(--ink-muted);
     }
 
     .signal-title {
@@ -457,10 +399,18 @@
     .pillar-card,
     .persona-card {
       border-radius: 20px;
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.04);
+      padding: 24px;
+      background: var(--bg-elevated);
       border: 1px solid var(--line);
       min-height: 184px;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pain-card:hover,
+    .persona-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
     }
 
     .pain-num,
@@ -472,7 +422,7 @@
       height: 38px;
       margin-bottom: 18px;
       border-radius: 50%;
-      background: rgba(255, 110, 97, 0.14);
+      background: rgba(220, 38, 38, 0.08);
       color: var(--red);
       font-family: "Space Grotesk", sans-serif;
       font-size: 1rem;
@@ -507,10 +457,11 @@
       position: relative;
       padding: 18px 20px;
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+      background: var(--bg-elevated);
       border: 1px solid var(--line);
       font-weight: 600;
       color: var(--ink);
+      box-shadow: var(--shadow-soft);
     }
 
     .ribbon-step::after {
@@ -519,7 +470,7 @@
       top: 50%;
       right: -18px;
       transform: translateY(-50%);
-      color: rgba(222, 232, 255, 0.24);
+      color: var(--ink-muted);
       font-size: 1.25rem;
     }
 
@@ -539,13 +490,14 @@
     .compare-card {
       border-radius: 22px;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--bg-elevated);
     }
 
     .legacy-node {
       position: relative;
       padding: 20px 20px 20px 64px;
       min-height: 92px;
+      box-shadow: var(--shadow-soft);
     }
 
     .legacy-node::before {
@@ -556,13 +508,13 @@
       width: 28px;
       height: 28px;
       border-radius: 10px;
-      background: linear-gradient(135deg, rgba(21, 101, 255, 0.85), rgba(255, 136, 85, 0.85));
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
     }
 
     .legacy-node small {
       display: block;
       margin-top: 8px;
-      color: #ffaf8f;
+      color: var(--amber);
       font-size: 0.86rem;
       font-weight: 600;
     }
@@ -572,7 +524,7 @@
       justify-content: center;
       align-items: center;
       min-height: 34px;
-      color: #ff9f90;
+      color: var(--amber);
       font-size: 0.87rem;
       font-weight: 700;
       letter-spacing: 0.02em;
@@ -586,7 +538,7 @@
     .reason-item {
       padding: 20px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--bg-soft);
       border: 1px solid var(--line);
     }
 
@@ -607,21 +559,24 @@
     }
 
     .stack-layer.console {
-      background: linear-gradient(135deg, rgba(75, 141, 255, 0.16), rgba(30, 199, 195, 0.12));
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(8, 145, 178, 0.04));
+      border-color: rgba(37, 99, 235, 0.14);
     }
 
     .stack-layer.platform {
-      background: linear-gradient(135deg, rgba(8, 17, 31, 0.96), rgba(16, 33, 58, 0.96));
-      color: #f6f9ff;
-      border-color: var(--line);
+      background: linear-gradient(135deg, #0F172A, #1E293B);
+      color: #F8FAFC;
+      border-color: rgba(255, 255, 255, 0.08);
     }
 
     .stack-layer.domain {
-      background: linear-gradient(135deg, rgba(35, 192, 139, 0.16), rgba(30, 199, 195, 0.09));
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.06), rgba(8, 145, 178, 0.04));
+      border-color: rgba(5, 150, 105, 0.14);
     }
 
     .stack-layer.edge {
-      background: linear-gradient(135deg, rgba(255, 141, 99, 0.16), rgba(255, 110, 97, 0.1));
+      background: linear-gradient(135deg, rgba(180, 83, 9, 0.06), rgba(220, 38, 38, 0.04));
+      border-color: rgba(180, 83, 9, 0.14);
     }
 
     .stack-head {
@@ -645,9 +600,9 @@
     .chip {
       display: inline-flex;
       align-items: center;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--bg-soft);
       border: 1px solid var(--line);
       font-size: 0.9rem;
       font-weight: 600;
@@ -656,8 +611,8 @@
 
     .platform .chip {
       background: rgba(255, 255, 255, 0.08);
-      color: #eff5ff;
-      border-color: rgba(255, 255, 255, 0.08);
+      color: #F8FAFC;
+      border-color: rgba(255, 255, 255, 0.1);
     }
 
     .principle-list {
@@ -668,7 +623,7 @@
     .principle-item {
       padding: 20px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--bg-soft);
       border: 1px solid var(--line);
     }
 
@@ -693,7 +648,7 @@
     }
 
     .step-num {
-      background: rgba(21, 101, 255, 0.12);
+      background: rgba(37, 99, 235, 0.08);
       color: var(--blue);
     }
 
@@ -704,8 +659,8 @@
       right: -7px;
       width: 14px;
       height: 14px;
-      border-top: 2px solid rgba(222, 232, 255, 0.18);
-      border-right: 2px solid rgba(222, 232, 255, 0.18);
+      border-top: 2px solid var(--line-strong);
+      border-right: 2px solid var(--line-strong);
       transform: translateY(-50%) rotate(45deg);
     }
 
@@ -723,7 +678,7 @@
       grid-template-columns: 76px 1fr;
       gap: var(--space-2);
       padding: 14px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .event-item:last-child {
@@ -732,19 +687,21 @@
     }
 
     .event-time {
-      color: #88a7e8;
+      color: #93C5FD;
       font-family: "Space Grotesk", sans-serif;
       font-size: 0.96rem;
     }
 
     .compare-card {
-      padding: 24px;
+      padding: 28px;
       min-height: 336px;
+      box-shadow: var(--shadow-soft);
     }
 
     .compare-card.nova {
-      background: linear-gradient(180deg, rgba(75, 141, 255, 0.1), rgba(30, 199, 195, 0.08));
-      border-color: rgba(75, 141, 255, 0.24);
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.05), rgba(8, 145, 178, 0.03));
+      border-color: rgba(37, 99, 235, 0.2);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.08);
     }
 
     .proof-list,
@@ -759,7 +716,7 @@
     .timeline-step {
       padding: 14px 16px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--bg-soft);
       border: 1px solid var(--line);
       color: var(--ink-soft);
       font-size: 0.94rem;
@@ -767,8 +724,9 @@
     }
 
     .timeline-card {
-      padding: 28px;
+      padding: 32px;
       min-height: 100%;
+      box-shadow: var(--shadow-soft);
     }
 
     .timeline-step strong {
@@ -777,7 +735,7 @@
     }
 
     .timeline-step span {
-      color: #ffb190;
+      color: var(--amber);
       font-weight: 600;
       font-size: 0.85rem;
     }
@@ -795,9 +753,9 @@
     .persona-role {
       display: inline-flex;
       margin-bottom: 16px;
-      padding: 7px 11px;
+      padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(75, 141, 255, 0.14);
+      background: rgba(37, 99, 235, 0.08);
       color: var(--blue);
       font-size: 0.82rem;
       font-weight: 700;
@@ -818,30 +776,67 @@
       padding: 18px 20px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(239, 245, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(248, 250, 252, 0.78);
     }
 
     .quote-box {
-      padding: 32px;
+      padding: 36px;
       border-radius: 28px;
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .quote-box p {
-      font-size: clamp(1.4rem, 2.7vw, 2.6rem);
-      line-height: 1.16;
+      font-size: clamp(1.4rem, 2.7vw, 2.4rem);
+      line-height: 1.2;
       color: #fff;
     }
 
     .quote-box strong {
-      color: #93f5ef;
+      color: #67E8F9;
     }
 
     .footer-note {
-      color: rgba(239, 245, 255, 0.6);
+      color: rgba(248, 250, 252, 0.6);
       font-size: 0.92rem;
+    }
+
+    .one-liner {
+      margin-top: auto;
+      padding-top: var(--space-3);
+      border-top: 1px dashed var(--line-strong);
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      font-style: italic;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .one-liner::before {
+      content: "One-liner";
+      font-style: normal;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--blue);
+    }
+
+    .panel.dark .one-liner {
+      color: rgba(248, 250, 252, 0.72);
+      border-top-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .panel.dark .one-liner::before {
+      background: rgba(147, 197, 253, 0.14);
+      color: #93C5FD;
     }
 
     @media (max-width: 1100px) {
@@ -870,27 +865,13 @@
     }
 
     @media (max-width: 780px) {
-      .deck-topbar {
-        padding: 14px 16px;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .hint-chip {
-        display: none;
-      }
-
       .slide {
-        padding: 96px 16px 94px;
-      }
-
-      .slide::before {
-        inset: 10px;
-        border-radius: 24px;
+        padding: 1.5rem 1rem;
       }
 
       .slide-inner {
-        min-height: calc(100dvh - 200px);
+        border-radius: 20px;
+        padding: 1.25rem;
       }
 
       .panel,
@@ -923,23 +904,34 @@
         display: none;
       }
 
-      .progress-wrap {
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
+      .controls {
+        right: 1rem;
+        bottom: 1rem;
+      }
+
+      .slide-counter {
+        left: 1rem;
+        bottom: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="deck-topbar">
-    <div class="brand-chip"><span class="brand-dot"></span> Nova Story Deck / Type 2</div>
-    <div class="hint-chip">Arrow / Space / Swipe</div>
-    <div class="counter"><span id="currentSlide">01</span> / <span id="totalSlides">08</span></div>
+  <div class="progress-bar" id="progress"></div>
+  <div class="slide-counter"><span id="curr-num">1</span> / <span id="total-num">8</span></div>
+
+  <div class="controls">
+    <button class="btn-nav" id="btn-prev" disabled>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="btn-nav" id="btn-next">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
   </div>
 
   <div class="viewport">
     <div class="slider" id="slider">
+      <!-- 01. Hero — 약속을 건넨다 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="hero-grid">
@@ -947,7 +939,7 @@
               <div class="eyebrow">Problem to Proof</div>
               <h1 class="display">흩어진 물류 운영을<br>하나의 콘솔로</h1>
               <p class="lead">
-                Nova는 설비 모니터링, 작업 지시, 알림, 보안, 감사, 스케줄링을
+                NOVA는 설비 모니터링, 작업 지시, 알림, 보안, 감사, 스케줄링을
                 표준화된 플랫폼으로 통합합니다. 운영팀은 화면을 오가지 않고,
                 장애는 보고서가 아니라 이벤트 스트림으로 감지합니다.
               </p>
@@ -969,6 +961,7 @@
                   <span>설비 추가 시 모듈만 확장</span>
                 </div>
               </div>
+              <p class="one-liner">화면은 하나, 기준도 하나다.</p>
             </div>
 
             <div class="panel dark">
@@ -993,16 +986,13 @@
                     <div class="signal-title">who changed<br>what, when</div>
                   </div>
                 </div>
-                <p class="muted">
-                  결과는 단순합니다. 장애 인지는 빨라지고, 재배분은 자동화되며,
-                  감사 준비는 수작업 취합에서 즉시 조회로 바뀝니다.
-                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- 02. Hidden Cost — 고통을 비용으로 번역한다 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="eyebrow alt">Hidden Cost</div>
@@ -1049,9 +1039,11 @@
             <div class="ribbon-step">다운타임 확대</div>
             <div class="ribbon-step">조용한 비용 누수</div>
           </div>
+          <p class="one-liner">불편이 아니라, 매일 새어나가는 처리량과 시간이다.</p>
         </div>
       </section>
 
+      <!-- 03. Legacy Structure — 고통이 반복되는 이유 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="split-grid">
@@ -1099,21 +1091,23 @@
                   늦게 감지하고, 늦게 판단하고, 늦게 대응하는 구조가 고착됩니다.
                 </div>
               </div>
+              <p class="one-liner">증상이 반복되는 이유는 구조 안에 있다.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- 04. Platform Architecture — 구조적 답 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="split-grid">
             <div class="panel dark">
               <div class="eyebrow">Platform Architecture</div>
-              <h2 class="section-title">Nova는 공통 기능을 표준화하고<br>설비 연동은 모듈로 분리합니다</h2>
+              <h2 class="section-title">NOVA는 공통 기능을 표준화하고<br>설비 연동은 모듈로 분리합니다</h2>
               <div class="stack-diagram">
                 <div class="stack-layer console">
                   <div class="stack-head">
-                    <h3>Nova Console</h3>
+                    <h3>NOVA Console</h3>
                     <span class="mini-label">Monitoring / Work / Alert / Audit</span>
                   </div>
                   <div class="chip-row">
@@ -1133,6 +1127,7 @@
                     <span class="chip">Notification</span>
                     <span class="chip">Realtime</span>
                     <span class="chip">Scheduler</span>
+                    <span class="chip">Configuration</span>
                     <span class="chip">API Gateway</span>
                   </div>
                 </div>
@@ -1182,14 +1177,16 @@
                 </div>
                 <div class="principle-item">
                   <strong>새 센터에 같은 구조를 반복 적용</strong>
-                  한번 검증한 플랫폼을 다른 설비와 다른 센터로 확장합니다.
+                  한 번 검증한 플랫폼을 다른 설비와 다른 센터로 확장합니다.
                 </div>
               </div>
+              <p class="one-liner">공통은 표준화하고, 다름은 모듈로 분리한다.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- 05. Realtime Loop — 운영이 움직이는 방식 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="eyebrow">Realtime Loop</div>
@@ -1263,13 +1260,15 @@
               </div>
             </div>
           </div>
+          <p class="one-liner">보고서가 아니라, 2분 안에 기록까지 끝난다.</p>
         </div>
       </section>
 
+      <!-- 06. Core Messages — 세 가지 가치 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="eyebrow alt">Core Messages</div>
-          <h2 class="section-title">Nova의 가치는 세 가지로 압축됩니다</h2>
+          <h2 class="section-title">NOVA의 가치는 세 가지로 압축됩니다</h2>
           <div class="compare-grid">
             <article class="compare-card">
               <h3>통합</h3>
@@ -1299,9 +1298,11 @@
               </div>
             </article>
           </div>
+          <p class="one-liner">세 단어로 기억한다 — 통합, 안정성, 확장성.</p>
         </div>
       </section>
 
+      <!-- 07. Adoption Timeline + Persona Fit — 시작하는 법과 얻는 사람 -->
       <section class="slide">
         <div class="slide-inner">
           <div class="timeline-grid">
@@ -1336,6 +1337,7 @@
                   <p class="card-copy">단일 계약 구조와 즉시 조회 가능한 감사 이력으로 예측 가능성을 높입니다.</p>
                 </article>
               </div>
+              <p class="one-liner">5단계로 시작하고, 세 페르소나가 각자의 이득을 얻는다.</p>
             </div>
           </div>
         </div>
@@ -1375,108 +1377,53 @@
     </div>
   </div>
 
-  <div class="progress-wrap">
-    <div class="progress-track">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-    <div class="nav-buttons">
-      <button class="nav-btn" id="prevBtn" aria-label="이전 슬라이드">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 18l-6-6 6-6"></path>
-        </svg>
-      </button>
-      <button class="nav-btn" id="nextBtn" aria-label="다음 슬라이드">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18l6-6-6-6"></path>
-        </svg>
-      </button>
-    </div>
-  </div>
-
   <script>
-    const slider = document.getElementById("slider");
-    const slides = Array.from(document.querySelectorAll(".slide"));
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const progressBar = document.getElementById("progressBar");
-    const currentSlide = document.getElementById("currentSlide");
-    const totalSlides = document.getElementById("totalSlides");
+    const container = document.getElementById('slider');
+    const slides = document.querySelectorAll('.slide');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const progress = document.getElementById('progress');
+    const currNum = document.getElementById('curr-num');
+    const totalNumSpan = document.getElementById('total-num');
 
-    let index = 0;
-    let wheelLock = false;
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let currentIdx = 0;
+    const totalSlides = slides.length;
+    totalNumSpan.textContent = totalSlides;
 
-    totalSlides.textContent = String(slides.length).padStart(2, "0");
-
-    function updateDeck() {
-      slider.style.transform = `translateX(-${index * 100}vw)`;
-      currentSlide.textContent = String(index + 1).padStart(2, "0");
-      progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === slides.length - 1;
+    function updateSlider() {
+      container.style.transform = `translateX(-${currentIdx * 100}vw)`;
+      btnPrev.disabled = currentIdx === 0;
+      btnNext.disabled = currentIdx === totalSlides - 1;
+      currNum.textContent = currentIdx + 1;
+      progress.style.width = `${((currentIdx + 1) / totalSlides) * 100}%`;
     }
 
-    function goTo(nextIndex) {
-      index = Math.max(0, Math.min(nextIndex, slides.length - 1));
-      updateDeck();
+    function goNext() {
+      if (currentIdx < totalSlides - 1) { currentIdx++; updateSlider(); }
     }
 
-    function next() {
-      goTo(index + 1);
+    function goPrev() {
+      if (currentIdx > 0) { currentIdx--; updateSlider(); }
     }
 
-    function prev() {
-      goTo(index - 1);
-    }
+    btnNext.addEventListener('click', goNext);
+    btnPrev.addEventListener('click', goPrev);
 
-    prevBtn.addEventListener("click", prev);
-    nextBtn.addEventListener("click", next);
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
-        event.preventDefault();
-        next();
-      }
-
-      if (event.key === "ArrowLeft" || event.key === "PageUp") {
-        event.preventDefault();
-        prev();
-      }
-
-      if (event.key === "Home") {
-        event.preventDefault();
-        goTo(0);
-      }
-
-      if (event.key === "End") {
-        event.preventDefault();
-        goTo(slides.length - 1);
-      }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') { goNext(); }
+      else if (e.key === 'ArrowLeft') { goPrev(); }
     });
 
-    document.addEventListener("wheel", (event) => {
-      if (wheelLock) return;
-      if (Math.abs(event.deltaY) < 50) return;
-      wheelLock = true;
-      event.deltaY > 0 ? next() : prev();
-      window.setTimeout(() => {
-        wheelLock = false;
-      }, 750);
-    }, { passive: true });
+    let isScrolling = false;
+    document.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+      isScrolling = true;
+      if (e.deltaY > 50) { goNext(); }
+      else if (e.deltaY < -50) { goPrev(); }
+      setTimeout(() => { isScrolling = false; }, 800);
+    });
 
-    slider.addEventListener("touchstart", (event) => {
-      touchStartX = event.changedTouches[0].screenX;
-    }, { passive: true });
-
-    slider.addEventListener("touchend", (event) => {
-      touchEndX = event.changedTouches[0].screenX;
-      const delta = touchStartX - touchEndX;
-      if (delta > 50) next();
-      if (delta < -50) prev();
-    }, { passive: true });
-
-    updateDeck();
+    updateSlider();
   </script>
 </body>
 </html>
