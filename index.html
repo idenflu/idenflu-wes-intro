@@ -430,15 +430,27 @@
     .question {
       background: #FFFFFF;
       border-color: rgba(180, 83, 9, 0.16);
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+    }
+
+    .question h3 {
+      min-height: 2.7em;
+    }
+
+    .question p {
+      flex: 0 0 auto;
     }
 
     .answer {
-      margin-top: 14px;
+      margin-top: auto;
       padding-top: 14px;
       border-top: 1px solid var(--line);
       color: var(--blue);
       font-weight: 700;
-      line-height: 1.55;
+      line-height: 1.45;
+      font-size: 0.95rem;
     }
 
     .tag {
@@ -658,18 +670,20 @@
     .ui-intro-grid {
       display: grid;
       grid-template-columns: 1.08fr 0.92fr;
-      gap: 20px;
+      gap: 18px;
       align-items: stretch;
-      margin-top: 20px;
+      margin-top: 14px;
+      min-height: 0;
     }
 
     .ui-screen {
-      height: min(39dvh, 330px);
-      min-height: 270px;
+      height: 100%;
+      min-height: 260px;
+      max-height: min(40dvh, 340px);
       display: grid;
-      grid-template-columns: 170px 1fr;
+      grid-template-columns: 160px 1fr;
       overflow: hidden;
-      border-radius: 24px;
+      border-radius: 22px;
       border: 1px solid rgba(15, 23, 42, 0.12);
       background: #FFFFFF;
       box-shadow: var(--shadow-soft);
@@ -793,21 +807,26 @@
 
     .ui-feature-list {
       display: grid;
-      gap: 12px;
+      gap: 8px;
     }
 
     .ui-feature-card {
-      padding: 16px;
-      border-radius: 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
       border: 1px solid var(--line);
       background: #FFFFFF;
     }
 
+    .ui-feature-card h3 {
+      font-size: clamp(0.94rem, 1.05vw, 1.05rem);
+      margin-bottom: 4px;
+    }
+
     .ui-feature-card p {
-      margin-top: 6px;
+      margin-top: 4px;
       color: var(--ink-soft);
-      font-size: 0.88rem;
-      line-height: 1.48;
+      font-size: 0.83rem;
+      line-height: 1.42;
     }
 
     .loop {
@@ -1090,7 +1109,7 @@
       </div>
       <div class="deck-meta">
         <span>WES / WCS Platform</span>
-        <span><strong id="currentSlide">01</strong> / <span id="totalSlides">14</span></span>
+        <span><strong id="currentSlide">01</strong> / <span id="totalSlides">15</span></span>
       </div>
     </header>
     <div class="progress" id="progress"></div>
@@ -1101,9 +1120,10 @@
           <div class="slide-content hero-grid">
             <div>
               <div class="eyebrow">NOVA WES / WCS</div>
-              <h1>설비를 전부 바꾸지 않아도 운영 방식은 바꿀 수 있습니다</h1>
+              <h1>스마트 물류 자동화의 새로운 기준, Nova</h1>
               <p class="lead" style="margin-top: 24px;">
-                NOVA는 기존 WMS, ERP, 설비를 살리면서 작업 실행, 설비 제어, 실시간 모니터링, 권한, 감사, 알림을 하나의 표준 플랫폼으로 통합합니다.
+                표준화된 아키텍처 · 무중단 안정성 · 유연한 확장을 통해 —<br>
+                통합 물류 운영의 가장 정교한 기준을 완성합니다.
               </p>
               <div class="metric-row">
                 <div class="metric">
@@ -1159,11 +1179,11 @@
 
       <section class="slide">
         <div class="slide-card">
-          <div class="slide-content">
+          <div class="slide-content" style="display: flex; flex-direction: column;">
             <div class="eyebrow warning">Customer Barrier</div>
             <h2>고객이 자동화를 망설이는 이유부터 답합니다</h2>
             <p class="lead" style="margin-top: 14px;">초기 비용, 긴 구축 기간, 기존 설비 교체 부담, 효과 불확실성이 첫 미팅에서 반복되는 질문입니다.</p>
-            <div class="four-col" style="margin-top: 22px;">
+            <div class="four-col" style="margin-top: 22px; flex: 1; grid-auto-rows: 1fr; min-height: 0;">
               <div class="tile question">
                 <span class="tag amber">투자</span>
                 <h3>초기 투자 비용이 너무 크지 않나요?</h3>
@@ -1196,12 +1216,12 @@
       <section class="slide">
         <div class="slide-card">
           <div class="slide-content two-col">
-            <div>
+            <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
               <div class="eyebrow warning">Legacy Cost</div>
               <h2>문제는 설비가 아니라 흩어진 운영 구조입니다</h2>
-            <p class="lead" style="margin-top: 14px;">작업, 설비, 알림, 감사가 분리되면 운영팀은 시스템을 관리하는 대신 예외를 수습하게 됩니다.</p>
+              <p class="lead" style="margin-top: 14px;">작업, 설비, 알림, 감사가 분리되면 운영팀은 시스템을 관리하는 대신 예외를 수습하게 됩니다.</p>
             </div>
-            <div class="six-grid">
+            <div class="six-grid" style="grid-auto-rows: 1fr;">
               <div class="tile">
                 <span class="tag red">01</span>
                 <h3>시스템 파편화</h3>
@@ -1239,11 +1259,11 @@
 
       <section class="slide">
         <div class="slide-card">
-          <div class="slide-content">
+          <div class="slide-content" style="display: flex; flex-direction: column;">
             <div class="eyebrow">NOVA Approach</div>
             <h2>작게 시작하고, 하나로 운영하고, 계속 확장합니다</h2>
             <p class="lead" style="margin-top: 14px;">NearGo식 단계 도입 메시지와 CJ올리브네트웍스식 전체 구축 관점을 NOVA의 플랫폼 구조로 정리합니다.</p>
-            <div class="message-axis">
+            <div class="message-axis" style="flex: 1; grid-auto-rows: 1fr; min-height: 0;">
               <div class="axis-card">
                 <div class="axis-no">01</div>
                 <span class="tag">Start Small</span>
@@ -1269,11 +1289,11 @@
 
       <section class="slide">
         <div class="slide-card">
-          <div class="slide-content">
+          <div class="slide-content" style="display: flex; flex-direction: column;">
             <div class="eyebrow">Platform BC</div>
             <h2>반복되는 공통 기능은 Platform으로 표준화합니다</h2>
             <p class="lead" style="margin-top: 14px;">권한, 감사, 알림, 실시간, 설정, 스케줄링을 프로젝트별 부속 기능으로 흩어두지 않습니다.</p>
-            <div class="six-grid" style="margin-top: 22px;">
+            <div class="six-grid" style="margin-top: 22px; flex: 1; grid-auto-rows: 1fr; min-height: 0;">
               <div class="module">
                 <h3>IAM <code>Access</code></h3>
                 <p>사용자, 역할, 권한을 관리해 운영 접근을 통제합니다.</p>
@@ -1413,7 +1433,7 @@
           <div class="slide-content">
             <div class="eyebrow">NOVA UI</div>
             <h2>2.5D 레이아웃에서 설비 상태를 바로 확인합니다</h2>
-            <p class="lead" style="margin-top: 14px;">NOVA UI는 웹 애플리케이션 기반의 운영 콘솔입니다. 물류센터 레이아웃, 설비 상태, 작업 흐름, 알림을 같은 화면에서 확인하고 조치합니다.</p>
+            <p class="lead" style="margin-top: 10px;">NOVA UI는 웹 애플리케이션 기반의 운영 콘솔입니다. 물류센터 레이아웃, 설비 상태, 작업 흐름, 알림을 같은 화면에서 확인하고 조치합니다.</p>
             <div class="ui-intro-grid">
               <div class="ui-screen" aria-label="NOVA UI 소개 화면">
                 <aside class="ui-sidebar">
@@ -1462,7 +1482,7 @@
                   </div>
                 </div>
               </div>
-              <div class="panel">
+              <div class="panel" style="padding: 18px; display: flex; flex-direction: column; gap: 10px;">
                 <span class="tag">UI 핵심 포인트</span>
                 <div class="ui-feature-list">
                   <div class="ui-feature-card">
@@ -1624,6 +1644,66 @@
                   <div class="proof-item">Contracts 기반 BC 연결</div>
                   <div class="proof-item">인증, 권한, 감사, 설정, 스케줄링 표준화</div>
                   <div class="proof-item">설비 변화가 전체 플랫폼으로 번지는 범위 축소</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="slide-card">
+          <div class="slide-content">
+            <div class="eyebrow">Customer References</div>
+            <h2>산업별로 검증된 구간부터 확장한 레퍼런스입니다</h2>
+            <p class="lead" style="margin-top: 14px;">아래 사례는 비식별 샘플 데이터이며, 실제 회사명과 상세 수치는 NDA 체결 이후 공유합니다.</p>
+            <div class="industry-grid" style="margin-top: 20px;">
+              <div class="industry-card">
+                <span class="tag">3PL · 물류센터</span>
+                <h3>대형 3PL A사</h3>
+                <p>3개 센터의 피킹·분류 구간과 설비 모니터링을 단일 플랫폼으로 통합</p>
+                <div class="proof-list" style="margin-top: 10px;">
+                  <div class="proof-item">파일럿 구축 6주 · 장애 인지 시간 단축</div>
+                </div>
+              </div>
+              <div class="industry-card">
+                <span class="tag">E-Commerce</span>
+                <h3>이커머스 B사</h3>
+                <p>피크 시간대 주문 변동에 맞춰 작업 우선순위와 설비 상태 실시간 운영</p>
+                <div class="proof-list" style="margin-top: 10px;">
+                  <div class="proof-item">오피킹 감소 · 피크 처리량 개선</div>
+                </div>
+              </div>
+              <div class="industry-card">
+                <span class="tag">제조물류</span>
+                <h3>제조 C사</h3>
+                <p>ERP·MES와 현장 설비를 연결해 생산 흐름과 출고 작업을 동기화</p>
+                <div class="proof-list" style="margin-top: 10px;">
+                  <div class="proof-item">수작업 확인 감소 · 설비 연동 재개발 범위 축소</div>
+                </div>
+              </div>
+              <div class="industry-card">
+                <span class="tag green">제약 / 바이오</span>
+                <h3>제약 D사</h3>
+                <p>권한·변경 이력·감사 로그를 플랫폼 기본 기능으로 운영하며 규제 대응</p>
+                <div class="proof-list" style="margin-top: 10px;">
+                  <div class="proof-item">감사 대응 로그 취합 시간 단축</div>
+                </div>
+              </div>
+              <div class="industry-card">
+                <span class="tag green">F&B</span>
+                <h3>F&B E사</h3>
+                <p>출고 전 검증 흐름과 예외 처리 이벤트를 실시간 이벤트로 통합</p>
+                <div class="proof-list" style="margin-top: 10px;">
+                  <div class="proof-item">오출고 감소 · 예외 대응 시간 단축</div>
+                </div>
+              </div>
+              <div class="industry-card">
+                <span class="tag green">화장품 / 생활용품</span>
+                <h3>화장품 F사</h3>
+                <p>다SKU 물동량 변동에 맞춰 업무 모듈과 검증 흐름을 단계적으로 확장</p>
+                <div class="proof-list" style="margin-top: 10px;">
+                  <div class="proof-item">신규 설비 연결 Agent 모듈로 확장</div>
                 </div>
               </div>
             </div>
