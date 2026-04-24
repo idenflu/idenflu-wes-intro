@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova — WES/WCS 물류 자동화 플랫폼</title>
+  <meta name="description" content="실시간 설비 모니터링부터 작업 지시·스케줄링까지, 스마트 물류 현장의 새로운 기준">
+  <!-- SEO -->
+  <meta name="keywords" content="WES, WCS, 물류 자동화, 물류 센터 관리, Nova, Idenflu, 스마트 물류">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://idenflu.com/nova">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nova — WES/WCS 물류 자동화 플랫폼">
+  <meta property="og:description" content="실시간 설비 모니터링부터 작업 지시·스케줄링까지, 스마트 물류 현장의 새로운 기준">
+  <meta property="og:url" content="https://idenflu.com/nova">
+  <meta property="og:image" content="https://idenflu.com/nova/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Idenflu Nova">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nova — WES/WCS 물류 자동화 플랫폼">
+  <meta name="twitter:description" content="실시간 설비 모니터링부터 작업 지시·스케줄링까지, 스마트 물류 현장의 새로운 기준">
+  <meta name="twitter:image" content="https://idenflu.com/nova/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== 1. Reset & Variables ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-base:         #FFFFFF;
+      --bg-surface:      #F8FAFC;
+      --bg-elevated:     #F1F5F9;
+      --bg-border:       #E2E8F0;
+      --accent-primary:  #2563EB;
+      --accent-glow:     #3B82F6;
+      --accent-secondary:#059669;
+      --accent-warning:  #D97706;
+      --accent-purple:   #7C3AED;
+      --text-primary:    #0F172A;
+      --text-secondary:  #475569;
+      --text-muted:      #94A3B8;
+      --font-sans: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Inter', 'Noto Sans KR', sans-serif;
+      --radius-card: 12px;
+      --radius-btn:  8px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--font-sans); }
+
+    /* ===== 2. Layout Utilities ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-title {
+      font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--text-primary); margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--text-secondary);
+      max-width: 600px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 56px; }
+
+    /* ===== 3. Navigation ===== */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    #nav.scrolled {
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom-color: var(--bg-border);
+    }
+    .nav-inner { max-width: 1200px; width: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+    .nav-logo svg { width: 32px; height: 32px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; border-radius: var(--radius-btn); font-size: 0.88rem; font-weight: 500; transition: all 0.2s; }
+    .btn-primary { background: var(--accent-primary); color: #fff; }
+    .btn-primary:hover { background: #2563EB; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(59,130,246,0.4); }
+    .btn-ghost { border: 1px solid #CBD5E1; color: var(--text-secondary); }
+    .btn-ghost:hover { border-color: var(--accent-primary); color: var(--text-primary); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; transition: all 0.3s; }
+    .mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99; background: var(--bg-surface); border-bottom: 1px solid var(--bg-border); padding: 20px 24px; flex-direction: column; gap: 16px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 1rem; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--bg-border); }
+
+    /* ===== 4. Hero ===== */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px;
+      padding-top: 64px;
+      background: linear-gradient(135deg, #EFF6FF 0%, #F8FAFC 60%, #FFFFFF 100%);
+    }
+    .hero-copy { padding: 80px 0 80px 0; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+      color: var(--accent-glow); border-radius: 100px; padding: 5px 14px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-secondary); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+    .hero-h1 {
+      font-size: clamp(2.3rem, 4.8vw, 3.6rem); font-weight: 700;
+      line-height: 1.15; letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero-h1 .highlight {
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-actions .btn { padding: 13px 28px; font-size: 0.95rem; }
+    .hero-trust { display: flex; gap: 20px; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-muted); }
+    .hero-trust-item::before { content: '✓'; color: var(--accent-secondary); font-weight: 700; }
+    .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; padding: 40px 0; }
+    #warehouse-iso { width: 100%; max-width: 580px; animation: svg-float 5s ease-in-out infinite; filter: drop-shadow(0 20px 60px rgba(59,130,246,0.15)); }
+    @keyframes svg-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    /* ===== 5. Warehouse SVG Animations ===== */
+    @keyframes conveyor-scroll { from{stroke-dashoffset:60} to{stroke-dashoffset:0} }
+    @keyframes conveyor-scroll2 { from{stroke-dashoffset:60} to{stroke-dashoffset:0} }
+    .belt-anim { animation: conveyor-scroll 1.4s linear infinite; }
+    .belt-anim2 { animation: conveyor-scroll2 1.8s linear infinite; }
+    @keyframes robot-patrol {
+      0%{transform:translate(0,0)} 30%{transform:translate(48px,24px)}
+      60%{transform:translate(48px,24px)} 90%{transform:translate(0,0)} 100%{transform:translate(0,0)}
+    }
+    @keyframes robot-patrol2 {
+      0%{transform:translate(0,0)} 40%{transform:translate(-40px,20px)}
+      70%{transform:translate(-40px,20px)} 100%{transform:translate(0,0)}
+    }
+    #robot-1 { animation: robot-patrol 7s ease-in-out infinite; }
+    #robot-2 { animation: robot-patrol2 7s ease-in-out infinite 3.5s; }
+    @keyframes dot-pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .pdot { animation: dot-pulse 2s ease-in-out infinite; }
+    .pdot2 { animation: dot-pulse 2s ease-in-out infinite 0.7s; }
+    .pdot3 { animation: dot-pulse 2s ease-in-out infinite 1.4s; }
+    @keyframes data-rise { 0%{stroke-dashoffset:60;opacity:0.7} 100%{stroke-dashoffset:0;opacity:0} }
+    .dline { animation: data-rise 2s ease-out infinite; }
+    .dline2 { animation: data-rise 2s ease-out infinite 0.6s; }
+    .dline3 { animation: data-rise 2s ease-out infinite 1.2s; }
+    @keyframes hud-blink { 0%,100%{opacity:1} 50%{opacity:0.6} }
+    .hud-live { animation: hud-blink 1.5s ease-in-out infinite; }
+
+    /* ===== 6. Stats Bar ===== */
+    #stats {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--bg-border); border-bottom: 1px solid var(--bg-border);
+      padding: 48px 0;
+    }
+    .stats-header { text-align: center; margin-bottom: 32px; }
+    .stats-header .section-sub { margin: 0 auto; }
+    .stats-row { display: flex; justify-content: center; gap: 0; }
+    .stat-item {
+      flex: 1; max-width: 300px; text-align: center; padding: 24px 32px;
+      border-right: 1px solid var(--bg-border); position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: var(--accent-primary); border-radius: 0 0 3px 3px; }
+    .stat-value { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--text-primary); line-height: 1.1; margin-bottom: 10px; }
+    .stat-label { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ===== 7. Problem Section ===== */
+    #problem { padding: 96px 0; background: var(--bg-base); }
+    .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .problem-card {
+      background: var(--bg-surface); border-radius: var(--radius-card);
+      padding: 36px 24px; border: 1px solid var(--bg-border);
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .problem-icon { width: 44px; height: 44px; margin: 0 auto 20px; display: block; opacity: 0.85; }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; }
+    .problem-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ===== 8. Features Section ===== */
+    #features { padding: 96px 0; background: var(--bg-surface); }
+    .tab-row { display: flex; gap: 4px; background: var(--bg-elevated); border-radius: 10px; padding: 4px; width: fit-content; margin-bottom: 48px; }
+    .tab-btn {
+      padding: 10px 24px; border-radius: 8px; font-size: 0.9rem; font-weight: 500;
+      color: var(--text-secondary); transition: all 0.2s; cursor: pointer; background: none; border: none; font-family: var(--font-sans);
+    }
+    .tab-btn.active { background: var(--accent-primary); color: #fff; box-shadow: 0 2px 12px rgba(59,130,246,0.4); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .feature-list { display: flex; flex-direction: column; gap: 28px; }
+    .feature-item { display: flex; gap: 16px; align-items: flex-start; }
+    .feature-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--accent-primary);
+      margin-top: 5px; flex-shrink: 0; box-shadow: 0 0 8px rgba(59,130,246,0.6);
+    }
+    .feature-item h4 { font-size: 0.97rem; font-weight: 600; margin-bottom: 6px; }
+    .feature-item p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.65; }
+
+    /* Mock Console Panel */
+    .mock-panel {
+      --bg-base: #F8FAFC; --bg-surface: #FFFFFF; --bg-elevated: #F1F5F9; --bg-border: #E2E8F0;
+      --text-primary: #0F172A; --text-secondary: #475569; --text-muted: #94A3B8; --accent-glow: #2563EB;
+    }
+    .log-panel {
+      --bg-elevated: #F1F5F9; --bg-border: #E2E8F0; --text-muted: #94A3B8;
+    }
+    .mock-panel {
+      background: var(--bg-base); border: 1px solid var(--bg-border);
+      border-radius: var(--radius-card); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    .mock-titlebar {
+      background: var(--bg-elevated); padding: 10px 16px;
+      display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--bg-border);
+    }
+    .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mock-titlebar-label { margin-left: 8px; font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono); }
+    .live-badge { margin-left: auto; display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--accent-secondary); font-family: var(--font-mono); }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-secondary); animation: pulse-dot 1.5s infinite; }
+    .mock-body { padding: 16px; }
+    .mock-kpi-row { display: flex; gap: 10px; margin-bottom: 14px; }
+    .mock-kpi { flex: 1; background: var(--bg-elevated); border-radius: 8px; padding: 10px 12px; }
+    .mock-kpi-val { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 600; color: var(--accent-glow); }
+    .mock-kpi-lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+    .mock-iso-mini { width: 100%; height: 130px; background: var(--bg-elevated); border-radius: 8px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .mock-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .mock-table th { color: var(--text-muted); font-weight: 500; padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--bg-border); }
+    .mock-table td { padding: 7px 8px; color: var(--text-secondary); border-bottom: 1px solid var(--bg-border); }
+    .status-badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; }
+    .s-ok   { background: rgba(16,185,129,0.15); color: var(--accent-secondary); }
+    .s-warn { background: rgba(245,158,11,0.15);  color: var(--accent-warning); }
+    .s-err  { background: rgba(239,68,68,0.12);   color: #DC2626; }
+    .notif-slide {
+      position: absolute; bottom: 16px; right: -260px;
+      background: var(--bg-elevated); border: 1px solid var(--accent-primary);
+      border-radius: 10px; padding: 10px 14px; width: 240px;
+      font-size: 0.78rem; box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      animation: notif-in 5s ease-in-out infinite;
+    }
+    @keyframes notif-in {
+      0%{transform:translateX(0);opacity:0} 10%{transform:translateX(-260px);opacity:1}
+      70%{transform:translateX(-260px);opacity:1} 85%{transform:translateX(0);opacity:0} 100%{transform:translateX(0);opacity:0}
+    }
+    .notif-title { font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
+    .notif-body { color: var(--text-secondary); }
+    .mock-panel-wrapper { position: relative; }
+
+    /* Log stream panel */
+    .log-panel {
+      background: var(--bg-base); border: 1px solid var(--bg-border);
+      border-radius: var(--radius-card); overflow: hidden; height: 360px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    .log-titlebar {
+      background: var(--bg-elevated); padding: 10px 16px;
+      display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--bg-border);
+    }
+    .log-titlebar-label { margin-left: 8px; font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono); }
+    #log-stream {
+      padding: 12px 16px; overflow: hidden; height: calc(360px - 40px);
+      display: flex; flex-direction: column; gap: 4px; justify-content: flex-end;
+    }
+    .log-line {
+      font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary);
+      opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .log-line.visible { opacity: 1; transform: translateY(0); }
+    .log-line.fade-out { opacity: 0; transform: translateY(-8px); }
+    .log-line .log-tag { color: var(--accent-glow); }
+    .log-line .log-ok  { color: var(--accent-secondary); }
+    .log-line .log-val { color: var(--accent-warning); }
+
+    /* ===== 9. Platform Modules ===== */
+    #platform { padding: 96px 0; background: var(--bg-base); }
+    .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .module-card {
+      background: var(--bg-surface); border: 1px solid var(--bg-border);
+      border-radius: var(--radius-card); padding: 28px 24px;
+      transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .module-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--card-accent, var(--accent-primary));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .module-card:hover { border-color: var(--card-accent, var(--accent-primary)); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+    .module-card:hover::before { transform: scaleX(1); }
+    .module-icon { width: 40px; height: 40px; margin-bottom: 16px; }
+    .module-name-en { font-size: 0.75rem; font-family: var(--font-mono); color: var(--card-accent, var(--accent-primary)); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .module-name-ko { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+    .module-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+    .module-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { display: inline-block; padding: 2px 9px; border-radius: 100px; font-size: 0.7rem; font-weight: 500; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--bg-border); }
+
+    /* ===== 10. Architecture Section ===== */
+    #architecture { padding: 96px 0; background: var(--bg-surface); }
+    .arch-svg-wrap { overflow-x: auto; border-radius: var(--radius-card); }
+    #arch-svg { width: 100%; min-width: 700px; }
+
+    /* ===== 11. Benefits ===== */
+    #benefits { padding: 96px 0; background: var(--bg-base); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .benefit-card {
+      text-align: center; padding: 40px 24px;
+      background: var(--bg-surface); border-radius: var(--radius-card);
+      border: 1px solid var(--bg-border); transition: transform 0.25s;
+    }
+    .benefit-card:hover { transform: translateY(-4px); }
+    .benefit-icon { width: 56px; height: 56px; margin: 0 auto 20px; padding: 14px; background: rgba(59,130,246,0.1); border-radius: 14px; }
+    .benefit-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; }
+    .benefit-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ===== 12. Footer ===== */
+    footer {
+      background: var(--bg-surface); padding: 48px 0 32px;
+      border-top: 1px solid var(--bg-border);
+    }
+    .footer-inner { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: start; }
+    .footer-brand { display: flex; flex-direction: column; gap: 10px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; }
+    .footer-tagline { font-size: 0.82rem; color: var(--text-muted); }
+    .footer-nav { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    .footer-nav a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-primary); }
+    .footer-copy { text-align: right; font-size: 0.8rem; color: var(--text-muted); padding-top: 4px; }
+    .footer-divider { border: none; border-top: 1px solid var(--bg-border); margin: 28px 0 16px; }
+
+    /* ===== 13. Scroll Animations ===== */
+    [data-animate] { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    [data-animate].animate-in { opacity: 1; transform: translateY(0); }
+    [data-animate][data-delay="1"] { transition-delay: 0.1s; }
+    [data-animate][data-delay="2"] { transition-delay: 0.2s; }
+    [data-animate][data-delay="3"] { transition-delay: 0.3s; }
+    [data-animate][data-delay="4"] { transition-delay: 0.4s; }
+    [data-animate][data-delay="5"] { transition-delay: 0.5s; }
+
+    /* ===== 14. Responsive ===== */
+    /* ===== 13. Personas Section ===== */
+    #personas { padding: 96px 0; background: var(--bg-surface); }
+    #target { padding: 96px 0; background: var(--bg-base); }
+    #adoption { padding: 96px 0; background: var(--bg-surface); }
+    .personas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .persona-card {
+      background: var(--bg-base); border-radius: var(--radius-card);
+      padding: 36px 28px; border: 1px solid var(--bg-border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .persona-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .persona-role { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; background: rgba(37,99,235,0.08); color: var(--accent-primary); margin-bottom: 16px; font-family: var(--font-mono); }
+    .persona-icon { width: 44px; height: 44px; margin-bottom: 16px; display: block; }
+    .persona-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .persona-desc { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.65; }
+    .persona-needs { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--bg-border); padding-top: 16px; display: flex; flex-direction: column; gap: 7px; }
+    .persona-needs li { font-size: 0.83rem; color: var(--text-secondary); display: flex; gap: 8px; line-height: 1.5; }
+    .persona-needs li::before { content: '→'; color: var(--accent-primary); flex-shrink: 0; font-size: 0.8rem; }
+
+    /* ===== 14. Process Coverage Section ===== */
+    #process { padding: 96px 0; }
+    .process-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .process-step {
+      text-align: center; padding: 28px 16px;
+      background: var(--bg-surface); border-radius: var(--radius-card);
+      border: 1px solid var(--bg-border); transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .process-step:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .process-num { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-primary); font-weight: 600; margin-bottom: 12px; }
+    .process-step-icon { width: 40px; height: 40px; margin: 0 auto 12px; display: block; }
+    .process-step h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
+    .process-step p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .adoption-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      position: relative;
+      padding-top: 18px;
+    }
+    .adoption-timeline::before {
+      content: '';
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      top: 36px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-purple), var(--accent-warning));
+      opacity: 0.18;
+    }
+    .adoption-step {
+      position: relative;
+      background: var(--bg-base);
+      border: 1px solid var(--bg-border);
+      border-radius: var(--radius-card);
+      padding: 22px 20px 20px;
+      z-index: 1;
+    }
+    .adoption-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      right: -24px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg-base);
+      border: 2px solid rgba(37,99,235,0.45);
+      box-shadow: 0 0 0 4px var(--bg-base);
+    }
+    .adoption-step-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .adoption-step-no {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-glow));
+      box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+      flex-shrink: 0;
+    }
+    .adoption-step:nth-child(2) .adoption-step-no { background: linear-gradient(135deg, var(--accent-secondary), #10B981); }
+    .adoption-step:nth-child(3) .adoption-step-no { background: linear-gradient(135deg, var(--accent-purple), #A855F7); }
+    .adoption-step:nth-child(4) .adoption-step-no { background: linear-gradient(135deg, var(--accent-warning), #F59E0B); }
+    .adoption-step h4 { font-size: 0.98rem; font-weight: 700; color: var(--text-primary); }
+    .adoption-step p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ===== 15. Scenarios Section ===== */
+    #scenarios { padding: 96px 0; background: var(--bg-surface); }
+    .scenarios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .scenario-card {
+      background: var(--bg-base); border-radius: var(--radius-card);
+      padding: 32px 28px; border: 1px solid var(--bg-border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .scenario-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .scenario-tag { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; margin-bottom: 14px; }
+    .scenario-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+    .scenario-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+    .scenario-steps li { font-size: 0.83rem; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--bg-border); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+    .scenario-steps li:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-num { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-primary); font-weight: 700; flex-shrink: 0; background: rgba(37,99,235,0.08); padding: 2px 6px; border-radius: 4px; margin-top: 1px; }
+
+    /* ===== Benefit Keyword Tag ===== */
+    .benefit-keyword {
+      display: inline-block; margin-top: 14px; padding: 4px 12px;
+      border-radius: 100px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+      background: rgba(37,99,235,0.07); color: var(--accent-primary);
+      border: 1px solid rgba(37,99,235,0.18); letter-spacing: 0.03em;
+    }
+
+    /* ===== Problem Tag ===== */
+    .problem-tag {
+      margin-top: 12px; padding: 6px 12px; border-radius: 6px;
+      background: rgba(217,119,6,0.07); border-left: 3px solid var(--accent-warning);
+      font-size: 0.78rem; font-weight: 500; color: var(--accent-warning);
+      line-height: 1.5; text-align: left;
+    }
+
+    /* ===== Trust Bar ===== */
+    #trust-bar {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--bg-border);
+      border-bottom: 1px solid var(--bg-border);
+      padding: 18px 0;
+    }
+    .trust-bar-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.83rem; color: var(--text-secondary); font-weight: 500;
+    }
+    .trust-divider { width: 1px; height: 20px; background: var(--bg-border); }
+
+    /* ===== Testimonials ===== */
+    #testimonials { padding: 96px 0; background: var(--bg-surface); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .testimonial-card {
+      background: var(--bg-base); border-radius: var(--radius-card);
+      padding: 36px 28px; border: 1px solid var(--bg-border);
+      display: flex; flex-direction: column; gap: 20px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .testimonial-quote {
+      font-size: 0.97rem; line-height: 1.75; color: var(--text-primary);
+      position: relative; padding-left: 18px; flex: 1;
+    }
+    .testimonial-quote::before {
+      content: '"'; position: absolute; left: 0; top: -6px;
+      font-size: 2.2rem; color: var(--accent-primary); opacity: 0.35; line-height: 1;
+    }
+    .testimonial-meta { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+    .testimonial-org { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ===== Equipment Ecosystem Strip ===== */
+    .eco-strip {
+      margin-top: 32px; padding: 20px 24px;
+      background: var(--bg-elevated); border-radius: var(--radius-card);
+      border: 1px solid var(--bg-border);
+    }
+    .eco-strip-label {
+      font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+      font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .eco-items { display: flex; gap: 24px; flex-wrap: wrap; }
+    .eco-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; color: var(--text-secondary); font-weight: 500;
+    }
+    .eco-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ===== Maturity Model ===== */
+    #maturity { padding: 96px 0; background: var(--bg-base); }
+    .maturity-track {
+      display: flex; align-items: flex-start; gap: 0;
+      overflow-x: auto; padding-bottom: 8px;
+    }
+    .maturity-step {
+      flex: 1; min-width: 160px; background: var(--bg-surface);
+      border: 1px solid var(--bg-border); border-radius: var(--radius-card);
+      padding: 24px 16px; text-align: center; position: relative;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .maturity-step--active {
+      border-color: var(--accent-primary);
+      background: rgba(37,99,235,0.04);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+    .maturity-step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--bg-elevated); border: 2px solid var(--bg-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+      color: var(--text-muted); margin: 0 auto 12px;
+    }
+    .maturity-step--active .maturity-step-num {
+      background: var(--accent-primary); border-color: var(--accent-primary); color: #fff;
+    }
+    .maturity-label { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .maturity-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+    .maturity-nova-badge {
+      display: inline-block; margin-top: 10px; padding: 3px 10px; border-radius: 100px;
+      background: var(--accent-primary); color: #fff;
+      font-size: 0.68rem; font-weight: 600; font-family: var(--font-mono);
+    }
+    .maturity-arrow {
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 0 6px; font-size: 1.1rem; color: var(--text-muted);
+      flex-shrink: 0; padding-top: 38px;
+    }
+    .maturity-cta {
+      text-align: center; margin-top: 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .maturity-cta p { font-size: 1rem; color: var(--text-secondary); }
+
+    /* ===== Contact CTA ===== */
+    #contact { padding: 96px 0; background: linear-gradient(135deg, #1E3A5F 0%, #1D4ED8 100%); }
+    .contact-cta-inner { text-align: center; max-width: 700px; margin: 0 auto; }
+    .contact-cta-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700;
+      color: #fff; letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+    .contact-cta-sub { font-size: 1.05rem; color: rgba(255,255,255,0.75); margin-bottom: 36px; }
+    .contact-form-row {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px;
+    }
+    .contact-input {
+      flex: 1; min-width: 180px; max-width: 220px;
+      padding: 12px 16px; border-radius: var(--radius-btn);
+      border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.12);
+      color: #fff; font-family: var(--font-sans); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .contact-input::placeholder { color: rgba(255,255,255,0.5); }
+    .contact-input:focus { border-color: rgba(255,255,255,0.6); }
+    .btn-white {
+      background: #fff; color: var(--accent-primary); font-weight: 600;
+      padding: 12px 24px; border-radius: var(--radius-btn);
+      transition: all 0.2s; font-family: var(--font-sans); font-size: 0.9rem;
+      display: inline-flex; align-items: center; cursor: pointer; border: none;
+    }
+    .btn-white:hover { background: #EFF6FF; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+    .contact-disclaimer { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+    /* ===== Nav Active State ===== */
+    .nav-links a.nav-active { color: var(--accent-primary); font-weight: 600; }
+
+    @media (max-width: 1024px) {
+      #hero { grid-template-columns: 1fr; text-align: center; padding-bottom: 60px; }
+      .hero-copy { padding: 100px 0 20px; }
+      .hero-sub { max-width: 100%; }
+      .hero-trust { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { padding: 0 0 60px; }
+      #warehouse-iso { max-width: 400px; }
+      .tab-panel.active { grid-template-columns: 1fr; }
+      .adoption-timeline { grid-template-columns: repeat(2, 1fr); }
+      .adoption-timeline::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions { display: none; }
+      .nav-hamburger { display: flex; }
+      .section-title { font-size: 1.7rem; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .trust-divider { display: none; }
+      .trust-bar-inner { gap: 16px; }
+      .maturity-track { flex-direction: column; overflow-x: visible; }
+      .maturity-arrow { transform: rotate(90deg); padding: 4px 0; align-self: center; padding-top: 4px; }
+      .maturity-step { min-width: unset; width: 100%; }
+      .contact-form-row { flex-direction: column; align-items: stretch; }
+      .contact-input { max-width: none; }
+      .personas-grid { grid-template-columns: 1fr; }
+      .process-flow { grid-template-columns: repeat(2, 1fr); }
+      .scenarios-grid { grid-template-columns: 1fr; }
+      .stats-row { flex-wrap: wrap; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--bg-border); flex: 1 1 200px; }
+      .adoption-timeline { grid-template-columns: 1fr; gap: 16px; }
+      .adoption-step:not(:last-child)::after {
+        top: auto;
+        right: auto;
+        left: 30px;
+        bottom: -17px;
+      }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-copy { text-align: center; }
+      .footer-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    }
+    @media (max-width: 560px) {
+      .modules-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-h1 { font-size: 1.9rem; }
+    }
+
+    /* ===== Scroll Progress Bar ===== */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ===== Back to Top Button ===== */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.4);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 1000;
+    }
+    #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #back-to-top:hover {
+      background: var(--accent-glow);
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="1.5"/>
+        <polygon points="16,7 24,11.5 24,20.5 16,25 8,20.5 8,11.5" fill="rgba(59,130,246,0.1)" stroke="#60A5FA" stroke-width="1"/>
+        <circle cx="16" cy="16" r="3" fill="#3B82F6"/>
+      </svg>
+      Nova
+    </a>
+    <div class="nav-links">
+      <a href="#features">기능</a>
+      <a href="#platform">플랫폼</a>
+      <a href="#architecture">아키텍처</a>
+      <a href="#benefits">도입 효과</a>
+      <a href="#personas">산업</a>
+      <a href="#adoption">도입</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#features" class="mobile-nav-link">기능</a>
+  <a href="#platform" class="mobile-nav-link">플랫폼</a>
+  <a href="#architecture" class="mobile-nav-link">아키텍처</a>
+  <a href="#benefits" class="mobile-nav-link">도입 효과</a>
+  <a href="#personas" class="mobile-nav-link">산업</a>
+  <a href="#adoption" class="mobile-nav-link">도입</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="container" style="display:contents;">
+    <div class="hero-copy container" style="display:block;padding-left:max(24px, calc((100vw - 1200px)/2 + 24px));padding-right:40px;">
+      <div class="hero-badge">WES / WCS 플랫폼</div>
+      <h1 class="hero-h1">스마트 물류 자동화의<br><span class="highlight">새로운 기준, Nova</span></h1>
+      <p class="hero-sub">표준화된 아키텍처 · 무중단 안정성 · 유연한 확장을 통해 —<br>통합 물류 운영의 가장 정교한 기준을 완성합니다.</p>
+      <div class="hero-actions">
+        <a href="#adoption" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          우리 센터 무료 진단받기
+        </a>
+        <a href="#features" class="btn btn-ghost">기능 살펴보기</a>
+      </div>
+      <div class="hero-trust">
+        <span class="hero-trust-item">현장 검증된 엔터프라이즈 안정성</span>
+        <span class="hero-trust-item">엔터프라이즈 보안 아키텍처</span>
+        <span class="hero-trust-item">클라우드 네이티브 설계</span>
+      </div>
+    </div>
+    <div class="hero-visual" style="padding-right:max(24px, calc((100vw - 1200px)/2 + 24px));">
+      <!-- 2.5D Isometric Warehouse SVG -->
+      <svg id="warehouse-iso" viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2.5D 아이소메트릭 창고 시각화">
+        <defs>
+          <linearGradient id="g-top" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#BFDBFE"/>
+            <stop offset="100%" stop-color="#93C5FD"/>
+          </linearGradient>
+          <linearGradient id="g-left" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#94A3B8"/>
+            <stop offset="100%" stop-color="#CBD5E1"/>
+          </linearGradient>
+          <linearGradient id="g-right" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#DBEAFE"/>
+            <stop offset="100%" stop-color="#EFF6FF"/>
+          </linearGradient>
+          <linearGradient id="g-rack-top" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#60A5FA"/>
+            <stop offset="100%" stop-color="#3B82F6"/>
+          </linearGradient>
+          <linearGradient id="g-rack-l" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1D4ED8"/>
+            <stop offset="100%" stop-color="#2563EB"/>
+          </linearGradient>
+          <linearGradient id="g-rack-r" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#93C5FD"/>
+            <stop offset="100%" stop-color="#BFDBFE"/>
+          </linearGradient>
+          <filter id="glow-b" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-g" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#3B82F6" opacity="0.6"/>
+          </marker>
+        </defs>
+
+        <!-- Floor grid -->
+        <g opacity="0.35" stroke="#3B82F6" stroke-width="0.5" fill="none">
+          <!-- Horizontal iso lines -->
+          <line x1="130" y1="300" x2="450" y2="140"/>
+          <line x1="130" y1="320" x2="450" y2="160"/>
+          <line x1="130" y1="340" x2="450" y2="180"/>
+          <line x1="130" y1="360" x2="450" y2="200"/>
+          <!-- Vertical iso lines -->
+          <line x1="130" y1="300" x2="130" y2="360"/>
+          <line x1="210" y1="260" x2="210" y2="360"/>
+          <line x1="290" y1="220" x2="290" y2="360"/>
+          <line x1="370" y1="180" x2="370" y2="360"/>
+          <line x1="450" y1="140" x2="450" y2="360"/>
+        </g>
+
+        <!-- Main warehouse shell -->
+        <!-- Top face -->
+        <polygon points="290,60 470,150 290,240 110,150" fill="url(#g-top)" stroke="#93C5FD" stroke-width="0.8"/>
+        <!-- Left face -->
+        <polygon points="110,150 290,240 290,330 110,240" fill="url(#g-left)" stroke="#93C5FD" stroke-width="0.8"/>
+        <!-- Right face -->
+        <polygon points="470,150 290,240 290,330 470,240" fill="url(#g-right)" stroke="#93C5FD" stroke-width="0.8"/>
+
+        <!-- Rack group LEFT (3 stacked shelves) -->
+        <g id="rack-L">
+          <!-- shelf 1 bottom -->
+          <polygon points="140,220 210,182 210,210 140,248" fill="url(#g-rack-l)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="210,182 250,204 250,232 210,210" fill="url(#g-rack-r)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="140,220 210,182 250,204 180,242" fill="url(#g-rack-top)" stroke="#60A5FA" stroke-width="0.6"/>
+          <!-- shelf 2 middle -->
+          <polygon points="140,200 210,162 210,182 140,220" fill="url(#g-rack-l)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="210,162 250,184 250,204 210,182" fill="url(#g-rack-r)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="140,200 210,162 250,184 180,222" fill="url(#g-rack-top)" stroke="#60A5FA" stroke-width="0.6"/>
+          <!-- shelf 3 top -->
+          <polygon points="140,180 210,142 210,162 140,200" fill="url(#g-rack-l)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="210,142 250,164 250,184 210,162" fill="url(#g-rack-r)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="140,180 210,142 250,164 180,202" fill="url(#g-rack-top)" stroke="#60A5FA" stroke-width="0.6"/>
+          <!-- cargo dots on shelves -->
+          <rect x="150" y="222" width="14" height="8" rx="1" fill="#3B82F6" opacity="0.8"/>
+          <rect x="168" y="218" width="14" height="8" rx="1" fill="#60A5FA" opacity="0.8"/>
+          <rect x="150" y="202" width="14" height="8" rx="1" fill="#3B82F6" opacity="0.8"/>
+          <rect x="168" y="198" width="10" height="8" rx="1" fill="#93C5FD" opacity="0.8"/>
+        </g>
+
+        <!-- Rack group RIGHT -->
+        <g id="rack-R">
+          <polygon points="330,220 400,182 400,210 330,248" fill="url(#g-rack-l)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="400,182 440,204 440,232 400,210" fill="url(#g-rack-r)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="330,220 400,182 440,204 370,242" fill="url(#g-rack-top)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="330,200 400,162 400,182 330,220" fill="url(#g-rack-l)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="400,162 440,184 440,204 400,182" fill="url(#g-rack-r)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="330,200 400,162 440,184 370,222" fill="url(#g-rack-top)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="330,180 400,142 400,162 330,200" fill="url(#g-rack-l)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="400,142 440,164 440,184 400,162" fill="url(#g-rack-r)" stroke="#60A5FA" stroke-width="0.6"/>
+          <polygon points="330,180 400,142 440,164 370,202" fill="url(#g-rack-top)" stroke="#60A5FA" stroke-width="0.6"/>
+          <rect x="340" y="222" width="14" height="8" rx="1" fill="#3B82F6" opacity="0.8"/>
+          <rect x="358" y="218" width="14" height="8" rx="1" fill="#60A5FA" opacity="0.8"/>
+          <rect x="340" y="202" width="10" height="8" rx="1" fill="#93C5FD" opacity="0.8"/>
+        </g>
+
+        <!-- Conveyor belt 1 (left to center) -->
+        <g>
+          <polygon points="110,240 195,195 195,205 110,250" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="0.5"/>
+          <line x1="115" y1="247" x2="190" y2="202" stroke="#3B82F6" stroke-width="5" stroke-dasharray="14,8" class="belt-anim" opacity="0.7"/>
+        </g>
+        <!-- Conveyor belt 2 (center to right) -->
+        <g>
+          <polygon points="385,195 470,240 470,250 385,205" fill="#E2E8F0" stroke="#CBD5E1" stroke-width="0.5"/>
+          <line x1="390" y1="202" x2="465" y2="246" stroke="#3B82F6" stroke-width="5" stroke-dasharray="14,8" class="belt-anim2" opacity="0.7"/>
+        </g>
+
+        <!-- AMR Robot 1 -->
+        <g id="robot-1" style="transform-origin:210px 260px">
+          <polygon points="200,265 216,256 216,268 200,277" fill="#1D4ED8" stroke="#3B82F6" stroke-width="1"/>
+          <polygon points="216,256 224,260 224,272 216,268" fill="#2563EB" stroke="#3B82F6" stroke-width="1"/>
+          <polygon points="200,265 216,256 224,260 208,269" fill="#3B82F6" stroke="#60A5FA" stroke-width="0.8"/>
+          <circle cx="212" cy="260" r="2.5" fill="#10B981" filter="url(#glow-g)" class="pdot"/>
+        </g>
+
+        <!-- AMR Robot 2 -->
+        <g id="robot-2" style="transform-origin:360px 268px">
+          <polygon points="350,273 366,264 366,276 350,285" fill="#1D4ED8" stroke="#3B82F6" stroke-width="1"/>
+          <polygon points="366,264 374,268 374,280 366,276" fill="#2563EB" stroke="#3B82F6" stroke-width="1"/>
+          <polygon points="350,273 366,264 374,268 358,277" fill="#3B82F6" stroke="#60A5FA" stroke-width="0.8"/>
+          <circle cx="362" cy="268" r="2.5" fill="#10B981" filter="url(#glow-g)" class="pdot2"/>
+        </g>
+
+        <!-- Status indicators above racks -->
+        <circle cx="185" cy="155" r="5" fill="#10B981" filter="url(#glow-g)" class="pdot"/>
+        <circle cx="205" cy="148" r="5" fill="#10B981" filter="url(#glow-g)" class="pdot2"/>
+        <circle cx="375" cy="155" r="5" fill="#F59E0B" filter="url(#glow-g)" class="pdot3"/>
+        <circle cx="415" cy="145" r="5" fill="#10B981" filter="url(#glow-g)" class="pdot"/>
+
+        <!-- Data stream lines -->
+        <line x1="185" y1="155" x2="185" y2="105" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4,4" class="dline" opacity="0.6"/>
+        <line x1="290" y1="190" x2="290" y2="120" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="4,4" class="dline2" opacity="0.6"/>
+        <line x1="375" y1="155" x2="375" y2="105" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4,4" class="dline3" opacity="0.6"/>
+
+        <!-- HUD Panel (top right) -->
+        <g transform="translate(430, 40)">
+          <rect rx="8" ry="8" width="130" height="90" fill="#0F1629" stroke="#3B82F6" stroke-width="0.8" opacity="0.92"/>
+          <rect rx="8" ry="8" width="130" height="26" fill="#162040" opacity="0.95"/>
+          <circle cx="12" cy="13" r="4" fill="#10B981" class="hud-live"/>
+          <text x="22" y="17" fill="#94A3B8" font-size="8" font-family="'Inter', 'Noto Sans KR', sans-serif">Nova Console</text>
+          <text x="10" y="42" fill="#94A3B8" font-size="7.5" font-family="'Inter', 'Noto Sans KR', sans-serif">처리율</text>
+          <text x="10" y="57" fill="#60A5FA" font-size="17" font-weight="600" font-family="'Inter', 'Noto Sans KR', sans-serif">98.7%</text>
+          <rect x="10" y="67" width="16" height="12" rx="2" fill="#3B82F6" opacity="0.8"/>
+          <rect x="30" y="63" width="16" height="16" rx="2" fill="#3B82F6" opacity="0.9"/>
+          <rect x="50" y="60" width="16" height="19" rx="2" fill="#60A5FA"/>
+          <rect x="70" y="65" width="16" height="14" rx="2" fill="#3B82F6" opacity="0.7"/>
+          <rect x="90" y="62" width="16" height="17" rx="2" fill="#3B82F6" opacity="0.85"/>
+          <text x="10" y="88" fill="#475569" font-size="6.5" font-family="'Inter', 'Noto Sans KR', sans-serif">Active: 12  Queue: 4</text>
+        </g>
+
+        <!-- Connection arc from HUD to robots -->
+        <path d="M430,85 Q370,120 290,200" stroke="#3B82F6" stroke-width="0.8" stroke-dasharray="3,4" fill="none" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div id="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.5 5.1 17.2 6 11.7 2 7.8l5.5-.8z" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/></svg>
+        <span>국내 물류 자동화 전문 팀</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/><path d="M7 10l2.5 2.5 3.5-4" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>엔터프라이즈 보안 아키텍처</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/><path d="M10 6v4l2.5 2.5" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>24/7 실시간 모니터링</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z" stroke="#2563EB" stroke-width="1.4" fill="rgba(37,99,235,0.1)"/><path d="M7 10l2 2 4-4" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>클라우드 네이티브 아키텍처</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STATS ===== -->
+<section id="stats">
+  <div class="container">
+    <div class="section-header stats-header" data-animate>
+      <h2 class="section-title">Nova 플랫폼 핵심 구성</h2>
+      <p class="section-sub">모듈, 사용자 그룹, 업무 흐름 — Nova가 커버하는 운영 범위를 한눈에 확인하세요.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item" data-animate>
+        <div class="stat-value" data-count="8">8+</div>
+        <div class="stat-label">엔터프라이즈 통합 제어 모듈<br>Operation, Agent, IAM 등</div>
+      </div>
+      <div class="stat-item" data-animate data-delay="2">
+        <div class="stat-value" data-count="3">3</div>
+        <div class="stat-label">주요 사용자 그룹<br>운영팀, 관리자, 의사결정자</div>
+      </div>
+      <div class="stat-item" data-animate data-delay="4">
+        <div class="stat-value" data-count="5">5</div>
+        <div class="stat-label">업무 흐름 단계<br>입고부터 설비 관리까지</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section id="problem" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">레거시 시스템이 만드는 운영 손실</h2>
+      <p class="section-sub">파편화된 시스템은 장애 대응을 지연시키고, 의사결정 속도를 떨어뜨립니다. 경쟁력의 핵심 축들이 조용히 잠식되고 있습니다.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card" data-animate data-delay="1">
+        <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="16" height="16" rx="3" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.1)"/>
+          <rect x="26" y="2" width="16" height="16" rx="3" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.1)"/>
+          <rect x="2" y="26" width="16" height="16" rx="3" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.1)"/>
+          <rect x="26" y="26" width="16" height="16" rx="3" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.1)"/>
+          <line x1="18" y1="10" x2="26" y2="10" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="2,2"/>
+          <line x1="10" y1="18" x2="10" y2="26" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="2,2"/>
+        </svg>
+        <h3>파편화된 시스템</h3>
+        <p>설비 모니터링·작업 지시·알림이 각기 다른 솔루션에 분산되어 통합 가시성이 없습니다.</p>
+        <div class="problem-tag">설비 장애 인지까지 여러 시스템을 번갈아 확인해야 함</div>
+      </div>
+      <div class="problem-card" data-animate data-delay="2">
+        <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="18" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.05)"/>
+          <line x1="22" y1="10" x2="22" y2="22" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <line x1="22" y1="22" x2="30" y2="28" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="22" cy="22" r="2.5" fill="#F59E0B"/>
+        </svg>
+        <h3>지연된 의사결정</h3>
+        <p>보고서 기반 운영은 병목 감지와 장애 대응을 늦춰 처리량 손실을 누적시킵니다.</p>
+        <div class="problem-tag">장애 인지 후 대응까지 수동 보고 프로세스 대기</div>
+      </div>
+      <div class="problem-card" data-animate data-delay="3">
+        <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="20" width="28" height="20" rx="3" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.05)"/>
+          <path d="M14,20 V14 C14,8.477 17.477,5 22,5 C26.523,5 30,8.477 30,14 V20" stroke="#F59E0B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <circle cx="22" cy="30" r="3" fill="#F59E0B"/>
+          <line x1="22" y1="33" x2="22" y2="36" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>보안·감사의 공백</h3>
+        <p>변경 이력을 추적하지 못하면 컴플라이언스 감사와 사고 원인 조사가 불가능해집니다.</p>
+        <div class="problem-tag">감사 준비 시 수동으로 로그를 취합해야 하는 구조</div>
+      </div>
+      <div class="problem-card" data-animate data-delay="1">
+        <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="22" cy="34" rx="13" ry="4.5" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.05)"/>
+          <line x1="9" y1="22" x2="9" y2="34" stroke="#F59E0B" stroke-width="1.5"/>
+          <line x1="35" y1="22" x2="35" y2="34" stroke="#F59E0B" stroke-width="1.5"/>
+          <ellipse cx="22" cy="22" rx="13" ry="4.5" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.08)"/>
+          <line x1="9" y1="12" x2="9" y2="22" stroke="#F59E0B" stroke-width="1.5"/>
+          <line x1="35" y1="12" x2="35" y2="22" stroke="#F59E0B" stroke-width="1.5"/>
+          <ellipse cx="22" cy="12" rx="13" ry="4.5" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.13)"/>
+        </svg>
+        <h3>예측 불가한 운영 비용</h3>
+        <p>벤더별 라이선스·커스터마이징·유지보수 계약이 중첩되며 TCO가 통제 범위를 벗어납니다.</p>
+      </div>
+      <div class="problem-card" data-animate data-delay="2">
+        <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 5 L38 12 V24 C38 33 30 40 22 42 C14 40 6 33 6 24 V12 Z" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.05)" stroke-linejoin="round"/>
+          <line x1="22" y1="17" x2="22" y2="27" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="22" cy="32" r="1.8" fill="#F59E0B"/>
+        </svg>
+        <h3>취약한 시스템 안정성</h3>
+        <p>단일 설비 연동 장애가 SPOF가 되어 전체 운영이 중단되고 예기치 못한 다운타임이 반복됩니다.</p>
+      </div>
+      <div class="problem-card" data-animate data-delay="3">
+        <svg class="problem-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="6" y1="22" x2="22" y2="22" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 16 L22 22 L16 28" stroke="#F59E0B" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="26" y1="9" x2="26" y2="35" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+          <line x1="32" y1="9" x2="32" y2="35" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <line x1="38" y1="9" x2="38" y2="35" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,3"/>
+        </svg>
+        <h3>높은 확장 장벽</h3>
+        <p>신규 설비나 물류센터 추가 시마다 대규모 재개발이 필요해, 비즈니스 성장 속도를 IT가 따라가지 못합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">하나의 플랫폼, 완전한 제어</h2>
+      <p class="section-sub">프론트엔드 운영 콘솔부터 백엔드 플랫폼까지, Nova가 물류 제어의 모든 계층을 담당합니다.</p>
+    </div>
+    <div class="tab-row" data-animate>
+      <button class="tab-btn active" data-tab="tab-fe">프론트엔드 콘솔</button>
+      <button class="tab-btn" data-tab="tab-be">백엔드 플랫폼</button>
+    </div>
+
+    <!-- FE Tab -->
+    <div class="tab-panel active" id="tab-fe">
+      <div class="feature-list">
+        <div class="feature-item" data-animate data-delay="1">
+          <div class="feature-dot" style="background:var(--accent-secondary);box-shadow:0 0 8px rgba(16,185,129,0.6)"></div>
+          <div>
+            <h4>2.5D 아이소메트릭 기반 창고 레이아웃 시각화</h4>
+            <p>아이소메트릭 투영 방식으로 물류 현장 전체 구역과 설비 위치를 3D에 가까운 입체감으로 표현합니다. 구역별 색상 코딩으로 상태를 즉시 확인할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="feature-item" data-animate data-delay="2">
+          <div class="feature-dot" style="background:var(--accent-primary);box-shadow:0 0 8px rgba(59,130,246,0.6)"></div>
+          <div>
+            <h4>실시간 설비 모니터링</h4>
+            <p>AGV, 컨베이어 등 각 설비의 상태를 실시간 이벤트 스트림으로 빠르게 확인합니다. 이상 징후를 조기에 감지해 장애를 예방합니다.</p>
+          </div>
+        </div>
+        <div class="feature-item" data-animate data-delay="3">
+          <div class="feature-dot" style="background:var(--accent-purple);box-shadow:0 0 8px rgba(139,92,246,0.6)"></div>
+          <div>
+            <h4>작업 지시 / 태스크 관리</h4>
+            <p>WES 태스크 생성, 우선순위 조정, 완료 추적을 단일 화면에서 처리합니다. 실시간 진행률로 처리량을 최적화합니다.</p>
+          </div>
+        </div>
+        <div class="feature-item" data-animate data-delay="4">
+          <div class="feature-dot" style="background:var(--accent-warning);box-shadow:0 0 8px rgba(245,158,11,0.6)"></div>
+          <div>
+            <h4>알림·알람 패널</h4>
+            <p>채널별 알림과 임계치 알람을 중앙 패널에서 확인하고 즉시 대응합니다. 심각도별 분류로 중요한 이슈를 놓치지 않습니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mock-panel-wrapper" data-animate data-delay="2">
+        <div class="mock-panel">
+          <div class="mock-titlebar">
+            <div class="mock-dot" style="background:#FF5F57"></div>
+            <div class="mock-dot" style="background:#FEBC2E"></div>
+            <div class="mock-dot" style="background:#28C840"></div>
+            <span class="mock-titlebar-label">Nova Console — 1센터</span>
+            <span class="live-badge"><span class="live-dot"></span>LIVE</span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-kpi-row">
+              <div class="mock-kpi">
+                <div class="mock-kpi-val">247</div>
+                <div class="mock-kpi-lbl">활성 태스크</div>
+              </div>
+              <div class="mock-kpi">
+                <div class="mock-kpi-val" style="color:var(--accent-secondary)">98.7%</div>
+                <div class="mock-kpi-lbl">처리율</div>
+              </div>
+              <div class="mock-kpi">
+                <div class="mock-kpi-val" style="color:var(--accent-warning)">3</div>
+                <div class="mock-kpi-lbl">알람</div>
+              </div>
+            </div>
+            <!-- Mini ISO map -->
+            <div class="mock-iso-mini">
+              <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <polygon points="140,15 210,52 140,89 70,52" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="0.6"/>
+                <polygon points="70,52 140,89 140,105 70,68" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="0.6"/>
+                <polygon points="210,52 140,89 140,105 210,68" fill="#E0ECFF" stroke="#BFDBFE" stroke-width="0.6"/>
+                <rect x="88" y="44" width="22" height="14" rx="1" fill="#1D4ED8" stroke="#2A4A9E" stroke-width="0.5"/>
+                <rect x="115" y="37" width="22" height="14" rx="1" fill="#1D4ED8" stroke="#2A4A9E" stroke-width="0.5"/>
+                <rect x="150" y="44" width="22" height="14" rx="1" fill="#1D4ED8" stroke="#2A4A9E" stroke-width="0.5"/>
+                <circle cx="100" cy="41" r="3" fill="#10B981" opacity="0.9"/>
+                <circle cx="127" cy="34" r="3" fill="#10B981" opacity="0.9"/>
+                <circle cx="162" cy="41" r="3" fill="#F59E0B" opacity="0.9"/>
+                <line x1="72" y1="68" x2="138" y2="90" stroke="#3B82F6" stroke-width="3" stroke-dasharray="8,5" class="belt-anim" opacity="0.6"/>
+                <polygon points="118,75 126,71 126,78 118,82" fill="#3B82F6" stroke="#3B82F6" stroke-width="0.6"/>
+              </svg>
+            </div>
+            <table class="mock-table">
+              <thead>
+                <tr><th>설비 ID</th><th>유형</th><th>위치</th><th>상태</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>AGV-001</td><td>AGV</td><td>Zone A-3</td><td><span class="status-badge s-ok">정상</span></td></tr>
+                <tr><td>CVY-012</td><td>컨베이어</td><td>Zone B-1</td><td><span class="status-badge s-warn">점검</span></td></tr>
+                <tr><td>AGV-007</td><td>AGV</td><td>Zone C-2</td><td><span class="status-badge s-ok">정상</span></td></tr>
+                <tr><td>SRT-003</td><td>소터</td><td>Zone A-1</td><td><span class="status-badge s-ok">정상</span></td></tr>
+                <tr><td>CVY-008</td><td>컨베이어</td><td>Zone D-4</td><td><span class="status-badge s-err">오류</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="notif-slide">
+          <div class="notif-title">⚠ CVY-008 오류 감지</div>
+          <div class="notif-body">Zone D-4 컨베이어 모터 과부하 — 즉시 확인 필요</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BE Tab -->
+    <div class="tab-panel" id="tab-be">
+      <div class="feature-list">
+        <div class="feature-item" data-animate data-delay="1">
+          <div class="feature-dot" style="background:var(--accent-primary);box-shadow:0 0 8px rgba(59,130,246,0.6)"></div>
+          <div>
+            <h4>IAM — 역할 기반 접근 제어</h4>
+            <p>RBAC 기반 사용자·역할·권한 관리와 메뉴 노출 정책으로 보안 접근을 제어합니다. JWT Bearer 인증으로 안전한 API 통신을 보장합니다.</p>
+          </div>
+        </div>
+        <div class="feature-item" data-animate data-delay="2">
+          <div class="feature-dot" style="background:var(--accent-secondary);box-shadow:0 0 8px rgba(16,185,129,0.6)"></div>
+          <div>
+            <h4>Audit — 변경 증적 추적</h4>
+            <p>추가 전용 감사 로그와 상관관계 ID로 전사 변경 사실을 추적합니다. 규정 준수와 사고 조사를 위한 완전한 감사 이력을 제공합니다.</p>
+          </div>
+        </div>
+        <div class="feature-item" data-animate data-delay="3">
+          <div class="feature-dot" style="background:var(--accent-warning);box-shadow:0 0 8px rgba(245,158,11,0.6)"></div>
+          <div>
+            <h4>Notification — 멀티채널 알림</h4>
+            <p>이메일·SMS·푸시·인앱 채널을 단일 계약으로 발송하고 재시도를 자동화합니다. 중복 발송 방지와 전달 이력 추적을 기본 제공합니다.</p>
+          </div>
+        </div>
+        <div class="feature-item" data-animate data-delay="4">
+          <div class="feature-dot" style="background:var(--accent-purple);box-shadow:0 0 8px rgba(139,92,246,0.6)"></div>
+          <div>
+            <h4>Realtime — 실시간 데이터 스트림</h4>
+            <p>Snapshot-first Delta push 구조로 대시보드와 운영 화면을 실시간 동기화합니다. 재연결 시에도 최신 상태를 즉시 복원합니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="log-panel" data-animate data-delay="2">
+        <div class="log-titlebar">
+          <div class="mock-dot" style="background:#FF5F57"></div>
+          <div class="mock-dot" style="background:#FEBC2E"></div>
+          <div class="mock-dot" style="background:#28C840"></div>
+          <span class="log-titlebar-label">Nova Platform — Live Log Stream</span>
+          <span class="live-badge" style="margin-left:auto"><span class="live-dot"></span>RUNNING</span>
+        </div>
+        <div id="log-stream"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLATFORM MODULES ===== -->
+<section id="platform" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">통합 플랫폼 모듈</h2>
+      <p class="section-sub">각 모듈은 독립적으로 설계되어 있으며, 함께 사용할 때 완전한 WES 운영 환경을 제공합니다.</p>
+    </div>
+    <div class="modules-grid">
+
+      <div class="module-card" style="--card-accent:#3B82F6" data-animate data-delay="1">
+        <svg class="module-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20,4 L34,10 L34,24 C34,31 27,36 20,38 C13,36 6,31 6,24 L6,10 Z" stroke="#3B82F6" stroke-width="1.5" fill="rgba(59,130,246,0.1)"/>
+          <circle cx="20" cy="17" r="4" stroke="#3B82F6" stroke-width="1.5" fill="rgba(59,130,246,0.15)"/>
+          <path d="M12,28 C12,24 15.5,21 20,21 C24.5,21 28,24 28,28" stroke="#3B82F6" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="module-name-en">IAM</div>
+        <div class="module-name-ko">사용자 인증·인가</div>
+        <p class="module-desc">RBAC 기반 역할·권한 관리와 메뉴 노출 정책으로 보안 접근을 제어합니다.</p>
+        <div class="module-tags"><span class="tag">RBAC</span><span class="tag">JWT</span><span class="tag">메뉴 제어</span></div>
+      </div>
+
+      <div class="module-card" style="--card-accent:#10B981" data-animate data-delay="2">
+        <svg class="module-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="28" height="28" rx="4" stroke="#10B981" stroke-width="1.5" fill="rgba(16,185,129,0.08)"/>
+          <line x1="12" y1="14" x2="28" y2="14" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="12" y1="20" x2="24" y2="20" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="12" y1="26" x2="20" y2="26" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="30" cy="28" r="5" fill="#10B981" opacity="0.15" stroke="#10B981" stroke-width="1"/>
+          <path d="M27.5,28 L29.5,30 L32.5,26" stroke="#10B981" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="module-name-en">Audit</div>
+        <div class="module-name-ko">변경 이력 감사</div>
+        <p class="module-desc">추가 전용 감사 로그와 상관관계 ID로 전사 변경 사실을 추적합니다.</p>
+        <div class="module-tags"><span class="tag">불변 로그</span><span class="tag">내보내기</span><span class="tag">규정 준수</span></div>
+      </div>
+
+      <div class="module-card" style="--card-accent:#F59E0B" data-animate data-delay="3">
+        <svg class="module-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20,5 C12.5,5 8,10 8,17 C8,21 9.5,24.5 12,27 L12,33 L28,33 L28,27 C30.5,24.5 32,21 32,17 C32,10 27.5,5 20,5 Z" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.08)"/>
+          <line x1="16" y1="33" x2="24" y2="33" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="17" y1="36" x2="23" y2="36" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="14" cy="22" r="2.5" stroke="#F59E0B" stroke-width="1" fill="rgba(245,158,11,0.2)"/>
+          <circle cx="26" cy="22" r="2.5" stroke="#F59E0B" stroke-width="1" fill="rgba(245,158,11,0.2)"/>
+        </svg>
+        <div class="module-name-en">Notification</div>
+        <div class="module-name-ko">멀티채널 알림</div>
+        <p class="module-desc">이메일·SMS·푸시·인앱 채널을 단일 계약으로 발송하고 재시도를 자동화합니다.</p>
+        <div class="module-tags"><span class="tag">Email</span><span class="tag">SMS</span><span class="tag">Push</span><span class="tag">InApp</span></div>
+      </div>
+
+      <div class="module-card" style="--card-accent:#8B5CF6" data-animate data-delay="1">
+        <svg class="module-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8,20 Q12,8 20,20 Q28,32 32,20" stroke="#8B5CF6" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="8" cy="20" r="2.5" fill="#8B5CF6"/>
+          <circle cx="20" cy="20" r="2.5" fill="#8B5CF6"/>
+          <circle cx="32" cy="20" r="2.5" fill="#8B5CF6"/>
+          <path d="M14,28 Q17,20 20,28 Q23,36 26,28" stroke="#8B5CF6" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+        <div class="module-name-en">Realtime</div>
+        <div class="module-name-ko">실시간 데이터 스트림</div>
+        <p class="module-desc">Snapshot-first Delta push로 대시보드와 운영 화면을 실시간으로 동기화합니다.</p>
+        <div class="module-tags"><span class="tag">WebSocket</span><span class="tag">Delta Push</span><span class="tag">저지연</span></div>
+      </div>
+
+      <div class="module-card" style="--card-accent:#06B6D4" data-animate data-delay="2">
+        <svg class="module-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="14" stroke="#06B6D4" stroke-width="1.5" fill="rgba(6,182,212,0.06)"/>
+          <line x1="14" y1="20" x2="26" y2="20" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="14" x2="20" y2="26" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="3" fill="#06B6D4" opacity="0.3" stroke="#06B6D4" stroke-width="1"/>
+        </svg>
+        <div class="module-name-en">Configuration</div>
+        <div class="module-name-ko">전역 설정 관리</div>
+        <p class="module-desc">운영 파라미터와 설정 변경 이력을 중앙에서 관리하고 감사 추적을 지원합니다.</p>
+        <div class="module-tags"><span class="tag">타입 검증</span><span class="tag">변경 이력</span><span class="tag">네임스페이스</span></div>
+      </div>
+
+      <div class="module-card" style="--card-accent:#EC4899" data-animate data-delay="3">
+        <svg class="module-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="8" width="28" height="24" rx="4" stroke="#EC4899" stroke-width="1.5" fill="rgba(236,72,153,0.06)"/>
+          <line x1="6" y1="16" x2="34" y2="16" stroke="#EC4899" stroke-width="1.2" opacity="0.5"/>
+          <line x1="14" y1="8" x2="14" y2="14" stroke="#EC4899" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="26" y1="8" x2="26" y2="14" stroke="#EC4899" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="14" cy="24" r="2.5" fill="#EC4899" opacity="0.7"/>
+          <circle cx="22" cy="24" r="2.5" fill="#EC4899" opacity="0.4"/>
+          <circle cx="30" cy="24" r="2.5" fill="#EC4899" opacity="0.2"/>
+        </svg>
+        <div class="module-name-en">Scheduling</div>
+        <div class="module-name-ko">작업 스케줄링</div>
+        <p class="module-desc">실행 시점, 주기, 재시도, 수동 실행을 중앙에서 제어하는 스케줄링 엔진입니다.</p>
+        <div class="module-tags"><span class="tag">Cron</span><span class="tag">재시도</span><span class="tag">실행 이력</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== ARCHITECTURE ===== -->
+<section id="architecture" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">엔터프라이즈급 모듈러 아키텍처</h2>
+      <p class="section-sub">하나의 배포 단위 안에서 강한 모듈 경계를 유지합니다. 각 BC는 독립적으로 진화하면서도 플랫폼 전체가 일관성을 유지합니다.</p>
+    </div>
+    <div class="arch-svg-wrap" data-animate>
+      <svg id="arch-svg" viewBox="0 0 860 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-b" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M1,1 L7,4 L1,7 Z" fill="#2563EB" opacity="0.7"/>
+          </marker>
+          <marker id="arrow-g" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M1,1 L7,4 L1,7 Z" fill="#059669" opacity="0.7"/>
+          </marker>
+        </defs>
+
+        <!-- Background -->
+        <rect width="860" height="400" fill="#FFFFFF" rx="12"/>
+
+        <!-- Outer Nova boundary -->
+        <rect x="12" y="12" width="836" height="376" rx="10" fill="none" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="6,4"/>
+        <text x="30" y="34" fill="#94A3B8" font-size="11" font-family="'Inter', 'Noto Sans KR', sans-serif" font-weight="500">Nova 플랫폼</text>
+
+        <!-- Client layer (top) -->
+        <rect x="40" y="50" width="150" height="50" rx="8" fill="#F1F5F9" stroke="#BFDBFE" stroke-width="1"/>
+        <text x="115" y="70" fill="#1E293B" font-size="11" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Admin 콘솔</text>
+        <text x="115" y="86" fill="#64748B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">2.5D 대시보드</text>
+
+        <rect x="220" y="50" width="150" height="50" rx="8" fill="#F1F5F9" stroke="#BFDBFE" stroke-width="1"/>
+        <text x="295" y="70" fill="#1E293B" font-size="11" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">모바일 앱</text>
+        <text x="295" y="86" fill="#64748B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">운영 현장 UI</text>
+
+        <rect x="400" y="50" width="200" height="50" rx="8" fill="#F1F5F9" stroke="#BFDBFE" stroke-width="1"/>
+        <text x="500" y="70" fill="#1E293B" font-size="11" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">외부 시스템 연동</text>
+        <text x="500" y="86" fill="#64748B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">ERP / WMS / MES</text>
+
+        <!-- Arrows down to gateway -->
+        <line x1="115" y1="100" x2="115" y2="128" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow-b)" opacity="0.6"/>
+        <line x1="295" y1="100" x2="295" y2="128" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow-b)" opacity="0.6"/>
+        <line x1="500" y1="100" x2="500" y2="128" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow-b)" opacity="0.6"/>
+
+        <!-- API Gateway -->
+        <rect x="40" y="130" width="660" height="40" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1"/>
+        <text x="370" y="155" fill="#1D4ED8" font-size="11" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif" font-weight="600">API Gateway / Host</text>
+
+        <!-- Arrow down to platform -->
+        <line x1="370" y1="170" x2="370" y2="198" stroke="#2563EB" stroke-width="1.2" marker-end="url(#arrow-b)" opacity="0.7"/>
+
+        <!-- Platform Modules -->
+        <rect x="40" y="200" width="660" height="80" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="1"/>
+        <text x="370" y="220" fill="#1D4ED8" font-size="10" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif" font-weight="600">Platform BC</text>
+
+        <!-- 6 module boxes inside -->
+        <rect x="56"  y="228" width="86" height="36" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="0.7"/>
+        <text x="99"  y="242" fill="#1E293B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">IAM</text>
+        <text x="99"  y="256" fill="#64748B" font-size="8" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">인증·인가</text>
+
+        <rect x="154" y="228" width="86" height="36" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="0.7"/>
+        <text x="197" y="242" fill="#1E293B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Audit</text>
+        <text x="197" y="256" fill="#64748B" font-size="8" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">감사 이력</text>
+
+        <rect x="252" y="228" width="100" height="36" rx="6" fill="#FFFFFF" stroke="#D97706" stroke-width="0.7"/>
+        <text x="302" y="242" fill="#1E293B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Notification</text>
+        <text x="302" y="256" fill="#64748B" font-size="8" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">멀티채널 알림</text>
+
+        <rect x="364" y="228" width="90" height="36" rx="6" fill="#FFFFFF" stroke="#7C3AED" stroke-width="0.7"/>
+        <text x="409" y="242" fill="#1E293B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Realtime</text>
+        <text x="409" y="256" fill="#64748B" font-size="8" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">실시간 스트림</text>
+
+        <rect x="466" y="228" width="106" height="36" rx="6" fill="#FFFFFF" stroke="#0891B2" stroke-width="0.7"/>
+        <text x="519" y="242" fill="#1E293B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Configuration</text>
+        <text x="519" y="256" fill="#64748B" font-size="8" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">설정 관리</text>
+
+        <rect x="584" y="228" width="100" height="36" rx="6" fill="#FFFFFF" stroke="#DB2777" stroke-width="0.7"/>
+        <text x="634" y="242" fill="#1E293B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Scheduling</text>
+        <text x="634" y="256" fill="#64748B" font-size="8" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">스케줄링</text>
+
+        <!-- Arrows down from platform -->
+        <line x1="200" y1="280" x2="200" y2="308" stroke="#2563EB" stroke-width="1.2" marker-end="url(#arrow-b)" opacity="0.6"/>
+        <line x1="540" y1="280" x2="540" y2="308" stroke="#059669" stroke-width="1.2" marker-end="url(#arrow-g)" opacity="0.6"/>
+
+        <!-- Agent BCs -->
+        <rect x="40" y="310" width="300" height="60" rx="8" fill="#F0FDF4" stroke="#059669" stroke-width="1"/>
+        <text x="190" y="334" fill="#059669" font-size="10" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif" font-weight="600">설비 에이전트 BC</text>
+        <text x="190" y="352" fill="#64748B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">AGV · 컨베이어 · 소터 전용 Agent 모듈</text>
+
+        <!-- Orchestration -->
+        <rect x="360" y="310" width="340" height="60" rx="8" fill="#FAF5FF" stroke="#7C3AED" stroke-width="1"/>
+        <text x="530" y="334" fill="#7C3AED" font-size="10" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif" font-weight="600">오케스트레이션</text>
+        <text x="530" y="352" fill="#64748B" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">멀티 설비 작업 흐름 조정 · 보상 트랜잭션</text>
+
+        <!-- Right side: external -->
+        <rect x="718" y="130" width="124" height="240" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="780" y="156" fill="#64748B" font-size="9.5" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">외부 인프라</text>
+        <rect x="730" y="166" width="100" height="28" rx="5" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.7"/>
+        <text x="780" y="184" fill="#475569" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">SQLite / EF Core</text>
+        <rect x="730" y="204" width="100" height="28" rx="5" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.7"/>
+        <text x="780" y="222" fill="#475569" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">JWT Bearer</text>
+        <rect x="730" y="242" width="100" height="28" rx="5" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.7"/>
+        <text x="780" y="260" fill="#475569" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">SignalR / WS</text>
+        <rect x="730" y="280" width="100" height="28" rx="5" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.7"/>
+        <text x="780" y="298" fill="#475569" font-size="9" text-anchor="middle" font-family="'Inter', 'Noto Sans KR', sans-serif">Email / SMS</text>
+        <line x1="700" y1="200" x2="730" y2="200" stroke="#CBD5E1" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="eco-strip" data-animate>
+      <div class="eco-strip-label">연동 설비 생태계</div>
+      <div class="eco-items">
+        <div class="eco-item"><div class="eco-dot" style="background:#3B82F6"></div><span>AGV / AMR</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#10B981"></div><span>컨베이어</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#F59E0B"></div><span>소터 (DWS)</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#8B5CF6"></div><span>바코드 스캐너</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#06B6D4"></div><span>ERP / WMS</span></div>
+        <div class="eco-item"><div class="eco-dot" style="background:#EC4899"></div><span>MES 연동</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section id="benefits" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">Nova 도입 효과</h2>
+      <p class="section-sub">Nova는 레거시 시스템의 6가지 한계를 하나씩 해소하며, 운영 효율과 비용·안정성을 동시에 끌어올립니다.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card" data-animate data-delay="1">
+        <svg class="benefit-icon" style="background:rgba(20,184,166,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <rect x="15" y="3" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <rect x="3" y="15" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <rect x="15" y="15" width="10" height="10" rx="2" stroke="#14B8A6" stroke-width="1.8" fill="rgba(20,184,166,0.1)"/>
+          <line x1="13" y1="8" x2="15" y2="8" stroke="#14B8A6" stroke-width="1.5"/>
+          <line x1="8" y1="13" x2="8" y2="15" stroke="#14B8A6" stroke-width="1.5"/>
+          <line x1="20" y1="13" x2="20" y2="15" stroke="#14B8A6" stroke-width="1.5"/>
+          <line x1="13" y1="20" x2="15" y2="20" stroke="#14B8A6" stroke-width="1.5"/>
+        </svg>
+        <h3>통합 운영 가시성</h3>
+        <p>설비 모니터링·작업 지시·알림을 하나의 콘솔에서 관리합니다. 분산된 시스템 없이 전체 현장을 한눈에 파악합니다.</p>
+        <span class="benefit-keyword">단일 콘솔</span>
+      </div>
+      <div class="benefit-card" data-animate data-delay="2">
+        <svg class="benefit-icon" style="background:rgba(59,130,246,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="4,20 10,12 16,16 24,6" stroke="#3B82F6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="20,6 24,6 24,10" stroke="#3B82F6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>처리량 최적화</h3>
+        <p>실시간 태스크 배분과 설비 모니터링으로 병목 구간을 즉시 감지하고 작업을 재배분해 센터 전체의 처리량을 높입니다.</p>
+        <span class="benefit-keyword">병목 즉시 감지</span>
+      </div>
+      <div class="benefit-card" data-animate data-delay="2">
+        <svg class="benefit-icon" style="background:rgba(6,182,212,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3 L8 15 H14 L12 25 L20 13 H14 Z" stroke="#06B6D4" stroke-width="1.8" fill="rgba(6,182,212,0.1)" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <h3>실시간 의사결정</h3>
+        <p>표준화된 실시간 이벤트 스트림으로 장애를 즉각 인지하고 대응합니다. 보고서가 아닌 데이터가 운영을 이끕니다.</p>
+        <span class="benefit-keyword">실시간 스트림 기반</span>
+      </div>
+      <div class="benefit-card" data-animate data-delay="3">
+        <svg class="benefit-icon" style="background:rgba(16,185,129,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14,3 L22,6.5 L22,15 C22,19.5 18.5,23 14,25 C9.5,23 6,19.5 6,15 L6,6.5 Z" stroke="#10B981" stroke-width="1.8" fill="rgba(16,185,129,0.1)"/>
+          <path d="M10,14 L13,17 L18,11" stroke="#10B981" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>감사 추적·컴플라이언스</h3>
+        <p>변경·접근 이력을 자동 기록해 누가, 언제, 무엇을 바꿨는지 추적할 수 있습니다. 규정 감사와 사고 조사에 필요한 근거를 즉시 제공합니다.</p>
+        <span class="benefit-keyword">변경 이력 전수 기록</span>
+      </div>
+      <div class="benefit-card" data-animate data-delay="1">
+        <svg class="benefit-icon" style="background:rgba(249,115,22,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="4,18 10,10 16,14 24,4" stroke="#F97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="20,4 24,4 24,8" stroke="#F97316" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" y1="24" x2="24" y2="24" stroke="#F97316" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>TCO 절감·비용 예측</h3>
+        <p>단일 통합 플랫폼으로 벤더별 라이선스와 커스터마이징 비용을 통합해 비용 구조를 단순화하고 운영 예산을 예측 가능하게 합니다.</p>
+        <span class="benefit-keyword">벤더 통합 운영</span>
+      </div>
+      <div class="benefit-card" data-animate data-delay="2">
+        <svg class="benefit-icon" style="background:rgba(13,148,136,0.1)" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="2,14 6,14 9,7 12,21 15,10 18,17 21,14 26,14" stroke="#0D9488" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>무중단 고가용성 보장</h3>
+        <p>장애 격리 설계로 단일 설비 오류가 전체 운영에 전파되지 않습니다. 무중단 엔터프라이즈 아키텍처로 안정적인 연속 운영을 보장합니다.</p>
+        <span class="benefit-keyword">무중단 연속 운영</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PERSONAS ===== -->
+<section id="personas" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">이런 산업에 추천합니다</h2>
+      <p class="section-sub">Nova는 물류 자동화와 운영 통합의 필요성이 큰 산업군에서 특히 효과적입니다.</p>
+    </div>
+    <div class="personas-grid">
+      <div class="persona-card" data-animate data-delay="1">
+        <div class="persona-role">3PL · 물류센터</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="12" width="38" height="18" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <path d="M8 30 V35 M36 30 V35" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 18 H33" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="14" cy="24" r="2" fill="#2563EB"/>
+          <circle cx="22" cy="24" r="2" fill="#2563EB"/>
+          <circle cx="30" cy="24" r="2" fill="#2563EB"/>
+        </svg>
+        <h3>멀티센터와 다수 설비를 함께 운영하는 곳</h3>
+        <p class="persona-desc">센터별 운영 화면이 따로 있고, 물동량 변동과 설비 장애 대응을 하나의 시스템으로 묶어야 하는 환경</p>
+        <ul class="persona-needs">
+          <li>센터별 작업과 설비 상태를 통합 관제해야 할 때</li>
+          <li>피크 시간대에 태스크 자동 재배분이 필요할 때</li>
+          <li>고객사별 운영 기준과 알림 체계를 분리해야 할 때</li>
+        </ul>
+      </div>
+      <div class="persona-card" data-animate data-delay="2">
+        <div class="persona-role">제조 · 공장 물류</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="8" width="34" height="12" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <rect x="5" y="24" width="34" height="12" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <line x1="12" y1="14" x2="28" y2="14" stroke="#2563EB" stroke-width="1" opacity="0.5"/>
+          <line x1="12" y1="30" x2="28" y2="30" stroke="#2563EB" stroke-width="1" opacity="0.5"/>
+          <circle cx="32" cy="14" r="2" fill="#2563EB"/>
+          <circle cx="32" cy="30" r="2" fill="#2563EB"/>
+          <path d="M21 20 V24" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M17 38 H27" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>생산 라인과 물류 연계가 필요한 곳</h3>
+        <p class="persona-desc">입출고와 설비 제어가 생산 계획과 직접 연결되어 있어, 현장 흐름을 실시간으로 맞춰야 하는 환경</p>
+        <ul class="persona-needs">
+          <li>생산 계획 변경이 곧바로 물류 작업에 반영되어야 할 때</li>
+          <li>AGV, 컨베이어, 소터 같은 설비 연동이 많을 때</li>
+          <li>설비 상태와 작업 지시를 같은 기준으로 관리해야 할 때</li>
+        </ul>
+      </div>
+      <div class="persona-card" data-animate data-delay="3">
+        <div class="persona-role">이커머스 · 풀필먼트</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="9" width="32" height="26" rx="3" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.05)"/>
+          <path d="M12 15 H32" stroke="#2563EB" stroke-width="1.2" opacity="0.5"/>
+          <path d="M12 21 H26" stroke="#2563EB" stroke-width="1.2" opacity="0.5"/>
+          <path d="M12 27 H22" stroke="#2563EB" stroke-width="1.2" opacity="0.5"/>
+          <circle cx="31" cy="28" r="4" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <path d="M29.5 28 L30.8 29.3 L32.6 26.7" stroke="#2563EB" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>주문 변동이 크고 처리 속도가 중요한 곳</h3>
+        <p class="persona-desc">오더 수요가 크게 흔들리고, 피킹·분류·출고 흐름을 빠르게 조정해야 하는 운영 환경</p>
+        <ul class="persona-needs">
+          <li>주문 폭증 시 작업 우선순위를 즉시 바꿔야 할 때</li>
+          <li>피킹·분류·출고 상태를 실시간으로 추적해야 할 때</li>
+          <li>대량 알림과 예외 대응을 자동화해야 할 때</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TARGET ROLES ===== -->
+<section id="target" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">누구를 위한 솔루션인가</h2>
+      <p class="section-sub">Nova는 물류 현장의 운영팀부터 시스템 관리자, 의사결정자까지 각 역할의 핵심 과제를 해소합니다.</p>
+    </div>
+    <div class="personas-grid">
+      <div class="persona-card" data-animate data-delay="1">
+        <div class="persona-role">현장 운영팀</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="14" r="6" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <circle cx="29" cy="14" r="6" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <path d="M4 38 C4 30 9 26 15 26 C19 26 22 28 24 31" stroke="#2563EB" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M18 38 C18 30 23 26 29 26 C35 26 40 30 40 38" stroke="#2563EB" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <h3>물류센터 현장 운영팀</h3>
+        <p class="persona-desc">여러 설비의 상태와 작업 현황을 실시간으로 파악하고, 돌발 상황에 빠르게 대응해야 하는 팀</p>
+        <ul class="persona-needs">
+          <li>설비·태스크 현황을 하나의 화면에서 통합 확인</li>
+          <li>장애 발생 즉시 알림 수신 및 자동 재배분</li>
+          <li>수동 작업 지시 없이 태스크 자동 배분</li>
+        </ul>
+      </div>
+      <div class="persona-card" data-animate data-delay="2">
+        <div class="persona-role">IT · 시스템 관리자</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="32" height="11" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <rect x="6" y="21" width="32" height="11" rx="2" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+          <circle cx="12" cy="11.5" r="2" fill="#2563EB"/>
+          <circle cx="12" cy="26.5" r="2" fill="#2563EB"/>
+          <line x1="18" y1="11.5" x2="32" y2="11.5" stroke="#2563EB" stroke-width="1" opacity="0.4"/>
+          <line x1="18" y1="26.5" x2="32" y2="26.5" stroke="#2563EB" stroke-width="1" opacity="0.4"/>
+          <line x1="22" y1="32" x2="22" y2="40" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14" y1="40" x2="30" y2="40" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>안정적이고 확장 가능한 플랫폼이 필요한 조직</h3>
+        <p class="persona-desc">보안과 이력 관리, 확장성까지 고려해 물류 플랫폼을 구축·운영해야 하는 담당자</p>
+        <ul class="persona-needs">
+          <li>모듈러 아키텍처로 신규 설비 독립 연동</li>
+          <li>RBAC·감사 로그로 접근 이력 관리</li>
+          <li>운영 중단 없는 설비 추가 및 업데이트</li>
+        </ul>
+      </div>
+      <div class="persona-card" data-animate data-delay="3">
+        <div class="persona-role">물류 관리자</div>
+        <svg class="persona-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="14" width="32" height="24" rx="3" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.05)"/>
+          <path d="M16 14 V10 C16 8.9 16.9 8 18 8 H26 C27.1 8 28 8.9 28 10 V14" stroke="#2563EB" stroke-width="1.5" fill="none"/>
+          <polyline points="13,30 18,24 22,27 30,20" stroke="#2563EB" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="26,20 30,20 30,24" stroke="#2563EB" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+        <h3>비용과 리스크를 함께 관리해야 하는 의사결정자</h3>
+        <p class="persona-desc">운영 비용을 최적화하고, 리스크를 데이터로 관리하며, 경영진에 보고해야 하는 담당자</p>
+        <ul class="persona-needs">
+          <li>실시간 KPI로 데이터 기반 의사결정</li>
+          <li>예측 가능한 비용 구조로 예산 관리</li>
+          <li>컴플라이언스 감사 즉시 대응</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADOPTION PROCESS ===== -->
+<section id="adoption" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">도입 프로세스</h2>
+      <p class="section-sub">Nova는 현황 파악부터 파일럿 오픈, 운영 확장까지 단계적으로 진행해 리스크를 줄입니다.</p>
+    </div>
+    <div class="adoption-timeline">
+      <div class="adoption-step" data-animate data-delay="1">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">01</div>
+          <h4>현황 진단</h4>
+        </div>
+        <p>설비 구성, 업무 흐름, 연동 대상, 운영 병목을 먼저 정리합니다.</p>
+      </div>
+      <div class="adoption-step" data-animate data-delay="2">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">02</div>
+          <h4>범위 설계</h4>
+        </div>
+        <p>우선 적용할 모듈과 화면, 연동 범위, 단계별 오픈 계획을 정의합니다.</p>
+      </div>
+      <div class="adoption-step" data-animate data-delay="3">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">03</div>
+          <h4>연동 · 설정</h4>
+        </div>
+        <p>설비, 권한, 알림, 감사 로그, 운영 기준을 실제 환경에 맞게 연결합니다.</p>
+      </div>
+      <div class="adoption-step" data-animate data-delay="4">
+        <div class="adoption-step-head">
+          <div class="adoption-step-no">04</div>
+          <h4>파일럿 오픈</h4>
+        </div>
+        <p>한 센터 또는 일부 업무부터 먼저 적용해 안정성을 검증합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS COVERAGE ===== -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">End-to-End 통합 물류 제어를 지원합니다</h2>
+      <p class="section-sub">입고부터 출고, 설비 관리까지 — Nova는 물류 현장 운영의 전체 흐름을 하나의 플랫폼으로 완벽히 통제합니다.</p>
+    </div>
+    <div class="process-flow">
+      <div class="process-step" data-animate data-delay="1">
+        <div class="process-num">01</div>
+        <svg class="process-step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="18" width="28" height="16" rx="2" stroke="#3B82F6" stroke-width="1.5" fill="rgba(59,130,246,0.08)"/>
+          <line x1="20" y1="4" x2="20" y2="18" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline points="14,11 20,18 26,11" stroke="#3B82F6" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h4>입고</h4>
+        <p>입고 스캔·검수, 위치 자동 배정 및 재고 등록</p>
+      </div>
+      <div class="process-step" data-animate data-delay="2">
+        <div class="process-num">02</div>
+        <svg class="process-step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="14" height="14" rx="1.5" stroke="#0D9488" stroke-width="1.5" fill="rgba(13,148,136,0.08)"/>
+          <rect x="22" y="4" width="14" height="14" rx="1.5" stroke="#0D9488" stroke-width="1.5" fill="rgba(13,148,136,0.08)"/>
+          <rect x="4" y="22" width="14" height="14" rx="1.5" stroke="#0D9488" stroke-width="1.5" fill="rgba(13,148,136,0.08)"/>
+          <rect x="22" y="22" width="14" height="14" rx="1.5" stroke="#0D9488" stroke-width="1.5" fill="rgba(13,148,136,0.08)"/>
+        </svg>
+        <h4>보관 · 재고</h4>
+        <p>실시간 재고 위치 파악 및 AGV 경로 최적화</p>
+      </div>
+      <div class="process-step" data-animate data-delay="3">
+        <div class="process-num">03</div>
+        <svg class="process-step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="10" y1="12" x2="32" y2="12" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="10" y1="20" x2="32" y2="20" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="10" y1="28" x2="24" y2="28" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="7" cy="12" r="2.5" fill="#8B5CF6"/>
+          <circle cx="7" cy="20" r="2.5" fill="#8B5CF6"/>
+          <circle cx="7" cy="28" r="2.5" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+        </svg>
+        <h4>피킹 · 분류</h4>
+        <p>작업 지시 자동 배분, 소터 연동 및 분류 처리</p>
+      </div>
+      <div class="process-step" data-animate data-delay="4">
+        <div class="process-num">04</div>
+        <svg class="process-step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="28" height="18" rx="2" stroke="#10B981" stroke-width="1.5" fill="rgba(16,185,129,0.08)"/>
+          <line x1="20" y1="24" x2="20" y2="36" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline points="14,30 20,36 26,30" stroke="#10B981" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h4>출고</h4>
+        <p>출고 작업 지시, 게이트 배정 및 적재 확인</p>
+      </div>
+      <div class="process-step" data-animate data-delay="5">
+        <div class="process-num">05</div>
+        <svg class="process-step-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="6" stroke="#F59E0B" stroke-width="1.5" fill="rgba(245,158,11,0.1)"/>
+          <circle cx="20" cy="20" r="11" stroke="#F59E0B" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+          <line x1="20" y1="4" x2="20" y2="9" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20" y1="31" x2="20" y2="36" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4" y1="20" x2="9" y2="20" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+          <line x1="31" y1="20" x2="36" y2="20" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h4>설비 관리</h4>
+        <p>AGV·컨베이어·소터 모니터링 및 예방 정비 스케줄링</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENARIOS ===== -->
+<section id="scenarios" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">실제 운영 시나리오</h2>
+      <p class="section-sub">Nova가 현장에서 어떻게 작동하는지, 구체적인 운영 장면으로 확인합니다.</p>
+    </div>
+    <div class="scenarios-grid">
+      <div class="scenario-card" data-animate data-delay="1">
+        <div class="scenario-tag" style="background:rgba(245,158,11,0.1);color:#D97706;">설비 장애 대응</div>
+        <h3>AGV 장애 — 자동 재배분</h3>
+        <ul class="scenario-steps">
+          <li><span class="step-num">01</span>AGV 이상 신호 감지 및 장애 상태 전환</li>
+          <li><span class="step-num">02</span>운영팀·담당자에게 멀티채널 알림 즉시 발송</li>
+          <li><span class="step-num">03</span>잔여 AGV에 미완료 태스크 자동 재배분</li>
+          <li><span class="step-num">04</span>전체 이벤트 이력 감사 로그 자동 기록</li>
+        </ul>
+      </div>
+      <div class="scenario-card" data-animate data-delay="2">
+        <div class="scenario-tag" style="background:rgba(139,92,246,0.1);color:#7C3AED;">피크 대응</div>
+        <h3>물동량 급증 — 실시간 재배분</h3>
+        <ul class="scenario-steps">
+          <li><span class="step-num">01</span>처리 대기 태스크 임계치 초과 감지</li>
+          <li><span class="step-num">02</span>유휴 설비·인력에 태스크 자동 재배분</li>
+          <li><span class="step-num">03</span>병목 구간 알림으로 관리자에게 현황 공유</li>
+          <li><span class="step-num">04</span>처리량 회복 후 정상 운영 모드 자동 전환</li>
+        </ul>
+      </div>
+      <div class="scenario-card" data-animate data-delay="3">
+        <div class="scenario-tag" style="background:rgba(16,185,129,0.1);color:#059669;">감사 대응</div>
+        <h3>컴플라이언스 감사 — 즉시 대응</h3>
+        <ul class="scenario-steps">
+          <li><span class="step-num">01</span>감사 범위에 해당하는 기간·대상 조건 설정</li>
+          <li><span class="step-num">02</span>변경·접근 이력 자동 취합 및 내보내기</li>
+          <li><span class="step-num">03</span>이상 접근 또는 미승인 변경 항목 필터링</li>
+          <li><span class="step-num">04</span>감사 보고서 생성 및 담당자에게 전달</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MATURITY MODEL ===== -->
+<section id="maturity" class="section">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <h2 class="section-title">물류 자동화 성숙도 모델</h2>
+      <p class="section-sub">현재 단계를 진단하고, Nova와 함께 다음 단계로 나아가세요.</p>
+    </div>
+    <div class="maturity-track">
+      <div class="maturity-step" data-animate data-delay="1">
+        <div class="maturity-step-num">1</div>
+        <div class="maturity-label">수동 운영</div>
+        <p class="maturity-desc">엑셀·구두·전화로 설비 상태와 작업을 관리</p>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step" data-animate data-delay="2">
+        <div class="maturity-step-num">2</div>
+        <div class="maturity-label">부분 자동화</div>
+        <p class="maturity-desc">설비별 개별 솔루션, 통합 가시성 부재</p>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step maturity-step--active" data-animate data-delay="3">
+        <div class="maturity-step-num">3</div>
+        <div class="maturity-label">통합 자동화</div>
+        <p class="maturity-desc">모든 설비·업무를 단일 플랫폼으로 통합</p>
+        <div class="maturity-nova-badge">Nova 도입 단계</div>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step" data-animate data-delay="4">
+        <div class="maturity-step-num">4</div>
+        <div class="maturity-label">예측 최적화</div>
+        <p class="maturity-desc">데이터 기반 예측·최적화, 선제적 장애 예방</p>
+      </div>
+      <div class="maturity-arrow">→</div>
+      <div class="maturity-step" data-animate data-delay="5">
+        <div class="maturity-step-num">5</div>
+        <div class="maturity-label">AI 자율 운영</div>
+        <p class="maturity-desc">AI가 스케줄·배분·이상 감지를 자율 제어</p>
+      </div>
+    </div>
+    <div class="maturity-cta" data-animate>
+      <p>현재 단계를 모르거나 다음 단계로 가는 경로가 궁금하신가요?</p>
+      <a href="#adoption" class="btn btn-primary">현재 단계 진단하기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT CTA ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-cta-inner" data-animate>
+      <h2 class="contact-cta-title">Nova로 물류 운영을 바꿀 준비가 되셨나요?</h2>
+      <p class="contact-cta-sub">현황 진단부터 파일럿 설계까지 — 운영 전문가가 함께합니다.</p>
+      <div class="contact-form-row">
+        <input type="text" class="contact-input" placeholder="회사명 또는 담당자 이름">
+        <input type="email" class="contact-input" placeholder="업무용 이메일">
+        <button class="btn-white">진단 결과 상담하기</button>
+      </div>
+      <p class="contact-disclaimer">영업일 1일 이내 연락드립니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="3" fill="#3B82F6"/>
+          </svg>
+          Nova
+        </div>
+        <p class="footer-tagline">Powered by Idenflu — WES/WCS 물류 자동화 플랫폼</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="#features">기능</a>
+        <a href="#platform">플랫폼</a>
+        <a href="#architecture">아키텍처</a>
+        <a href="#benefits">도입 효과</a>
+        <a href="#personas">산업</a>
+        <a href="#target">대상</a>
+        <a href="#adoption">도입</a>
+        <a href="#process">업무 흐름</a>
+        <a href="#scenarios">시나리오</a>
+      </nav>
+      <div class="footer-copy">
+        <p>© 2025 Idenflu. All rights reserved.</p>
+      </div>
+    </div>
+    <hr class="footer-divider">
+  </div>
+</footer>
+
+<script>
+  // Nav scroll + progress bar + back-to-top
+  const nav = document.getElementById('nav');
+  const scrollBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    scrollBar.style.width = pct + '%';
+    backToTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileNav.classList.remove('open'));
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Scroll animate
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('animate-in'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+  // KPI counters
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const duration = 1600;
+    const start = performance.now();
+    const isDecimal = String(target).includes('.');
+    const update = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = ease * target;
+      el.textContent = prefix + (isDecimal ? val.toFixed(1) : Math.floor(val)) + suffix;
+      if (p < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-count]').forEach(animateCounter);
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const statsSection = document.getElementById('stats');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById(target);
+      if (panel) {
+        panel.classList.add('active');
+        panel.querySelectorAll('[data-animate]').forEach(el => {
+          el.classList.remove('animate-in');
+          setTimeout(() => el.classList.add('animate-in'), 30);
+        });
+      }
+    });
+  });
+
+  // Log stream
+  const logLines = [
+    { tag: 'IAM',           msg: ' Permission check: ', ok: '✓ task.execute', rest: ' — user:operator-01' },
+    { tag: 'Realtime',      msg: ' Frame pushed: stream:floor-1 (', val: '12ms', rest: ')' },
+    { tag: 'Notification',  msg: ' Email delivered → ', rest: 'ops-team@warehouse.kr' },
+    { tag: 'Audit',         msg: ' Entry recorded: entityId=task-ab3f (', rest: 'correlation:c9d2)' },
+    { tag: 'Scheduling',    msg: ' Job fired: ', rest: 'conveyor-maintenance-check' },
+    { tag: 'Configuration', msg: ' Key refreshed: ', rest: 'conveyor.max_speed = 1.8' },
+    { tag: 'IAM',           msg: ' Role resolved: ', ok: '✓ ops-manager', rest: ' → 14 permissions' },
+    { tag: 'Realtime',      msg: ' Subscription: stream:agv-status (', val: '8ms', rest: ' snapshot)' },
+    { tag: 'Notification',  msg: ' SMS delivered → ', rest: '+82-10-xxxx-1234' },
+    { tag: 'Audit',         msg: ' Bulk export: 1,240 records (', rest: 'since 2025-04-01)' },
+  ];
+  let lineIdx = 0;
+  const tagColors = { IAM:'#60A5FA', Realtime:'#A78BFA', Notification:'#FBD38D', Audit:'#6EE7B7', Scheduling:'#F9A8D4', Configuration:'#67E8F9' };
+
+  function appendLog() {
+    const container = document.getElementById('log-stream');
+    if (!container) return;
+    const d = logLines[lineIdx % logLines.length];
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    const color = tagColors[d.tag] || '#60A5FA';
+    line.innerHTML = `→ [<span class="log-tag" style="color:${color}">${d.tag}</span>]${d.msg}${d.ok ? `<span class="log-ok">${d.ok}</span>` : ''}${d.val ? `<span class="log-val">${d.val}</span>` : ''}${d.rest}`;
+    container.appendChild(line);
+    requestAnimationFrame(() => line.classList.add('visible'));
+    if (container.children.length > 10) {
+      const old = container.children[0];
+      old.classList.add('fade-out');
+      setTimeout(() => old.remove(), 400);
+    }
+    lineIdx++;
+  }
+  setInterval(appendLog, 1100);
+  appendLog(); appendLog(); appendLog(); appendLog();
+
+  // Back to Top
+  const backToTop = document.getElementById('back-to-top');
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Contact form soft validation
+  const contactFormRow = document.querySelector('.contact-form-row');
+  if (contactFormRow) {
+    const submitBtn = contactFormRow.querySelector('.btn-white');
+    submitBtn.addEventListener('click', () => {
+      const inputs = contactFormRow.querySelectorAll('.contact-input');
+      let valid = true;
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.style.borderColor = 'rgba(239,68,68,0.7)';
+          valid = false;
+        } else {
+          input.style.borderColor = '';
+        }
+      });
+      if (valid) {
+        submitBtn.textContent = '접수되었습니다 ✓';
+        submitBtn.style.background = '#D1FAE5';
+        submitBtn.style.color = '#065F46';
+        submitBtn.disabled = true;
+      }
+    });
+  }
+
+  // Nav scroll spy
+  const spySections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a, .mobile-nav a');
+  const spyObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navAnchors.forEach(link => {
+          link.classList.toggle('nav-active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  spySections.forEach(s => spyObserver.observe(s));
+</script>
+
+<button id="back-to-top" aria-label="맨 위로">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M10 15V5M10 5L5 10M10 5l5 5" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+</body>
+</html>
