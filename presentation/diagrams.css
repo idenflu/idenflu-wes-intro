@@ -1,0 +1,162 @@
+/* Editable explanatory diagrams, using the NOVA palette and type weights. */
+.slide { --diagram-canvas: var(--nova-color-white); --diagram-fill: var(--nova-color-surface); }
+.slide--soft { --diagram-canvas: var(--nova-color-surface); --diagram-fill: var(--nova-color-white); }
+.diagram-content { display: grid; gap: clamp(1.5rem, 3cqw, 2.75rem); }
+.diagram-heading .slide-title { text-wrap: balance; }
+.diagram-heading .slide-copy { max-width: 55rem; margin-top: clamp(.75rem, 1.5cqw, 1.25rem); }
+.explain-diagram { min-width: 0; margin: 0; }
+.diagram-node { min-width: 0; min-height: clamp(7rem, 13cqw, 11rem); display: flex; flex-direction: column; justify-content: center; gap: var(--nova-space-2); padding: clamp(.875rem, 2cqw, 1.75rem); border-radius: var(--nova-radius-sm); background: var(--diagram-fill); }
+.diagram-node h3, .solution-map__core h3, .platform-map__foundation h3 { margin: 0; font-size: clamp(1rem, 1.85cqw, 1.5rem); font-weight: var(--nova-weight-medium); letter-spacing: -.025em; line-height: 1.3; }
+.diagram-node p { margin: 0; color: var(--nova-color-text); font-size: clamp(.75rem, 1.15cqw, 1rem); line-height: 1.65; }
+.diagram-node__kicker, .diagram-label { margin: 0; color: var(--nova-color-muted); font-size: clamp(.625rem, .95cqw, .8125rem); line-height: 1.5; }
+.diagram-node--ink { background: var(--nova-color-ink); color: var(--nova-color-white); }
+.diagram-node--ink p, .diagram-node--ink .diagram-node__kicker { color: var(--nova-color-white); }
+.diagram-icon { display: block; flex: none; width: 1.5rem; height: 1.5rem; }
+.diagram-flow { display: grid; align-items: center; }
+.diagram-flow--three { grid-template-columns: minmax(0, 1fr) clamp(2.5rem, 5cqw, 4rem) minmax(0, 1fr) clamp(2.5rem, 5cqw, 4rem) minmax(0, 1fr); }
+.diagram-flow--four { grid-template-columns: minmax(0, .9fr) clamp(2rem, 4.5cqw, 3.75rem) minmax(0, 1.1fr) clamp(2rem, 4.5cqw, 3.75rem) minmax(0, 1.1fr) clamp(2rem, 4.5cqw, 3.75rem) minmax(0, .9fr); }
+.diagram-flow--four .diagram-node { min-height: clamp(8rem, 15cqw, 12rem); }
+.diagram-link { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--nova-space-1); color: var(--nova-color-muted); }
+.diagram-link > span { font-size: clamp(.625rem, .85cqw, .75rem); line-height: 1.45; text-align: center; }
+.diagram-arrow { display: block; flex: none; width: min(100%, 2.5rem); height: 1.25rem; }
+.diagram-return { position: relative; display: flex; align-items: center; justify-content: center; min-height: 1.5rem; margin: clamp(1rem, 2.5cqw, 2rem) auto 0; width: 92%; color: var(--nova-color-muted); text-align: center; }
+.diagram-return::before { position: absolute; inset: 50% 0 auto; content: ""; border-top: 1px solid var(--nova-color-line); }
+.diagram-return::after { position: absolute; left: 0; top: calc(50% - .2rem); width: .4rem; height: .4rem; border-left: 1px solid var(--nova-color-muted); border-bottom: 1px solid var(--nova-color-muted); transform: rotate(45deg); content: ""; }
+.diagram-return > span { position: relative; max-width: calc(100% - 2rem); padding-inline: var(--nova-space-3); background: var(--diagram-canvas); font-size: clamp(.6875rem, 1cqw, .875rem); line-height: 1.5; }
+
+/* A fragmented information landscape converges on the operator. */
+.fragmented-map__sources { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.5rem, 1.25cqw, 1rem); }
+.fragmented-map__sources > div { min-width: 0; display: grid; justify-items: center; gap: var(--nova-space-2); padding: clamp(.75rem, 1.75cqw, 1.5rem) var(--nova-space-2); border: 1px solid var(--nova-color-line); border-radius: var(--nova-radius-sm); background: var(--nova-color-white); }
+.fragmented-map__sources > div:nth-child(even) { transform: translateY(.625rem); }
+.fragmented-map__sources span { font-size: clamp(.875rem, 1.45cqw, 1.125rem); }
+.fragmented-map__sources small { color: var(--nova-color-muted); font-size: clamp(.625rem, .9cqw, .75rem); text-align: center; line-height: 1.5; }
+.fragmented-map__connections { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.5rem, 1.25cqw, 1rem); height: 4rem; }
+.fragmented-map__connections > span { height: 2rem; justify-self: center; border-left: 1px dashed var(--nova-color-line); }
+.fragmented-map__connections::before { position: absolute; inset: 2rem 12.5% auto; border-top: 1px dashed var(--nova-color-line); content: ""; }
+.fragmented-map__connections::after { position: absolute; top: 2rem; left: 50%; height: 2rem; border-left: 1px dashed var(--nova-color-line); content: ""; }
+.fragmented-map__operator { display: flex; justify-content: center; align-items: center; gap: var(--nova-space-3); font-size: clamp(.9375rem, 1.6cqw, 1.375rem); font-weight: var(--nova-weight-medium); }
+.fragmented-map figcaption { margin-top: clamp(1rem, 2.5cqw, 2rem); color: var(--nova-color-muted); font-size: clamp(.6875rem, 1cqw, .875rem); text-align: center; line-height: 1.6; }
+
+/* One execution foundation supplies two complementary ways to view it. */
+.solution-map { --diagram-branch-gap: clamp(1.25rem, 4cqw, 4rem); width: min(100%, 54rem); margin-inline: auto; }
+.solution-map__views { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--diagram-branch-gap); }
+.solution-map__views .diagram-node { min-height: clamp(5.5rem, 9cqw, 8rem); }
+.diagram-branches { position: relative; height: clamp(2.25rem, 4cqw, 3.5rem); color: var(--nova-color-muted); }
+.diagram-branches svg { position: absolute; top: 0; left: calc(var(--diagram-branch-gap, 0rem) / -2); display: block; width: calc(100% + var(--diagram-branch-gap, 0rem)); height: 100%; }
+.diagram-branches > span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: .125rem var(--nova-space-2); color: var(--nova-color-muted); background: var(--diagram-canvas); font-size: clamp(.625rem, .9cqw, .75rem); white-space: nowrap; }
+.solution-map__core { min-height: clamp(3.5rem, 6cqw, 5rem); display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--nova-space-2) clamp(1rem, 3cqw, 3rem); padding: var(--nova-space-3) var(--nova-space-5); border-radius: var(--nova-radius-sm); background: var(--nova-color-ink); color: var(--nova-color-white); }
+.solution-map__core > span { font-size: clamp(.75rem, 1.1cqw, .9375rem); }
+
+/* The priority example shows the same waiting jobs before and after. */
+.priority-diagram__comparison { display: grid; grid-template-columns: minmax(0, 1fr) clamp(4rem, 8cqw, 7rem) minmax(0, 1fr); align-items: center; }
+.queue-state > .diagram-label { margin-bottom: var(--nova-space-3); }
+.job-queue { display: grid; gap: var(--nova-space-2); margin: 0; padding: 0; list-style: none; }
+.queue-job { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: center; gap: var(--nova-space-3); padding: clamp(.625rem, 1.5cqw, 1.25rem) clamp(.75rem, 2cqw, 1.5rem); border-radius: var(--nova-radius-sm); background: var(--nova-color-surface); }
+.queue-job__rank { color: var(--nova-color-muted); font-size: clamp(.875rem, 1.3cqw, 1.125rem); font-variant-numeric: tabular-nums; }
+.queue-job h3 { margin: 0; font-size: clamp(.9375rem, 1.6cqw, 1.375rem); font-weight: var(--nova-weight-medium); line-height: 1.35; }
+.queue-job p { margin: var(--nova-space-1) 0 0; color: var(--nova-color-muted); font-size: clamp(.6875rem, 1cqw, .875rem); line-height: 1.5; }
+.queue-job--priority { background: var(--nova-color-brand-soft); }
+.queue-job--priority h3, .queue-job--priority .queue-job__rank { color: var(--nova-color-brand-hover); }
+.scenario-chain { display: grid; grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr); align-items: center; gap: var(--nova-space-2); margin-top: clamp(1.25rem, 3cqw, 2.5rem); color: var(--nova-color-muted); text-align: center; font-size: clamp(.6875rem, 1.05cqw, .9375rem); line-height: 1.5; }
+.scenario-chain .diagram-arrow { width: 1.5rem; }
+
+/* Match vertical alignment so the two integration choices are comparable. */
+.configuration-map { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5cqw, 4rem); }
+.configuration-map__option { --diagram-branch-gap: var(--nova-space-3); min-width: 0; }
+.diagram-option-title { display: flex; align-items: baseline; gap: var(--nova-space-3); margin: 0 0 clamp(.75rem, 1.75cqw, 1.5rem); color: var(--nova-color-muted); font-size: clamp(.625rem, .9cqw, .75rem); font-weight: var(--nova-weight-regular); }
+.diagram-option-title > span { color: var(--nova-color-ink); font-size: clamp(1rem, 1.7cqw, 1.375rem); font-weight: var(--nova-weight-medium); }
+.configuration-map__screens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--nova-space-3); min-height: clamp(3rem, 6cqw, 5rem); }
+.configuration-map__screens > span { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--nova-space-1); padding: var(--nova-space-2); border-radius: var(--nova-radius-sm); background: var(--diagram-fill); font-size: clamp(.875rem, 1.3cqw, 1.125rem); line-height: 1.5; }
+.configuration-map__screens--single { grid-template-columns: 1fr; }
+.configuration-map__screens small { color: var(--nova-color-muted); font-size: clamp(.625rem, .9cqw, .75rem); }
+.configuration-map .diagram-branches, .diagram-up-link { height: clamp(2.25rem, 4cqw, 3.5rem); }
+.diagram-up-link { display: flex; align-items: center; justify-content: center; gap: var(--nova-space-1); color: var(--nova-color-muted); }
+.diagram-up-link .diagram-arrow { width: 2.25rem; transform: rotate(-90deg); }
+.diagram-up-link > span { font-size: clamp(.625rem, .9cqw, .75rem); }
+.configuration-map__base { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: var(--nova-space-1); min-height: clamp(3rem, 6cqw, 5rem); padding: var(--nova-space-2) var(--nova-space-3); border-radius: var(--nova-radius-sm); background: var(--nova-color-surface-strong); }
+.configuration-map__base > strong { font-size: clamp(1rem, 1.6cqw, 1.375rem); font-weight: var(--nova-weight-medium); line-height: 1.35; }
+.configuration-map__base > span { font-size: clamp(.625rem, .95cqw, .8125rem); }
+.configuration-map__base--ink { background: var(--nova-color-ink); color: var(--nova-color-white); }
+
+/* Role-specific modules sit on a shared platform, without implying call order. */
+.platform-map__modules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3cqw, 3rem); }
+.platform-map__modules .diagram-node { min-height: clamp(6rem, 11cqw, 9rem); }
+.platform-map__supports { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3cqw, 3rem); height: clamp(1.5rem, 3cqw, 2.5rem); }
+.platform-map__supports > span { justify-self: center; border-left: 1px solid var(--nova-color-line); }
+.platform-map__foundation { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--nova-space-3); padding: clamp(1rem, 2cqw, 1.75rem); border-radius: var(--nova-radius-sm); background: var(--nova-color-ink); color: var(--nova-color-white); }
+.platform-map__foundation p, .platform-map__foundation > span { margin: 0; font-size: clamp(.75rem, 1.1cqw, .9375rem); line-height: 1.5; }
+
+/* A connected timeline explains the sequence without inventing dates or KPIs. */
+.adoption-roadmap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.adoption-roadmap li { position: relative; min-width: 0; padding-inline: var(--nova-space-2); text-align: center; }
+.adoption-roadmap li:not(:last-child)::before { position: absolute; top: 1.5rem; left: 50%; width: 100%; border-top: 1px solid var(--nova-color-line); content: ""; }
+.adoption-roadmap__number { position: relative; display: grid; place-items: center; width: 3rem; height: 3rem; margin: 0 auto clamp(1rem, 2.5cqw, 2rem); border: 1px solid var(--nova-color-line); border-radius: 50%; background: var(--diagram-canvas); font-size: 1rem; font-variant-numeric: tabular-nums; }
+.adoption-roadmap h3 { margin: 0; font-size: clamp(1rem, 1.7cqw, 1.375rem); font-weight: var(--nova-weight-medium); line-height: 1.4; }
+.adoption-roadmap p { margin: var(--nova-space-2) 0 0; color: var(--nova-color-muted); font-size: clamp(.75rem, 1.1cqw, .9375rem); line-height: 1.65; }
+
+@media (min-width: 741px) {
+  @container (max-width: 48rem) {
+    .diagram-content { gap: var(--nova-space-4); }
+    .diagram-node { padding: var(--nova-space-3); min-height: 6rem; }
+    .diagram-flow--four .diagram-node { min-height: 7rem; }
+    .solution-map__views .diagram-node { min-height: 5rem; }
+    .diagram-branches, .configuration-map .diagram-branches, .diagram-up-link { height: 1.75rem; }
+    .configuration-map__screens, .configuration-map__base { min-height: 3rem; }
+    .platform-map__modules .diagram-node { min-height: 6rem; }
+    .adoption-roadmap__number { margin-bottom: var(--nova-space-4); }
+  }
+}
+@media (max-width: 740px) {
+  .diagram-content { gap: var(--nova-space-8); }
+  .diagram-flow--three, .diagram-flow--four { grid-template-columns: 1fr; gap: var(--nova-space-3); }
+  .diagram-node, .diagram-flow--four .diagram-node { min-height: 6rem; padding: var(--nova-space-5); }
+  .diagram-node h3 { font-size: 1.25rem; }
+  .diagram-node p { font-size: .875rem; }
+  .diagram-node__kicker, .diagram-label { font-size: .75rem; }
+  .diagram-link { flex-direction: row; gap: var(--nova-space-2); min-height: 2.25rem; }
+  .diagram-link .diagram-arrow { width: 2rem; transform: rotate(90deg); }
+  .diagram-link > span { font-size: .75rem; }
+  .diagram-return { width: 100%; margin-top: var(--nova-space-5); }
+  .diagram-return > span { font-size: .75rem; }
+  .fragmented-map__sources, .fragmented-map__connections { gap: var(--nova-space-2); }
+  .fragmented-map__sources > div { padding: var(--nova-space-3) var(--nova-space-1); }
+  .fragmented-map__sources small { font-size: .625rem; }
+  .fragmented-map__operator { font-size: 1rem; }
+  .fragmented-map figcaption { font-size: .75rem; }
+  .solution-map { --diagram-branch-gap: var(--nova-space-3); }
+  .solution-map__views .diagram-node { padding: var(--nova-space-3); min-height: 8.5rem; }
+  .solution-map__views .diagram-node h3 { font-size: .9375rem; }
+  .solution-map__views .diagram-node p, .solution-map__views .diagram-node__kicker { font-size: .6875rem; }
+  .solution-map__core { flex-direction: column; gap: var(--nova-space-1); padding: var(--nova-space-4); }
+  .solution-map__core > span { font-size: .8125rem; }
+  .diagram-branches { height: 3rem; }
+  .diagram-branches > span, .diagram-up-link > span { font-size: .6875rem; }
+  .priority-diagram__comparison { grid-template-columns: 1fr; gap: var(--nova-space-4); }
+  .queue-job { padding: var(--nova-space-4); }
+  .queue-job h3 { font-size: 1.125rem; }
+  .queue-job p { font-size: .8125rem; }
+  .scenario-chain { display: flex; flex-direction: column; gap: var(--nova-space-2); margin-top: var(--nova-space-8); font-size: .875rem; }
+  .scenario-chain .diagram-arrow { transform: rotate(90deg); }
+  .configuration-map { grid-template-columns: 1fr; gap: var(--nova-space-8); }
+  .diagram-option-title > span { font-size: 1.125rem; }
+  .configuration-map__screens { min-height: 4.5rem; }
+  .configuration-map__screens > span { font-size: .875rem; }
+  .configuration-map__screens small { font-size: .75rem; }
+  .configuration-map__base { min-height: 4rem; }
+  .configuration-map__base > strong { font-size: 1.125rem; }
+  .configuration-map__base > span { font-size: .75rem; }
+  .configuration-map .diagram-branches, .diagram-up-link { height: 2.5rem; }
+  .platform-map__modules { grid-template-columns: 1fr; gap: var(--nova-space-3); padding-left: var(--nova-space-4); border-left: 1px solid var(--nova-color-line); }
+  .platform-map__modules .diagram-node { position: relative; min-height: 6rem; }
+  .platform-map__modules .diagram-node::before { position: absolute; top: 50%; left: calc(-1 * var(--nova-space-4)); width: var(--nova-space-4); border-top: 1px solid var(--nova-color-line); content: ""; }
+  .platform-map__supports { height: var(--nova-space-5); border-left: 1px solid var(--nova-color-line); }
+  .platform-map__supports > span { display: none; }
+  .platform-map__foundation { display: grid; gap: var(--nova-space-2); padding: var(--nova-space-5); }
+  .platform-map__foundation p, .platform-map__foundation > span { font-size: .8125rem; }
+  .adoption-roadmap { grid-template-columns: 1fr; gap: var(--nova-space-8); }
+  .adoption-roadmap li { padding: 0 0 0 4rem; text-align: left; }
+  .adoption-roadmap__number { position: absolute; top: 0; left: 0; margin: 0; }
+  .adoption-roadmap li:not(:last-child)::before { top: 1.5rem; left: 1.5rem; width: 0; height: calc(100% + var(--nova-space-8)); border-top: 0; border-left: 1px solid var(--nova-color-line); }
+  .adoption-roadmap h3 { font-size: 1.125rem; }
+  .adoption-roadmap p { font-size: .875rem; }
+}
