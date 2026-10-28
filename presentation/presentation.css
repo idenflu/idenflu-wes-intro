@@ -58,6 +58,18 @@ body { background: var(--nova-color-surface); }
 .value-item__index, .experience-grid article > span, .flow-grid__number { display: block; margin-bottom: clamp(.75rem, 1.5cqw, 1.25rem); }
 .value-item h3, .experience-grid h3 { font-size: clamp(1rem, 1.6cqw, 1.375rem); }
 .experience-grid { padding-top: clamp(.5rem, 1cqw, 1rem); }
+.product-roles { margin: 0; display: grid; gap: clamp(1.25rem, 2.6cqw, 2.5rem); }
+.product-roles > div { display: grid; gap: var(--nova-space-2); }
+.product-roles dt { color: var(--nova-color-ink); font-size: clamp(1.125rem, 2cqw, 1.75rem); font-weight: var(--nova-weight-medium); letter-spacing: -.025em; line-height: 1.35; }
+.product-roles dt span { display: block; margin-top: var(--nova-space-1); color: var(--nova-color-muted); font-size: clamp(.6875rem, .95cqw, .8125rem); font-weight: var(--nova-weight-regular); letter-spacing: 0; }
+.product-roles dd { margin: 0; color: var(--nova-color-text); font-size: clamp(.75rem, 1.15cqw, 1rem); line-height: 1.6; }
+.product-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 5cqw, 4rem); }
+.product-columns > article { min-width: 0; }
+.product-column__title { margin: 0; color: var(--nova-color-ink); font-size: clamp(1.125rem, 2cqw, 1.75rem); font-weight: var(--nova-weight-medium); line-height: 1.35; letter-spacing: -.025em; }
+.product-column__title span { display: block; margin-top: var(--nova-space-1); color: var(--nova-color-muted); font-size: clamp(.75rem, 1.1cqw, .9375rem); font-weight: var(--nova-weight-regular); letter-spacing: 0; }
+.product-facts { display: grid; gap: clamp(.75rem, 1.5cqw, 1.25rem); margin: clamp(1rem, 2cqw, 1.75rem) 0 0; }
+.product-facts dt { margin-bottom: var(--nova-space-1); color: var(--nova-color-muted); font-size: clamp(.625rem, .9cqw, .8125rem); }
+.product-facts dd { margin: 0; color: var(--nova-color-text); font-size: clamp(.75rem, 1.15cqw, 1rem); line-height: 1.65; }
 .flow-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1rem, 2cqw, 2rem); margin: 0; padding: 0; list-style: none; }
 .flow-grid li { min-width: 0; padding-top: clamp(.875rem, 1.5cqw, 1.25rem); border-top: 1px solid var(--nova-color-line); }
 .adoption-steps { display: grid; gap: clamp(.875rem, 1.7cqw, 1.5rem); margin: 0; padding: 0; list-style: none; }
@@ -113,6 +125,14 @@ body { background: var(--nova-color-surface); }
   .problem-item p, .value-item p, .experience-grid p, .flow-grid p, .adoption-steps p { font-size: .875rem; }
   .stacked-content { gap: var(--nova-space-10); }
   .value-grid, .experience-grid { grid-template-columns: 1fr; gap: var(--nova-space-6); }
+  .product-roles { gap: var(--nova-space-8); }
+  .product-roles dt { font-size: 1.375rem; }
+  .product-roles dt span { font-size: .75rem; }
+  .product-roles dd, .product-facts dd { font-size: .875rem; }
+  .product-columns { grid-template-columns: 1fr; gap: var(--nova-space-8); }
+  .product-column__title { font-size: 1.375rem; }
+  .product-column__title span { font-size: .875rem; }
+  .product-facts dt { font-size: .75rem; }
   .value-item__index, .experience-grid article > span, .flow-grid__number { margin-bottom: var(--nova-space-2); }
   .flow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--nova-space-6); }
   .closing-topics { margin-top: var(--nova-space-10); }
