@@ -9,8 +9,9 @@
   --nova-color-line: #d9dee3;
   --nova-color-surface: #f5f6f7;
   --nova-color-surface-strong: #eaecef;
-  --nova-color-control-subtle: #eff0f2;
-  --nova-color-control-hover-on-surface: #cbd0d5;
+  --nova-color-control-subtle: #edeff1;
+  --nova-color-control-on-surface: #cfd4da;
+  --nova-color-control-hover-on-surface: #bbc2c9;
   --nova-color-brand: #266ee1;
   --nova-color-brand-hover: #0f54bb;
   --nova-color-brand-soft: #f0f6ff;

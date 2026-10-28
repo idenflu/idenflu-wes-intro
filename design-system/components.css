@@ -22,7 +22,7 @@ button, input, textarea, select { font: inherit; }
 .nova-button:not(:disabled):hover { background: var(--nova-color-text); }
 .nova-button--secondary { --nova-button-secondary-bg: var(--nova-color-control-subtle); --nova-button-secondary-hover-bg: var(--nova-color-surface-strong); background: var(--nova-button-secondary-bg); color: var(--nova-color-ink); }
 .nova-button--secondary:not(:disabled):hover { background: var(--nova-button-secondary-hover-bg); }
-:where(.nova-section--muted, .nova-card--filled) .nova-button--secondary, .nova-button--secondary.nova-button--on-surface { --nova-button-secondary-bg: var(--nova-color-line); --nova-button-secondary-hover-bg: var(--nova-color-control-hover-on-surface); }
+:where(.nova-section--muted, .nova-card--filled) .nova-button--secondary, .nova-button--secondary.nova-button--on-surface { --nova-button-secondary-bg: var(--nova-color-control-on-surface); --nova-button-secondary-hover-bg: var(--nova-color-control-hover-on-surface); }
 .nova-button:disabled { background: var(--nova-color-surface-strong); color: var(--nova-color-disabled-text); cursor: not-allowed; }
 .nova-button--ghost { background: transparent; color: var(--nova-color-ink); }
 .nova-button--ghost:not(:disabled):hover { background: var(--nova-color-surface); }
