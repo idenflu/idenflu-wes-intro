@@ -7,7 +7,7 @@ NOVA, NOVA Workspace, NOVA Studio의 제품 설명과 브라우저 소개자료�
 - 기대 행동: 현재 운영과 연동 대상을 확인하고 첫 적용 범위를 논의한다.
 - 콘텐츠 변경 순서: 이 문서에서 메시지와 범위를 정리한 뒤 `index.html`에 반영한다.
 - 디자인 기준: [NOVA 디자인 기준](nova-design-foundations.md), `design-system/`의 토큰과 컴포넌트
-- `type0.html`부터 `type3.html` 및 기존 HTML 백업은 과거 표현 참고용이다. 현재 소개자료의 구성과 문구는 아래 23장 구성을 따른다.
+- `../backup/type0.html`부터 `../backup/type3.html` 및 기존 HTML 백업은 과거 표현 참고용이다. 현재 소개자료의 구성과 문구는 아래 23장 구성을 따른다.
 
 ## 1 제품 정의와 핵심 메시지
 
