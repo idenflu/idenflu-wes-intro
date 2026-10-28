@@ -14,9 +14,46 @@
   <div class="presentation">
     <header class="presentation-bar" aria-label="소개 자료 정보">
       <a class="presentation-brand" href="#slide-1" data-slide-link="1" aria-label="NOVA 소개 첫 장으로">IDENFLU <span aria-hidden="true">/</span> NOVA</a>
-      <span class="presentation-bar__meta">WES / WCS <span aria-hidden="true">·</span> SOLUTION OVERVIEW</span>
+      <div class="presentation-bar__actions"><span class="presentation-bar__meta">WES / WCS <span aria-hidden="true">·</span> SOLUTION OVERVIEW</span><button class="nova-button nova-button--ghost presentation-menu-button" type="button" aria-controls="slide-menu" aria-expanded="true" hidden>목차 숨기기</button></div>
     </header>
 
+    <div class="presentation-layout">
+      <details class="slide-menu" id="slide-menu" open>
+        <summary class="slide-menu__toggle"><span class="slide-menu__show">목차 보기</span><span class="slide-menu__hide">목차 숨기기</span><svg class="slide-menu__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></summary>
+        <nav class="slide-nav" aria-label="슬라이드 목차">
+          <p class="slide-nav__title">CONTENTS</p>
+          <ol class="slide-nav__groups">
+            <li class="slide-nav__group"><span class="slide-nav__group-title">소개</span><ol>
+              <li><a class="slide-nav__link" href="#slide-1" data-slide-link="1"><span aria-hidden="true">01</span><span>NOVA 소개</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-2" data-slide-link="2"><span aria-hidden="true">02</span><span>문제</span></a></li>
+            </ol></li>
+            <li class="slide-nav__group"><span class="slide-nav__group-title">물류자동화</span><ol>
+              <li><a class="slide-nav__link" href="#slide-3" data-slide-link="3"><span aria-hidden="true">03</span><span>시스템 개요</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-4" data-slide-link="4"><span aria-hidden="true">04</span><span>주요 업무</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-5" data-slide-link="5"><span aria-hidden="true">05</span><span>시스템 특징</span></a></li>
+            </ol></li>
+            <li class="slide-nav__group"><span class="slide-nav__group-title">솔루션</span><ol>
+              <li><a class="slide-nav__link" href="#slide-6" data-slide-link="6"><span aria-hidden="true">06</span><span>NOVA</span></a><ol>
+                <li><a class="slide-nav__link slide-nav__link--nested" href="#slide-7" data-slide-link="7"><span aria-hidden="true">07</span><span>WES · 작업 실행</span></a></li>
+                <li><a class="slide-nav__link slide-nav__link--nested" href="#slide-8" data-slide-link="8"><span aria-hidden="true">08</span><span>WCS · 설비 제어</span></a></li>
+              </ol></li>
+              <li><a class="slide-nav__link" href="#slide-9" data-slide-link="9"><span aria-hidden="true">09</span><span>NOVA Workspace</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-10" data-slide-link="10"><span aria-hidden="true">10</span><span>NOVA Studio</span></a></li>
+            </ol></li>
+            <li class="slide-nav__group"><span class="slide-nav__group-title">운영과 확장</span><ol>
+              <li><a class="slide-nav__link" href="#slide-11" data-slide-link="11"><span aria-hidden="true">11</span><span>운영 흐름 예시</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-12" data-slide-link="12"><span aria-hidden="true">12</span><span>Studio 제공 방식</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-13" data-slide-link="13"><span aria-hidden="true">13</span><span>플랫폼 구조</span></a></li>
+            </ol></li>
+            <li class="slide-nav__group"><span class="slide-nav__group-title">도입</span><ol>
+              <li><a class="slide-nav__link" href="#slide-14" data-slide-link="14"><span aria-hidden="true">14</span><span>도입 방식</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-15" data-slide-link="15"><span aria-hidden="true">15</span><span>도입사례</span></a></li>
+              <li><a class="slide-nav__link" href="#slide-16" data-slide-link="16"><span aria-hidden="true">16</span><span>다음 단계</span></a></li>
+            </ol></li>
+          </ol>
+        </nav>
+      </details>
+      <div class="presentation-content">
     <main class="presentation-main" id="presentation-main" aria-label="NOVA 소개 슬라이드">
       <div class="slide-frame">
         <section class="slide slide--cover" id="slide-1" aria-labelledby="title-1" data-title="NOVA 소개">
@@ -26,10 +63,10 @@
             <h1 class="cover-title" id="title-1">흩어진 물류 운영을<br>하나의 기준으로.</h1>
             <p class="cover-description">NOVA는 작업과 설비, 실시간 정보와 운영 이력을 연결하는 WES/WCS 운영 플랫폼입니다.</p>
           </div>
-          <div class="slide__bottom"><span>실시간으로 보고, 안정적으로 실행하고, 유연하게 확장합니다.</span><span class="slide__page">01 / 12</span></div>
+          <div class="slide__bottom"><span>실시간으로 보고, 안정적으로 실행하고, 유연하게 확장합니다.</span><span class="slide__page">01 / 16</span></div>
         </section>
 
-        <section class="slide" id="slide-2" aria-labelledby="title-2" data-title="물류 운영의 문제">
+        <section class="slide" id="slide-2" aria-labelledby="title-2" data-title="문제">
           <div class="slide__top"><span class="slide__eyebrow">THE CHALLENGE</span><span class="slide__section">02 / 문제</span></div>
           <div class="slide__content problem-layout">
             <div class="problem-intro"><p class="slide__overline">분산된 정보, 늦어지는 판단</p><h2 class="slide-title" id="title-2">운영의 복잡함은<br>연결되지 않은<br>정보에서 시작됩니다.</h2><p class="slide-copy">각 시스템은 제 역할을 하지만, 현장의 판단은 그 사이에서 이뤄집니다.</p></div>
@@ -39,13 +76,59 @@
               <article class="problem-item"><span class="problem-item__number">03</span><div><h3>변경은 넓게 번지고</h3><p>업무와 설비가 얽혀 있으면 작은 변화도 여러 영역에 영향을 줍니다.</p></div></article>
             </div>
           </div>
-          <div class="slide__bottom"><span>작업 <span aria-hidden="true">/</span> 설비 <span aria-hidden="true">/</span> 알림 <span aria-hidden="true">/</span> 이력</span><span class="slide__page">02 / 12</span></div>
+          <div class="slide__bottom"><span>작업 <span aria-hidden="true">/</span> 설비 <span aria-hidden="true">/</span> 알림 <span aria-hidden="true">/</span> 이력</span><span class="slide__page">02 / 16</span></div>
         </section>
 
-        <section class="slide slide--soft" id="slide-3" aria-labelledby="title-3" data-title="NOVA 실행·제어 플랫폼">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / EXECUTION &amp; CONTROL</span><span class="slide__section">03 / NOVA</span></div>
+        <section class="slide slide--soft" id="slide-3" aria-labelledby="title-3" data-title="물류자동화 개요">
+          <div class="slide__top"><span class="slide__eyebrow">LOGISTICS AUTOMATION / SYSTEM</span><span class="slide__section">03 / 시스템 개요</span></div>
           <div class="slide__content stacked-content">
-            <div><p class="slide__overline">상위 시스템과 자동화 설비를 연결</p><h2 class="slide-title" id="title-3">작업을 조율하고,<br>설비의 실행으로 연결합니다.</h2><p class="slide-copy">NOVA는 상위 시스템의 요청을 작업으로 구성하고, 설비에 지시한 뒤 실행 결과를 다시 운영에 반영합니다.</p></div>
+            <div class="experience-layout">
+              <div><p class="slide__overline">업무와 현장을 연결하는 운영 체계</p><h2 class="slide-title" id="title-3">시스템과 설비를<br>하나의 흐름으로.</h2><p class="slide-copy">업무 시스템의 요청을 작업 실행과 설비 제어로 연결하고, 결과를 다시 운영에 반영합니다.</p></div>
+              <aside class="visual-slot visual-slot--on-soft" aria-label="시각자료 준비 영역: 물류자동화 연계 구조">
+                <span class="visual-slot__type">VISUAL PLACEHOLDER / 01</span>
+                <div><h3>시스템·설비 연계 구조</h3><p>업무 시스템, 실행·제어 계층, 자동화 설비의 연결</p></div>
+                <span class="visual-slot__note">시각자료 준비 영역</span>
+              </aside>
+            </div>
+            <div class="experience-grid" aria-label="물류자동화 구성">
+              <article><span>01 / 요청</span><h3>업무 시스템</h3><p>주문, 재고와 생산 정보</p></article>
+              <article><span>02 / 조율</span><h3>실행·제어</h3><p>작업 순서와 설비 명령</p></article>
+              <article><span>03 / 실행</span><h3>자동화 설비</h3><p>보관·이송·분류와 상태 전달</p></article>
+            </div>
+          </div>
+          <div class="slide__bottom"><span>실제 연계 대상과 구성은 현장 조건에 따라 달라집니다.</span><span class="slide__page">03 / 16</span></div>
+        </section>
+
+        <section class="slide" id="slide-4" aria-labelledby="title-4" data-title="물류자동화 주요 업무">
+          <div class="slide__top"><span class="slide__eyebrow">LOGISTICS AUTOMATION / WORK</span><span class="slide__section">04 / 주요 업무</span></div>
+          <div class="slide__content problem-layout">
+            <div><p class="slide__overline">요청부터 확인까지</p><h2 class="slide-title" id="title-4">작업을 실행하고,<br>설비를 연결하고,<br>운영을 확인합니다.</h2><p class="slide-copy">현장 업무와 설비 조건을 함께 살펴 필요한 실행·제어 범위를 정합니다.</p></div>
+            <div class="problem-list" aria-label="물류자동화 주요 업무">
+              <article class="problem-item"><span class="problem-item__number">01</span><div><h3>작업 실행 관리</h3><p>요청을 작업으로 구성하고 순서와 진행 상태를 관리합니다.</p></div></article>
+              <article class="problem-item"><span class="problem-item__number">02</span><div><h3>설비 연동·제어</h3><p>설비별 명령을 전달하고 진행·완료·알람을 수집합니다.</p></div></article>
+              <article class="problem-item"><span class="problem-item__number">03</span><div><h3>운영 현황과 이력</h3><p>작업과 설비 상태, 알람과 운영 이력을 확인합니다.</p></div></article>
+            </div>
+          </div>
+          <div class="slide__bottom"><span>작업 관리 <span aria-hidden="true">/</span> 설비 연동 <span aria-hidden="true">/</span> 현황과 이력</span><span class="slide__page">04 / 16</span></div>
+        </section>
+
+        <section class="slide slide--soft" id="slide-5" aria-labelledby="title-5" data-title="물류자동화 특징">
+          <div class="slide__top"><span class="slide__eyebrow">LOGISTICS AUTOMATION / PRINCIPLES</span><span class="slide__section">05 / 시스템 특징</span></div>
+          <div class="slide__content stacked-content">
+            <div><p class="slide__overline">일관된 기준 위에 현장의 차이를 반영</p><h2 class="slide-title" id="title-5">연결하고, 확인하고,<br>현장에 맞춰 확장합니다.</h2><p class="slide-copy">공통 운영 기준을 바탕으로 시스템과 설비를 연결하고, 실제 업무 조건에 맞게 적용 범위를 설계합니다.</p></div>
+            <div class="value-grid" aria-label="물류자동화 특징">
+              <article class="value-item"><span class="value-item__index">01 / CONNECT</span><h3>연결된 실행</h3><p>상위 시스템의 요청과 설비의 실행 결과를 같은 흐름으로 이어갑니다.</p></article>
+              <article class="value-item"><span class="value-item__index">02 / VISIBILITY</span><h3>운영 가시성</h3><p>작업 진행, 설비 상태와 알람을 확인할 수 있도록 정보를 연결합니다.</p></article>
+              <article class="value-item"><span class="value-item__index">03 / ADAPT</span><h3>현장 맞춤 확장</h3><p>업무 규칙과 설비 인터페이스를 확인해 필요한 구간부터 구성합니다.</p></article>
+            </div>
+          </div>
+          <div class="slide__bottom"><span>연결 <span aria-hidden="true">/</span> 가시성 <span aria-hidden="true">/</span> 확장</span><span class="slide__page">05 / 16</span></div>
+        </section>
+
+        <section class="slide slide--soft" id="slide-6" aria-labelledby="title-6" data-title="NOVA 실행·제어 플랫폼">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / EXECUTION &amp; CONTROL</span><span class="slide__section">06 / NOVA</span></div>
+          <div class="slide__content stacked-content">
+            <div><p class="slide__overline">상위 시스템과 자동화 설비를 연결</p><h2 class="slide-title" id="title-6">작업을 조율하고,<br>설비의 실행으로 연결합니다.</h2><p class="slide-copy">NOVA는 상위 시스템의 요청을 작업으로 구성하고, 설비에 지시한 뒤 실행 결과를 다시 운영에 반영합니다.</p></div>
             <ol class="flow-grid" role="list" aria-label="NOVA 실행·제어 흐름">
               <li><span class="flow-grid__number">01 / 요청</span><h3>상위 시스템</h3><p>ERP · WMS · MES의 주문과 업무 계획</p></li>
               <li><span class="flow-grid__number">02 / 작업 조율</span><h3>WES</h3><p>작업 구성과 우선순위, 진행 상태 관리</p></li>
@@ -53,42 +136,42 @@
               <li><span class="flow-grid__number">04 / 실행</span><h3>자동화 설비</h3><p>지시 실행과 진행·완료·알람 전달</p></li>
             </ol>
           </div>
-          <div class="slide__bottom"><span>요청 <span aria-hidden="true">→</span> 작업 조율 <span aria-hidden="true">→</span> 설비 실행 <span aria-hidden="true">→</span> 결과 반영</span><span class="slide__page">03 / 12</span></div>
+          <div class="slide__bottom"><span>요청 <span aria-hidden="true">→</span> 작업 조율 <span aria-hidden="true">→</span> 설비 실행 <span aria-hidden="true">→</span> 결과 반영</span><span class="slide__page">06 / 16</span></div>
         </section>
 
-        <section class="slide" id="slide-4" aria-labelledby="title-4" data-title="NOVA WES">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / WES</span><span class="slide__section">04 / 작업 실행·조율</span></div>
+        <section class="slide" id="slide-7" aria-labelledby="title-7" data-title="NOVA WES">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / WES</span><span class="slide__section">07 / 작업 실행·조율</span></div>
           <div class="slide__content problem-layout">
-            <div><p class="slide__overline">Warehouse Execution System</p><h2 class="slide-title" id="title-4">어떤 작업을<br>어떤 순서로<br>실행할지.</h2><p class="slide-copy">상위 시스템의 요청을 현장에서 실행할 작업으로 구성하고, 우선순위와 진행 상태를 관리합니다.</p></div>
+            <div><p class="slide__overline">Warehouse Execution System</p><h2 class="slide-title" id="title-7">어떤 작업을<br>어떤 순서로<br>실행할지.</h2><p class="slide-copy">상위 시스템의 요청을 현장에서 실행할 작업으로 구성하고, 우선순위와 진행 상태를 관리합니다.</p></div>
             <div class="problem-list" aria-label="WES 주요 역할">
               <article class="problem-item"><span class="problem-item__number">01</span><div><h3>작업 구성</h3><p>요청을 실행 단위로 나누고 처리 순서와 상태를 관리합니다.</p></div></article>
               <article class="problem-item"><span class="problem-item__number">02</span><div><h3>우선순위 조정</h3><p>현장 상태와 변경된 우선순위에 따라 대기 작업의 순서를 조정합니다.</p></div></article>
               <article class="problem-item"><span class="problem-item__number">03</span><div><h3>진행과 예외 관리</h3><p>작업의 진행·완료·예외를 확인하고 다음 실행 흐름에 반영합니다.</p></div></article>
             </div>
           </div>
-          <div class="slide__bottom"><span>작업 구성 <span aria-hidden="true">/</span> 우선순위 <span aria-hidden="true">/</span> 진행·예외</span><span class="slide__page">04 / 12</span></div>
+          <div class="slide__bottom"><span>작업 구성 <span aria-hidden="true">/</span> 우선순위 <span aria-hidden="true">/</span> 진행·예외</span><span class="slide__page">07 / 16</span></div>
         </section>
 
-        <section class="slide slide--soft" id="slide-5" aria-labelledby="title-5" data-title="NOVA WCS">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / WCS</span><span class="slide__section">05 / 설비 연동·제어</span></div>
+        <section class="slide slide--soft" id="slide-8" aria-labelledby="title-8" data-title="NOVA WCS">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / WCS</span><span class="slide__section">08 / 설비 연동·제어</span></div>
           <div class="slide__content problem-layout">
-            <div><p class="slide__overline">Warehouse Control System</p><h2 class="slide-title" id="title-5">작업 지시는 설비로,<br>실행 결과는<br>다시 운영으로.</h2><p class="slide-copy">설비별 통신 방식에 맞춰 명령을 전달하고 진행, 완료와 알람을 수집합니다.</p></div>
+            <div><p class="slide__overline">Warehouse Control System</p><h2 class="slide-title" id="title-8">작업 지시는 설비로,<br>실행 결과는<br>다시 운영으로.</h2><p class="slide-copy">설비별 통신 방식에 맞춰 명령을 전달하고 진행, 완료와 알람을 수집합니다.</p></div>
             <div class="problem-list" aria-label="WCS 주요 역할">
               <article class="problem-item"><span class="problem-item__number">01</span><div><h3>설비 연동</h3><p>설비별 인터페이스와 통신 방식에 맞춰 연결합니다.</p></div></article>
               <article class="problem-item"><span class="problem-item__number">02</span><div><h3>명령 전달</h3><p>WES 작업 지시를 각 설비가 실행할 명령으로 변환합니다.</p></div></article>
               <article class="problem-item"><span class="problem-item__number">03</span><div><h3>상태와 연결 관리</h3><p>진행·완료·알람을 수집하고 통신 단절과 응답 지연을 확인합니다.</p></div></article>
             </div>
           </div>
-          <div class="slide__bottom"><span>연동 설비 예시: ASRS <span aria-hidden="true">/</span> AGV·AMR <span aria-hidden="true">/</span> 컨베이어 <span aria-hidden="true">/</span> 소터</span><span class="slide__page">05 / 12</span></div>
+          <div class="slide__bottom"><span>연동 설비 예시: ASRS <span aria-hidden="true">/</span> AGV·AMR <span aria-hidden="true">/</span> 컨베이어 <span aria-hidden="true">/</span> 소터</span><span class="slide__page">08 / 16</span></div>
         </section>
 
-        <section class="slide" id="slide-6" aria-labelledby="title-6" data-title="NOVA Workspace">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / WORKSPACE</span><span class="slide__section">06 / 브라우저 운영 화면</span></div>
+        <section class="slide" id="slide-9" aria-labelledby="title-9" data-title="NOVA Workspace">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / WORKSPACE</span><span class="slide__section">09 / 브라우저 운영 화면</span></div>
           <div class="slide__content stacked-content">
             <div class="experience-layout">
-              <div><p class="slide__overline">현장 확인부터 운영 관리까지</p><h2 class="slide-title" id="title-6">운영에 필요한 정보를<br>브라우저에서.</h2><p class="slide-copy">작업과 설비 현황, 이력과 운영 설정을 별도 클라이언트 설치 없이 한곳에서 확인합니다.</p></div>
+              <div><p class="slide__overline">현장 확인부터 운영 관리까지</p><h2 class="slide-title" id="title-9">운영에 필요한 정보를<br>브라우저에서.</h2><p class="slide-copy">작업과 설비 현황, 이력과 운영 설정을 별도 클라이언트 설치 없이 한곳에서 확인합니다.</p></div>
               <aside class="visual-slot" aria-label="시각자료 준비 영역: NOVA Workspace 운영 화면">
-                <span class="visual-slot__type">VISUAL PLACEHOLDER / 01</span>
+                <span class="visual-slot__type">VISUAL PLACEHOLDER / 02</span>
                 <div><h3>NOVA Workspace 화면</h3><p>운영 요약 또는 작업·설비 현황 화면</p></div>
                 <span class="visual-slot__note">시각자료 준비 영역</span>
               </aside>
@@ -99,16 +182,16 @@
               <article><span>03</span><h3>운영 환경</h3><p>서버 상태, 운영 설정과 스케줄</p></article>
             </div>
           </div>
-          <div class="slide__bottom"><span>화면 구성과 표시 항목은 적용 범위에 따라 달라질 수 있습니다.</span><span class="slide__page">06 / 12</span></div>
+          <div class="slide__bottom"><span>화면 구성과 표시 항목은 적용 범위에 따라 달라질 수 있습니다.</span><span class="slide__page">09 / 16</span></div>
         </section>
 
-        <section class="slide slide--soft" id="slide-7" aria-labelledby="title-7" data-title="NOVA Studio">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / STUDIO</span><span class="slide__section">07 / 시각화·모니터링</span></div>
+        <section class="slide slide--soft" id="slide-10" aria-labelledby="title-10" data-title="NOVA Studio">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / STUDIO</span><span class="slide__section">10 / 시각화·모니터링</span></div>
           <div class="slide__content stacked-content">
             <div class="experience-layout">
-              <div><p class="slide__overline">운영 데이터와 현장 배치를 연결</p><h2 class="slide-title" id="title-7">어디에서 무슨 일이<br>일어나는지 봅니다.</h2><p class="slide-copy">작업 진행과 설비 상태, 알람 위치를 2.5D·3D 현장 배치에서 확인합니다.</p></div>
+              <div><p class="slide__overline">운영 데이터와 현장 배치를 연결</p><h2 class="slide-title" id="title-10">어디에서 무슨 일이<br>일어나는지 봅니다.</h2><p class="slide-copy">작업 진행과 설비 상태, 알람 위치를 2.5D·3D 현장 배치에서 확인합니다.</p></div>
               <aside class="visual-slot visual-slot--on-soft" aria-label="시각자료 준비 영역: NOVA Studio 현장 시각화">
-                <span class="visual-slot__type">VISUAL PLACEHOLDER / 02</span>
+                <span class="visual-slot__type">VISUAL PLACEHOLDER / 03</span>
                 <div><h3>NOVA Studio 화면</h3><p>2.5D·3D 현장 배치와 운영 정보 예시</p></div>
                 <span class="visual-slot__note">시각자료 준비 영역</span>
               </aside>
@@ -119,16 +202,16 @@
               <article><span>03 / 연계</span><h3>운영 데이터</h3><p>NOVA 또는 기존 시스템과 연결</p></article>
             </div>
           </div>
-          <div class="slide__bottom"><span>표현 방식과 외부 연계 범위는 현장 자료와 인터페이스에 따라 달라집니다.</span><span class="slide__page">07 / 12</span></div>
+          <div class="slide__bottom"><span>표현 방식과 외부 연계 범위는 현장 자료와 인터페이스에 따라 달라집니다.</span><span class="slide__page">10 / 16</span></div>
         </section>
 
-        <section class="slide" id="slide-8" aria-labelledby="title-8" data-title="출고 우선순위 변경 예시">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / EXAMPLE</span><span class="slide__section">08 / 운영 흐름 예시</span></div>
+        <section class="slide" id="slide-11" aria-labelledby="title-11" data-title="출고 우선순위 변경 예시">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / EXAMPLE</span><span class="slide__section">11 / 운영 흐름 예시</span></div>
           <div class="slide__content stacked-content">
             <div class="flow-layout">
-              <div><p class="slide__overline">예시 / 출고 우선순위 변경</p><h2 class="slide-title" id="title-8">급한 출고 요청을<br>실행 순서에 반영합니다.</h2><p class="slide-copy">상위 시스템의 변경 요청을 작업 순서 조정과 설비 실행으로 연결합니다.</p></div>
+              <div><p class="slide__overline">예시 / 출고 우선순위 변경</p><h2 class="slide-title" id="title-11">급한 출고 요청을<br>실행 순서에 반영합니다.</h2><p class="slide-copy">상위 시스템의 변경 요청을 작업 순서 조정과 설비 실행으로 연결합니다.</p></div>
               <aside class="visual-slot visual-slot--compact" aria-label="시각자료 준비 영역: 출고 우선순위 변경 흐름도">
-                <span class="visual-slot__type">VISUAL PLACEHOLDER / 03</span>
+                <span class="visual-slot__type">VISUAL PLACEHOLDER / 04</span>
                 <div><h3>작업 순서 변경 흐름도</h3><p>요청부터 실행 결과 확인까지</p></div>
                 <span class="visual-slot__note">시각자료 준비 영역</span>
               </aside>
@@ -140,39 +223,39 @@
               <li><span class="flow-grid__number">04 / 운영</span><h3>결과 확인</h3><p>진행·완료 상태를 수집해 반영</p></li>
             </ol>
           </div>
-          <div class="slide__bottom"><span>기능 이해를 위한 예시입니다. 작업 순서와 적용 규칙은 현장 조건에 따라 달라집니다.</span><span class="slide__page">08 / 12</span></div>
+          <div class="slide__bottom"><span>기능 이해를 위한 예시입니다. 작업 순서와 적용 규칙은 현장 조건에 따라 달라집니다.</span><span class="slide__page">11 / 16</span></div>
         </section>
 
-        <section class="slide slide--soft" id="slide-9" aria-labelledby="title-9" data-title="NOVA Studio 제공 방식">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA STUDIO / DELIVERY</span><span class="slide__section">09 / 연계와 제공 방식</span></div>
+        <section class="slide slide--soft" id="slide-12" aria-labelledby="title-12" data-title="NOVA Studio 제공 방식">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA STUDIO / DELIVERY</span><span class="slide__section">12 / 연계와 제공 방식</span></div>
           <div class="slide__content stacked-content">
-            <div><p class="slide__overline">현재 시스템에 맞춰 선택</p><h2 class="slide-title" id="title-9">필요한 화면과<br>연결 범위부터 정합니다.</h2><p class="slide-copy">Studio는 NOVA와 함께 사용하거나 기존 운영 시스템의 데이터를 연계해 구성할 수 있습니다.</p></div>
+            <div><p class="slide__overline">현재 시스템에 맞춰 선택</p><h2 class="slide-title" id="title-12">필요한 화면과<br>연결 범위부터 정합니다.</h2><p class="slide-copy">Studio는 NOVA와 함께 사용하거나 기존 운영 시스템의 데이터를 연계해 구성할 수 있습니다.</p></div>
             <div class="value-grid" aria-label="NOVA Studio 제공 방식">
               <article class="value-item"><span class="value-item__index">01 / VIEWER</span><h3>시각화 리소스</h3><p>현장 맞춤 2.5D·3D 뷰어를 제공하고 고객사가 데이터와 API를 연계합니다.</p></article>
               <article class="value-item"><span class="value-item__index">02 / MONITORING</span><h3>모니터링 화면</h3><p>제공된 데이터를 연결해 현장 배치와 작업·설비·알람 패널을 구성합니다.</p></article>
               <article class="value-item"><span class="value-item__index">03 / INTEGRATED</span><h3>NOVA 통합</h3><p>작업 실행·설비 제어와 시각화·모니터링을 함께 구성합니다.</p></article>
             </div>
           </div>
-          <div class="slide__bottom"><span>연계 대상의 데이터 제공 방식과 인터페이스를 먼저 확인합니다.</span><span class="slide__page">09 / 12</span></div>
+          <div class="slide__bottom"><span>연계 대상의 데이터 제공 방식과 인터페이스를 먼저 확인합니다.</span><span class="slide__page">12 / 16</span></div>
         </section>
 
-        <section class="slide" id="slide-10" aria-labelledby="title-10" data-title="NOVA 플랫폼 구조">
-          <div class="slide__top"><span class="slide__eyebrow">NOVA / STRUCTURE</span><span class="slide__section">10 / 플랫폼 구조</span></div>
+        <section class="slide" id="slide-13" aria-labelledby="title-13" data-title="NOVA 플랫폼 구조">
+          <div class="slide__top"><span class="slide__eyebrow">NOVA / STRUCTURE</span><span class="slide__section">13 / 플랫폼 구조</span></div>
           <div class="slide__content structure-layout">
-            <div><p class="slide__overline">공통 기반과 명확한 책임</p><h2 class="slide-title" id="title-10">공통은 함께,<br>변화는 각자의<br>자리에서.</h2><p class="slide-copy">Platform은 권한·감사·알림 등 공통 기능을, Operation은 업무를, Agent는 설비 연동을, Orchestration은 실행 흐름을 맡습니다.</p></div>
+            <div><p class="slide__overline">공통 기반과 명확한 책임</p><h2 class="slide-title" id="title-13">공통은 함께,<br>변화는 각자의<br>자리에서.</h2><p class="slide-copy">Platform은 권한·감사·알림 등 공통 기능을, Operation은 업무를, Agent는 설비 연동을, Orchestration은 실행 흐름을 맡습니다.</p></div>
             <aside class="visual-slot" aria-label="시각자료 준비 영역: 플랫폼 구조도">
-              <span class="visual-slot__type">VISUAL PLACEHOLDER / 04</span>
+              <span class="visual-slot__type">VISUAL PLACEHOLDER / 05</span>
               <div><h3>플랫폼 구조도</h3><p>Platform · Operation · Agent · Orchestration의 역할과 연결 관계</p></div>
               <span class="visual-slot__note">시각자료 준비 영역</span>
             </aside>
           </div>
-          <div class="slide__bottom"><span>하나의 플랫폼, 명확한 책임</span><span class="slide__page">10 / 12</span></div>
+          <div class="slide__bottom"><span>하나의 플랫폼, 명확한 책임</span><span class="slide__page">13 / 16</span></div>
         </section>
 
-        <section class="slide" id="slide-11" aria-labelledby="title-11" data-title="단계적 도입 방식">
-          <div class="slide__top"><span class="slide__eyebrow">THE ADOPTION</span><span class="slide__section">11 / 도입 방식</span></div>
+        <section class="slide" id="slide-14" aria-labelledby="title-14" data-title="단계적 도입 방식">
+          <div class="slide__top"><span class="slide__eyebrow">THE ADOPTION</span><span class="slide__section">14 / 도입 방식</span></div>
           <div class="slide__content adoption-layout">
-            <div><p class="slide__overline">작게 시작하고, 검증하며 확장</p><h2 class="slide-title" id="title-11">현장에 맞는<br>범위부터<br>시작합니다.</h2><p class="slide-copy">기존 시스템과 설비를 살펴보고, 필요한 구간을 먼저 정의합니다.</p></div>
+            <div><p class="slide__overline">작게 시작하고, 검증하며 확장</p><h2 class="slide-title" id="title-14">현장에 맞는<br>범위부터<br>시작합니다.</h2><p class="slide-copy">기존 시스템과 설비를 살펴보고, 필요한 구간을 먼저 정의합니다.</p></div>
             <ol class="adoption-steps" role="list" aria-label="도입 단계">
               <li><span>01</span><div><h3>현장 진단</h3><p>운영 흐름과 연동 대상을 확인합니다.</p></div></li>
               <li><span>02</span><div><h3>파일럿 범위 정의</h3><p>우선 적용할 업무와 설비를 정합니다.</p></div></li>
@@ -180,19 +263,39 @@
               <li><span>04</span><div><h3>단계적 확장</h3><p>검증된 범위에서 업무와 설비를 확장합니다.</p></div></li>
             </ol>
           </div>
-          <div class="slide__bottom"><span>현장 진단 <span aria-hidden="true">→</span> 파일럿 <span aria-hidden="true">→</span> 검증 <span aria-hidden="true">→</span> 확장</span><span class="slide__page">11 / 12</span></div>
+          <div class="slide__bottom"><span>현장 진단 <span aria-hidden="true">→</span> 파일럿 <span aria-hidden="true">→</span> 검증 <span aria-hidden="true">→</span> 확장</span><span class="slide__page">14 / 16</span></div>
         </section>
 
-        <section class="slide slide--closing" id="slide-12" aria-labelledby="title-12" data-title="다음 단계">
-          <div class="slide__top"><span class="slide__eyebrow">THE NEXT STEP</span><span class="slide__section">12 / 다음 단계</span></div>
+        <section class="slide slide--soft" id="slide-15" aria-labelledby="title-15" data-title="도입사례">
+          <div class="slide__top"><span class="slide__eyebrow">THE ADOPTION / CASE STUDY</span><span class="slide__section">15 / 도입사례</span></div>
+          <div class="slide__content stacked-content">
+            <div class="experience-layout">
+              <div><p class="slide__overline">도입사례 준비 중</p><h2 class="slide-title" id="title-15">현장의 변화를<br>사례로 살펴봅니다.</h2><p class="slide-copy">고객사와 현장 정보를 확인한 뒤 도입 배경부터 적용 내용, 운영 결과까지 정리합니다.</p></div>
+              <aside class="visual-slot visual-slot--on-soft visual-slot--compact" aria-label="시각자료 준비 영역: 도입 현장 이미지">
+                <span class="visual-slot__type">VISUAL PLACEHOLDER / 06</span>
+                <div><h3>도입 현장 이미지</h3><p>현장 사진 또는 설비·운영 화면</p></div>
+                <span class="visual-slot__note">시각자료 준비 영역</span>
+              </aside>
+            </div>
+            <div class="value-grid" aria-label="도입사례 구성">
+              <article class="value-item"><span class="value-item__index">01 / BACKGROUND</span><h3>도입 배경</h3><p>고객사·현장과 해결하려던 과제</p></article>
+              <article class="value-item"><span class="value-item__index">02 / SOLUTION</span><h3>적용 내용</h3><p>도입 기능과 연동 시스템·설비</p></article>
+              <article class="value-item"><span class="value-item__index">03 / RESULT</span><h3>운영 결과</h3><p>운영 변화와 확인된 성과</p></article>
+            </div>
+          </div>
+          <div class="slide__bottom"><span>실제 사례 자료 확인 후 내용을 보완합니다.</span><span class="slide__page">15 / 16</span></div>
+        </section>
+
+        <section class="slide slide--closing" id="slide-16" aria-labelledby="title-16" data-title="다음 단계">
+          <div class="slide__top"><span class="slide__eyebrow">THE NEXT STEP</span><span class="slide__section">16 / 다음 단계</span></div>
           <div class="slide__content closing-content">
             <p class="slide__overline">NOVA와 함께 시작할 다음 단계</p>
-            <h2 class="closing-title" id="title-12">운영의 다음 기준을<br>함께 설계합니다.</h2>
+            <h2 class="closing-title" id="title-16">운영의 다음 기준을<br>함께 설계합니다.</h2>
             <p class="closing-copy">현재의 병목 구간과 연결 대상을 바탕으로<br>현장에 맞는 첫 적용 범위를 정합니다.</p>
             <div class="closing-topics" aria-label="논의할 항목"><span>현재 운영 흐름</span><span>설비와 연동 대상</span><span>우선 적용 범위</span></div>
-            <p class="closing-sources">제품 소개 출처: <a href="https://idenflu.com/nova" target="_blank" rel="noopener noreferrer">NOVA</a> · <a href="https://idenflu.com/nova-studio" target="_blank" rel="noopener noreferrer">NOVA Studio</a></p>
+            <p class="closing-sources">참고: <a href="https://idenflu.com/business" target="_blank" rel="noopener noreferrer">물류자동화</a> · <a href="https://idenflu.com/nova" target="_blank" rel="noopener noreferrer">NOVA</a> · <a href="https://idenflu.com/nova-studio" target="_blank" rel="noopener noreferrer">NOVA Studio</a></p>
           </div>
-          <div class="slide__bottom"><span>IDENFLU <span aria-hidden="true">/</span> NOVA</span><span class="slide__page">12 / 12</span></div>
+          <div class="slide__bottom"><span>IDENFLU <span aria-hidden="true">/</span> NOVA</span><span class="slide__page">16 / 16</span></div>
         </section>
       </div>
     </main>
@@ -207,6 +310,8 @@
       </div>
     </nav>
     <noscript><p class="presentation-noscript">슬라이드를 순서대로 표시합니다. JavaScript를 켜면 한 장씩 넘길 수 있습니다.</p></noscript>
+      </div>
+    </div>
   </div>
 </body>
 </html>
