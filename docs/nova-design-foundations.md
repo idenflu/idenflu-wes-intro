@@ -77,7 +77,7 @@ NOVA WES/WCS 소개 페이지와 발표 자료를 위한 출발점이다. OpenAI
 
 ## 기준 출처와 후속 작업
 
-- 제품 메시지: 이 저장소의 `docs/nova-intro-brief.md`, `docs/content-design-template.md`
+- 제품 메시지: [NOVA 소개자료 콘텐츠 소스](nova-content-source.md). 제품 정의, 현재 23장 구성, 영업 설명과 준비할 자료를 함께 관리한다.
 - 브랜드 블루: 인접 `idenflu-design-system`의 색상 토큰. 소개 자료용 중립색·크기·간격은 이 문서의 제안값이다.
 - 서체: 인접 `idenflu-website`에서 사용하는 Pretendard Variable 및 동봉 라이선스.
 - 후속: 실제 NOVA UI 이미지, 구조도 및 최종 콘텐츠가 확정되면 이 기준으로 소개 자료를 구성하고 검토한다.
