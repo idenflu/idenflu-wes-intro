@@ -200,7 +200,8 @@
     <nav class="presentation-controls" aria-label="슬라이드 탐색" hidden>
       <span class="presentation-controls__hint">방향키로 이동</span>
       <div class="presentation-controls__actions">
-        <span class="presentation-counter" aria-live="polite" aria-atomic="true"></span>
+        <span class="presentation-counter" aria-live="polite" aria-atomic="true"><span class="presentation-counter__number"></span><span class="presentation-counter__title"></span></span>
+        <button class="nova-button nova-button--ghost" type="button" data-action="first" aria-label="첫 슬라이드로 이동">처음으로</button>
         <button class="nova-button nova-button--ghost" type="button" data-action="previous" aria-label="이전 슬라이드">이전</button>
         <button class="nova-button nova-button--secondary" type="button" data-action="next" aria-label="다음 슬라이드">다음 <svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
       </div>

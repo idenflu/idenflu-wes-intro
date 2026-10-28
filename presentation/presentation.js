@@ -2,9 +2,12 @@
   const slides = Array.from(document.querySelectorAll('.slide'));
   const controls = document.querySelector('.presentation-controls');
   const counter = document.querySelector('.presentation-counter');
+  const counterNumber = document.querySelector('.presentation-counter__number');
+  const counterTitle = document.querySelector('.presentation-counter__title');
+  const first = document.querySelector('[data-action="first"]');
   const previous = document.querySelector('[data-action="previous"]');
   const next = document.querySelector('[data-action="next"]');
-  if (!slides.length || !controls || !counter || !previous || !next) return;
+  if (!slides.length || !controls || !counter || !counterNumber || !counterTitle || !first || !previous || !next) return;
 
   let current = 0;
   const numberFromHash = () => {
@@ -13,23 +16,28 @@
   };
 
   function show(index, updateHash = true) {
+    const focusedFirst = document.activeElement === first;
     const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
     const changed = nextIndex !== current;
     current = nextIndex;
     slides.forEach((slide, i) => { slide.hidden = i !== current; });
+    first.disabled = current === 0;
     previous.disabled = current === 0;
     next.disabled = current === slides.length - 1;
     const count = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
-    counter.textContent = `${count} · ${slides[current].dataset.title}`;
+    counterNumber.textContent = count;
+    counterTitle.textContent = ` · ${slides[current].dataset.title}`;
     document.title = `${slides[current].dataset.title} | NOVA`;
     if (updateHash) {
       try { history.replaceState(null, '', `#${slides[current].id}`); } catch (_) { /* Navigation works even when history is unavailable. */ }
     }
     if (changed && window.matchMedia('(max-width: 740px)').matches) window.scrollTo({ top: 0, behavior: 'instant' });
+    if (focusedFirst && first.disabled) next.focus();
     if (document.activeElement === next && next.disabled) previous.focus();
     if (document.activeElement === previous && previous.disabled) next.focus();
   }
 
+  first.addEventListener('click', () => show(0));
   previous.addEventListener('click', () => show(current - 1));
   next.addEventListener('click', () => show(current + 1));
   document.querySelectorAll('[data-slide-link]').forEach((link) => {
