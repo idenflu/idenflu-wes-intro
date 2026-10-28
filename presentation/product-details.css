@@ -1,0 +1,82 @@
+/* Product deep dives reserve space for explanations and production visuals. */
+.product-detail-content { display: grid; gap: clamp(1.25rem, 2.75cqw, 2.5rem); }
+.product-detail-content > .slide-title { text-wrap: balance; }
+.product-detail-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(2rem, 5cqw, 4rem); }
+.product-detail-layout > * { min-width: 0; }
+.product-detail-list { display: grid; gap: clamp(1rem, 2.5cqw, 2rem); }
+.product-detail-list > article { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); align-items: baseline; gap: var(--nova-space-3); }
+.product-detail-list > article > span, .detail-figure-label { color: var(--nova-color-muted); font-size: clamp(.625rem, .95cqw, .8125rem); font-variant-numeric: tabular-nums; line-height: 1.5; }
+.product-detail-list h3 { margin: 0; color: var(--nova-color-ink); font-size: clamp(1rem, 1.6cqw, 1.375rem); font-weight: var(--nova-weight-medium); line-height: 1.35; letter-spacing: -.02em; }
+.product-detail-list p { margin: var(--nova-space-2) 0 0; color: var(--nova-color-text); font-size: clamp(.75rem, 1.15cqw, .9375rem); line-height: 1.7; }
+.product-detail-slot { min-height: clamp(11rem, 20cqw, 17rem); background: var(--diagram-fill); }
+.detail-figure-label { margin: 0 0 var(--nova-space-3); }
+
+/* WES: conceptual states, with exception handling kept separate. */
+.detail-state-model { display: grid; align-content: center; gap: clamp(1rem, 2cqw, 1.75rem); padding: clamp(1rem, 2cqw, 1.75rem); background: var(--diagram-fill); border-radius: var(--nova-radius-sm); }
+.detail-state-model > .detail-figure-label { margin: 0; }
+.detail-states { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
+.detail-states > li { position: relative; display: grid; place-items: center; min-width: 0; min-height: 3.5rem; padding: var(--nova-space-2); border-radius: var(--nova-radius-sm); background: var(--diagram-canvas); font-size: clamp(.875rem, 1.3cqw, 1.125rem); }
+.detail-states > li:not(:last-child)::after { position: absolute; right: -1.125rem; top: 50%; width: .75rem; border-top: 1px solid var(--nova-color-muted); content: ""; }
+.detail-states > li:not(:last-child)::before { position: absolute; right: -1.125rem; top: calc(50% - .1875rem); width: .375rem; height: .375rem; border-top: 1px solid var(--nova-color-muted); border-right: 1px solid var(--nova-color-muted); transform: rotate(45deg); content: ""; }
+.detail-exception { display: flex; align-items: center; gap: var(--nova-space-3); padding: var(--nova-space-3); border-top: 1px solid var(--nova-color-line); }
+.detail-exception h3 { margin: 0; font-size: clamp(.875rem, 1.2cqw, 1rem); font-weight: var(--nova-weight-medium); }
+.detail-exception p { margin: var(--nova-space-1) 0 0; color: var(--nova-color-muted); font-size: clamp(.75rem, 1.05cqw, .875rem); line-height: 1.5; }
+
+/* WCS: one lane for commands and one for the returned result. */
+.detail-exchange { display: grid; gap: clamp(1.5rem, 3cqw, 2.5rem); padding: clamp(1rem, 2cqw, 1.75rem); background: var(--diagram-fill); border-radius: var(--nova-radius-sm); }
+.detail-exchange-row { display: grid; grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr); align-items: center; gap: var(--nova-space-2); }
+.detail-exchange-row > span { display: grid; place-items: center; min-height: 3rem; padding: var(--nova-space-2); border-radius: var(--nova-radius-sm); background: var(--diagram-canvas); font-size: clamp(.875rem, 1.3cqw, 1.125rem); }
+.detail-exchange-row .diagram-arrow { width: 1.5rem; color: var(--nova-color-muted); }
+
+/* Studio: paired placeholders use the same size for a fair comparison. */
+.product-detail-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 3cqw, 3rem); }
+.product-detail-comparison > article { min-width: 0; }
+.detail-comparison-title { display: flex; align-items: baseline; gap: var(--nova-space-3); margin: 0 0 var(--nova-space-3); font-size: clamp(1.125rem, 1.8cqw, 1.5rem); font-weight: var(--nova-weight-medium); line-height: 1.35; }
+.detail-comparison-title > span { color: var(--nova-color-muted); font-size: clamp(.75rem, 1.1cqw, .9375rem); font-weight: var(--nova-weight-regular); }
+.product-detail-comparison .product-detail-slot { min-height: clamp(8rem, 14cqw, 12rem); padding: clamp(.875rem, 1.5cqw, 1.25rem); }
+.detail-comparison-copy { margin: var(--nova-space-3) 0 0; color: var(--nova-color-text); font-size: clamp(.75rem, 1.1cqw, .9375rem); line-height: 1.65; }
+
+/* Data sources connect through their identifiers to the spatial view. */
+.detail-data-map { padding: clamp(1rem, 2cqw, 1.75rem); border-radius: var(--nova-radius-sm); background: var(--diagram-fill); }
+.detail-data-map__source, .detail-data-map__target { display: grid; justify-items: center; gap: var(--nova-space-1); padding: var(--nova-space-3); border-radius: var(--nova-radius-sm); background: var(--diagram-canvas); text-align: center; }
+.detail-data-map h3 { margin: 0; font-size: clamp(1rem, 1.5cqw, 1.25rem); font-weight: var(--nova-weight-medium); line-height: 1.35; }
+.detail-data-map p, .detail-data-map__target > span { margin: 0; font-size: clamp(.6875rem, 1cqw, .875rem); line-height: 1.5; }
+.detail-data-map__source p { color: var(--nova-color-muted); }
+.detail-data-map__link { display: flex; align-items: center; justify-content: center; gap: var(--nova-space-2); min-height: 3rem; color: var(--nova-color-muted); font-size: clamp(.625rem, .95cqw, .8125rem); }
+.detail-data-map__link .diagram-arrow { width: 2.25rem; transform: rotate(90deg); }
+.detail-data-map__target { background: var(--nova-color-ink); color: var(--nova-color-white); }
+
+@media (min-width: 741px) {
+  @container (max-width: 48rem) {
+    .product-detail-content { gap: var(--nova-space-4); }
+    .product-detail-layout { gap: var(--nova-space-6); }
+    .product-detail-list { gap: var(--nova-space-4); }
+    .product-detail-list p { margin-top: var(--nova-space-1); }
+    .product-detail-slot { min-height: 10rem; gap: var(--nova-space-3); padding: var(--nova-space-4); }
+    .product-detail-comparison .product-detail-slot { min-height: 7.75rem; gap: var(--nova-space-2); padding: var(--nova-space-3); }
+    .detail-exchange, .detail-state-model, .detail-data-map { padding: var(--nova-space-3); }
+    .detail-state-model { gap: var(--nova-space-3); }
+    .detail-exchange { gap: var(--nova-space-5); }
+  }
+}
+@media (max-width: 740px) {
+  .product-detail-content { gap: var(--nova-space-8); }
+  .product-detail-layout, .product-detail-comparison { grid-template-columns: 1fr; gap: var(--nova-space-8); }
+  .product-detail-list { gap: var(--nova-space-6); }
+  .product-detail-list h3 { font-size: 1.125rem; }
+  .product-detail-list p, .detail-comparison-copy { font-size: .875rem; }
+  .product-detail-list > article > span, .detail-figure-label { font-size: .75rem; }
+  .product-detail-slot, .product-detail-comparison .product-detail-slot { min-height: 13rem; padding: var(--nova-space-5); }
+  .detail-states { gap: 1.25rem; }
+  .detail-states > li { font-size: 1rem; }
+  .detail-states > li:not(:last-child)::after { right: -1rem; }
+  .detail-states > li:not(:last-child)::before { right: -1rem; }
+  .detail-exchange-row { grid-template-columns: minmax(0, 1fr) 1rem minmax(0, 1fr) 1rem minmax(0, 1fr); gap: var(--nova-space-1); }
+  .detail-exchange-row .diagram-arrow { width: 1rem; }
+  .detail-exchange-row > span { font-size: .875rem; }
+  .detail-comparison-title { font-size: 1.375rem; }
+  .detail-comparison-title > span { font-size: .875rem; }
+  .detail-data-map h3 { font-size: 1.125rem; }
+  .detail-data-map p, .detail-data-map__target > span { font-size: .8125rem; }
+  .detail-data-map__link { font-size: .75rem; }
+}
