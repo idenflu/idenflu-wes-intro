@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOVA — 디자인 기초</title>
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="components.css">
+  <script src="segmented.js" defer></script>
+  <style>
+    .guide-nav { border-bottom: 1px solid var(--nova-color-line); }
+    .guide-nav__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: var(--nova-space-6); }
+    .guide-brand { font-size: var(--nova-text-small); font-weight: var(--nova-weight-medium); letter-spacing: -.02em; }
+    .guide-nav__label { color: var(--nova-color-muted); font-size: var(--nova-text-small); }
+    .guide-hero { padding-block: clamp(7.5rem, 15vw, 13.75rem); }
+    .guide-hero .nova-display { max-width: 1100px; margin-top: var(--nova-space-12); }
+    .guide-hero .nova-lead { margin: var(--nova-space-10) 0 0; }
+    .guide-actions { display: flex; flex-wrap: wrap; gap: var(--nova-space-3); margin-top: var(--nova-space-10); }
+    .guide-heading { display: grid; grid-template-columns: 1fr 2fr; gap: var(--nova-space-8); margin-bottom: var(--nova-space-16); }
+    .guide-heading p { margin: 0; }
+    .guide-heading .nova-body { margin-top: var(--nova-space-5); max-width: 640px; }
+    .color-group + .color-group { margin-top: var(--nova-space-10); }
+    .color-group__title { margin: 0 0 var(--nova-space-4); color: var(--nova-color-muted); font-size: var(--nova-text-small); font-weight: var(--nova-weight-regular); }
+    .swatches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--nova-space-8); }
+    .swatch { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; align-items: center; gap: var(--nova-space-3); padding: var(--nova-space-5) 0; border-top: 1px solid var(--nova-color-line); }
+    .swatch__sample { width: 12px; height: 12px; border: 1px solid var(--nova-color-line); border-radius: 50%; }
+    .swatch strong, .swatch span { display: block; }
+    .swatch strong { font-size: var(--nova-text-small); font-weight: var(--nova-weight-regular); }
+    .swatch span { color: var(--nova-color-muted); font: var(--nova-text-caption) var(--nova-font-mono); }
+    .type-row { display: grid; grid-template-columns: 1fr 2fr; align-items: baseline; gap: var(--nova-space-8); padding: var(--nova-space-8) 0; border-top: 1px solid var(--nova-color-line); }
+    .type-label { color: var(--nova-color-muted); font-size: var(--nova-text-small); }
+    .type-row p { margin: 0; }
+    .component-row { display: grid; grid-template-columns: 1fr 2fr; gap: var(--nova-space-8); padding: var(--nova-space-8) 0; border-top: 1px solid var(--nova-color-line); }
+    .component-row > * { min-width: 0; }
+    .example-button-surface { padding: var(--nova-space-6); }
+    .component-examples { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nova-space-4); }
+    .example-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--nova-space-4); }
+    .example-card { max-width: 480px; }
+    .example-card p { margin-bottom: 0; }
+    .icon-group + .icon-group { margin-top: var(--nova-space-10); }
+    .icon-pair { display: flex; align-items: center; gap: var(--nova-space-4); }
+    .icon-pair__item { display: flex; align-items: center; gap: var(--nova-space-2); color: var(--nova-color-muted); font-size: var(--nova-text-caption); }
+    .icon-pair__item .nova-icon { color: var(--nova-color-ink); }
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--nova-space-8) var(--nova-space-6); }
+    .icon-example { display: flex; align-items: center; gap: var(--nova-space-3); min-width: 0; color: var(--nova-color-text); font-size: var(--nova-text-small); }
+    .icon-example span { overflow-wrap: anywhere; }
+    .guide-footer { padding: var(--nova-space-8) 0; border-top: 1px solid var(--nova-color-line); color: var(--nova-color-muted); font-size: var(--nova-text-small); }
+    .type-caption { color: var(--nova-color-muted); font: var(--nova-text-caption) var(--nova-font-mono); }
+    @media (max-width: 700px) { .guide-heading, .type-row, .component-row { grid-template-columns: 1fr; gap: var(--nova-space-4); } .guide-heading { margin-bottom: var(--nova-space-10); } .swatches, .example-cards { grid-template-columns: 1fr; } .guide-nav__label { display: none; } }
+  </style>
+</head>
+<body>
+  <header class="guide-nav"><div class="nova-container guide-nav__inner"><span class="guide-brand">IDENFLU / NOVA</span><span class="guide-nav__label">Design foundations · 01</span></div></header>
+  <main>
+    <section class="guide-hero"><div class="nova-container">
+      <span class="nova-eyebrow">NOVA DESIGN FOUNDATIONS</span>
+      <h1 class="nova-display">복잡한 운영을<br>명료하게 설명합니다.</h1>
+      <p class="nova-lead">NOVA 소개 자료를 위한 시각 언어입니다. 서체와 문장의 크기, 간격만으로 제품의 가치를 명료하게 전달합니다.</p>
+      <div class="guide-actions"><a class="nova-button" href="#principles">기준 살펴보기 <span aria-hidden="true">↘</span></a><a class="nova-button nova-button--secondary" href="#components">컴포넌트 보기</a></div>
+    </div></section>
+    <section class="nova-section nova-section--muted" id="principles"><div class="nova-container">
+      <div class="guide-heading"><p class="nova-eyebrow">01 / PRINCIPLES</p><div><h2 class="nova-heading">덜어내고, 더 분명하게.</h2><p class="nova-body">하나의 화면에 하나의 메시지를 둡니다. 문장의 크기와 무게, 여백으로 읽는 순서를 만듭니다.</p></div></div>
+      <div class="nova-grid">
+        <article class="nova-feature"><span class="nova-feature__number">01</span><h3 class="nova-feature__title">메시지가 먼저</h3><p class="nova-feature__body">짧고 구체적인 문장과 선명한 제목으로 중요한 내용을 전달합니다.</p></article>
+        <article class="nova-feature"><span class="nova-feature__number">02</span><h3 class="nova-feature__title">여백으로 구분</h3><p class="nova-feature__body">시각적 구획보다 정렬과 충분한 간격으로 내용을 나눕니다.</p></article>
+        <article class="nova-feature"><span class="nova-feature__number">03</span><h3 class="nova-feature__title">필요한 곳에 색상</h3><p class="nova-feature__body">무채색을 기본으로 하고, 색상과 그래픽은 꼭 필요한 곳에만 사용합니다.</p></article>
+      </div>
+    </div></section>
+    <section class="nova-section"><div class="nova-container">
+      <div class="guide-heading"><p class="nova-eyebrow">02 / COLOR</p><div><h2 class="nova-heading">차분한 바탕, 명확한 강조.</h2><p class="nova-body">무채색을 기본으로 하고, 브랜드와 상태 색상은 의미가 필요한 곳에만 사용합니다. 각 색상은 역할에 따라 구분합니다.</p></div></div>
+      <div class="color-group">
+        <h3 class="color-group__title">배경과 선</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-white)"></div><strong>White</strong><span>#FFFFFF</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-surface)"></div><strong>Surface</strong><span>#F5F6F7</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-surface-strong)"></div><strong>Surface Strong</strong><span>#EAECEF</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-control-subtle)"></div><strong>Control Subtle</strong><span>#EFF0F2</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-control-hover-on-surface)"></div><strong>Control Hover</strong><span>#CBD0D5</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-line)"></div><strong>Line</strong><span>#D9DEE3</span></div>
+        </div>
+      </div>
+      <div class="color-group">
+        <h3 class="color-group__title">텍스트</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-ink)"></div><strong>Ink</strong><span>#151719</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-text)"></div><strong>Text</strong><span>#353A40</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-muted)"></div><strong>Muted</strong><span>#626B75</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-disabled-text)"></div><strong>Disabled Text</strong><span>#969DA5</span></div>
+        </div>
+      </div>
+      <div class="color-group">
+        <h3 class="color-group__title">브랜드</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-brand)"></div><strong>Brand</strong><span>#266EE1</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-brand-hover)"></div><strong>Brand Text</strong><span>#0F54BB</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-brand-soft)"></div><strong>Brand Soft</strong><span>#F0F6FF</span></div>
+        </div>
+      </div>
+      <div class="color-group">
+        <h3 class="color-group__title">상태</h3>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-success)"></div><strong>Success</strong><span>#156D30</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-warning)"></div><strong>Warning</strong><span>#865300</span></div>
+          <div class="swatch"><div class="swatch__sample" style="background:var(--nova-color-danger)"></div><strong>Danger</strong><span>#BB2229</span></div>
+        </div>
+      </div>
+    </div></section>
+    <section class="nova-section nova-section--muted"><div class="nova-container">
+      <div class="guide-heading"><p class="nova-eyebrow">03 / TYPOGRAPHY</p><div><h2 class="nova-heading">읽는 순서가 보이도록.</h2><p class="nova-body">Pretendard의 두 가지 굵기를 사용합니다. 제목은 500, 본문과 라벨, 버튼은 400으로 가볍게 맞춥니다. 크기는 rem으로 정의하며, 괄호 안의 px 값은 기본 글자 크기 16px 기준입니다.</p></div></div>
+      <div class="type-row"><span class="type-label">Display / 3.25–6.5rem (52–104px) · 500 · 표지와 첫 화면</span><p class="nova-display">운영을 하나로.</p></div>
+      <div class="type-row"><span class="type-label">Heading / 2–3.5rem (32–56px) · 500 · 섹션 제목</span><p class="nova-heading">현장을 더 선명하게 봅니다.</p></div>
+      <div class="type-row"><span class="type-label">Subheading / 1.5–2rem (24–32px) · 500 · 내용 제목</span><p class="nova-subheading">실시간 운영의 기준</p></div>
+      <div class="type-row"><span class="type-label">Item title / 1.25rem (20px) · 500 · 카드와 항목 제목</span><p class="nova-feature__title">공통 운영 기능을 표준화합니다.</p></div>
+      <div class="type-row"><span class="type-label">Lead / 1.125–1.375rem (18–22px) · 400 · 도입 설명</span><p class="nova-lead">흩어진 물류 운영을 하나의 플랫폼으로 연결합니다.</p></div>
+      <div class="type-row"><span class="type-label">Label / 0.875rem (14px) · 400 · 분류·버튼·상태</span><p class="nova-eyebrow">NOVA / WES · WCS</p></div>
+      <div class="type-row"><span class="type-label">Body / 1rem (16px) · 400 · 설명</span><p class="nova-body">작업, 설비, 알림, 이력을 같은 운영 흐름 안에서 확인합니다.</p></div>
+      <div class="type-row"><span class="type-label">Caption / 0.75rem (12px) · 400 · 배지·보조 정보</span><p class="type-caption">#266EE1</p></div>
+    </div></section>
+    <section class="nova-section" id="components"><div class="nova-container">
+      <div class="guide-heading"><p class="nova-eyebrow">04 / COMPONENTS</p><div><h2 class="nova-heading">필요한 요소만, 일관되게.</h2><p class="nova-body">텍스트와 여백을 기본으로 사용합니다. 분류와 상태는 간결한 글자로, 관련 정보는 선과 간격으로 구분합니다.</p></div></div>
+      <div class="component-row"><span class="type-label">Buttons / 버튼</span><div class="component-examples"><button class="nova-button" type="button">주요 행동</button><button class="nova-button nova-button--secondary" type="button">보조 행동</button><button class="nova-button nova-button--ghost" type="button">고스트</button><button class="nova-button" type="button" disabled>비활성</button><button class="nova-button nova-button--secondary" type="button" disabled>보조 비활성</button><button class="nova-button nova-button--ghost" type="button" disabled>고스트 비활성</button></div></div>
+      <div class="component-row"><span class="type-label">Button / 아이콘 포함</span><div class="component-examples"><button class="nova-button" type="button">자세히 보기 <svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></svg></button><button class="nova-button nova-button--secondary" type="button">더 알아보기 <svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></svg></button><button class="nova-button nova-button--ghost" type="button">자세히 보기 <svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></svg></button><button class="nova-button" type="button" disabled>준비 중 <svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></svg></button></div></div>
+      <div class="component-row"><span class="type-label">Button / 아이콘만</span><div class="component-examples"><button class="nova-button nova-button--icon" type="button" aria-label="다음"><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></svg></button><button class="nova-button nova-button--secondary nova-button--icon" type="button" aria-label="검색"><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" /></svg></button><button class="nova-button nova-button--ghost nova-button--icon" type="button" aria-label="메뉴 열기"><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16" />
+  <path d="M4 12h16" />
+  <path d="M4 19h16" /></svg></button><button class="nova-button nova-button--icon" type="button" aria-label="검색 준비 중" disabled><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" /></svg></button></div></div>
+      <div class="component-row"><span class="type-label">Button / Surface 배경</span><div class="nova-section--muted example-button-surface component-examples"><button class="nova-button" type="button">주요 행동</button><button class="nova-button nova-button--secondary" type="button">보조 행동</button><button class="nova-button nova-button--ghost" type="button">고스트</button><button class="nova-button" type="button" disabled>비활성</button><button class="nova-button nova-button--secondary" type="button" disabled>보조 비활성</button><button class="nova-button nova-button--ghost" type="button" disabled>고스트 비활성</button></div></div>
+      <div class="component-row"><span class="type-label">Button / Surface · 아이콘만</span><div class="nova-section--muted example-button-surface component-examples"><button class="nova-button nova-button--icon" type="button" aria-label="다음"><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></svg></button><button class="nova-button nova-button--secondary nova-button--icon" type="button" aria-label="검색"><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" /></svg></button><button class="nova-button nova-button--ghost nova-button--icon" type="button" aria-label="메뉴 열기"><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16" />
+  <path d="M4 12h16" />
+  <path d="M4 19h16" /></svg></button><button class="nova-button nova-button--icon" type="button" aria-label="검색 준비 중" disabled><svg class="nova-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" /></svg></button></div></div>
+      <div class="component-row"><span class="type-label">Segmented / 단일 선택</span><fieldset class="nova-segmented-group"><legend class="nova-segmented-group__legend">적용 범위</legend><div class="nova-segmented"><label class="nova-segment"><input class="nova-segment__input" type="radio" name="scope-segmented" value="diagnosis" checked><span class="nova-segment__label">현장 진단</span></label><label class="nova-segment"><input class="nova-segment__input" type="radio" name="scope-segmented" value="pilot"><span class="nova-segment__label">파일럿</span></label><label class="nova-segment"><input class="nova-segment__input" type="radio" name="scope-segmented" value="center"><span class="nova-segment__label">전체 센터</span></label></div></fieldset></div>
+      <div class="component-row"><span class="type-label">Link / 텍스트 링크</span><div class="component-examples"><a class="nova-text-link" href="#principles">디자인 원칙 보기 <span aria-hidden="true">↗</span></a></div></div>
+      <div class="component-row"><span class="type-label">Badge / 분류</span><div class="component-examples"><span class="nova-badge">WES / WCS</span><span class="nova-badge nova-badge--brand">PLATFORM</span></div></div>
+      <div class="component-row"><span class="type-label">Status / 상태</span><div class="component-examples"><span class="nova-status nova-status--success">정상</span><span class="nova-status nova-status--warning">주의</span><span class="nova-status nova-status--danger">오류</span></div></div>
+      <div class="component-row"><span class="type-label">Card / 관련 정보 묶음</span><div><article class="nova-card example-card"><span class="nova-eyebrow">기본 / PLATFORM</span><h3 class="nova-feature__title">공통 운영 기능을 표준화합니다.</h3><p class="nova-body">권한, 감사, 알림, 실시간 상태, 설정과 스케줄링을 하나의 기준으로 관리합니다.</p></article><div class="example-cards"><article class="nova-card nova-card--outlined example-card"><span class="nova-eyebrow">테두리 / OPERATION</span><h3 class="nova-feature__title">작업의 흐름을 관리합니다.</h3><p class="nova-body">업무 규칙과 작업 상태를 하나의 흐름으로 연결합니다.</p></article><article class="nova-card nova-card--filled example-card"><span class="nova-eyebrow">배경 / AGENT</span><h3 class="nova-feature__title">설비를 연결합니다.</h3><p class="nova-body">설비별 연결 방식과 상태를 일관된 기준으로 관리합니다.</p></article></div></div></div>
+      <div class="component-row"><span class="type-label">Comparison / 비교</span>
+        <div class="nova-comparison">
+          <article class="nova-comparison__item">
+            <span class="nova-eyebrow">BEFORE / 분산된 운영</span>
+            <h3 class="nova-comparison__title">정보를 따로 확인합니다.</h3>
+            <p class="nova-comparison__body">운영자가 여러 시스템의 정보를 직접 모읍니다.</p>
+            <ul class="nova-comparison__points"><li>작업과 설비 상태를 각각 확인</li><li>알림과 조치 이력을 별도로 취합</li></ul>
+          </article>
+          <article class="nova-comparison__item">
+            <span class="nova-eyebrow">AFTER / 연결된 운영</span>
+            <h3 class="nova-comparison__title">운영 흐름을 함께 봅니다.</h3>
+            <p class="nova-comparison__body">작업과 설비 정보를 같은 운영 기준으로 연결합니다.</p>
+            <ul class="nova-comparison__points"><li>작업과 설비 상태를 함께 확인</li><li>알림과 이력을 한 흐름에서 확인</li></ul>
+          </article>
+        </div>
+      </div>
+      <div class="component-row"><span class="type-label">Steps / 단계</span>
+        <ol class="nova-steps" role="list" aria-label="NOVA 도입 과정 예시">
+          <li class="nova-step"><span class="nova-step__number" aria-hidden="true">01</span><div><h3 class="nova-step__title">현장 진단</h3><p class="nova-step__body">운영 흐름과 설비, 기존 시스템의 연동 대상을 확인합니다.</p></div></li>
+          <li class="nova-step"><span class="nova-step__number" aria-hidden="true">02</span><div><h3 class="nova-step__title">파일럿 범위 정의</h3><p class="nova-step__body">우선 적용할 구역, 업무와 설비를 정합니다.</p></div></li>
+          <li class="nova-step"><span class="nova-step__number" aria-hidden="true">03</span><div><h3 class="nova-step__title">운영 검증</h3><p class="nova-step__body">현장 요구사항과 실제 운영 흐름을 기준으로 확인합니다.</p></div></li>
+          <li class="nova-step"><span class="nova-step__number" aria-hidden="true">04</span><div><h3 class="nova-step__title">단계적 확장</h3><p class="nova-step__body">검증된 범위에서 설비와 업무를 점진적으로 확장합니다.</p></div></li>
+        </ol>
+      </div>
+      <div class="component-row"><span class="type-label">Table / 표</span>
+        <div>
+          <div class="nova-table-wrap" role="region" aria-label="NOVA 구성 요소와 역할 표" aria-describedby="nova-table-scroll-hint" tabindex="0">
+            <table class="nova-table">
+              <caption>NOVA 구성 요소와 역할</caption>
+              <thead><tr><th scope="col">구성</th><th scope="col">역할</th><th scope="col">주요 기능</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Platform</th><td>공통 운영 기능 표준화</td><td>권한, 알림, 감사</td></tr>
+                <tr><th scope="row">Operation</th><td>업무 규칙과 작업 관리</td><td>작업 상태, 예외 처리</td></tr>
+                <tr><th scope="row">Agent</th><td>설비와 시스템 연결</td><td>상태 수집, 설비 연동</td></tr>
+                <tr><th scope="row">Orchestration</th><td>여러 모듈의 실행 흐름 조정</td><td>재시도, 보상 처리</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="nova-table-hint" id="nova-table-scroll-hint">화면이 좁을 때는 표를 좌우로 스크롤할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="component-row"><span class="type-label">Details / 정보 목록</span>
+        <dl class="nova-details">
+          <div class="nova-details__row"><dt class="nova-details__term">Platform</dt><dd class="nova-details__description">권한, 알림, 감사 등 공통 운영 기능을 표준화합니다.</dd></div>
+          <div class="nova-details__row"><dt class="nova-details__term">Operation</dt><dd class="nova-details__description">업무 규칙과 작업 상태를 관리합니다.</dd></div>
+          <div class="nova-details__row"><dt class="nova-details__term">Agent</dt><dd class="nova-details__description">설비와 외부 시스템의 연결을 담당합니다.</dd></div>
+          <div class="nova-details__row"><dt class="nova-details__term">Orchestration</dt><dd class="nova-details__description">여러 업무와 설비가 참여하는 실행 흐름을 조정합니다.</dd></div>
+        </dl>
+      </div>
+    </div></section>
+    <section class="nova-section nova-section--muted" id="icons"><div class="nova-container">
+      <div class="guide-heading"><p class="nova-eyebrow">05 / ICONS</p><div><h2 class="nova-heading">의미를 더하는 작은 표시.</h2><p class="nova-body">기본은 가벼운 Outline을 사용합니다. 채운 형태가 필요한 아이콘은 Fill을 함께 제공합니다. 기본 크기는 20px입니다.</p></div></div>
+      <div class="icon-group">
+        <h3 class="color-group__title">방향과 탐색</h3>
+        <div class="icon-grid">
+          <div class="icon-example"><img class="nova-icon" src="icons/arrow-right.svg" alt=""><span>arrow-right</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/arrow-left.svg" alt=""><span>arrow-left</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/arrow-up.svg" alt=""><span>arrow-up</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/arrow-down.svg" alt=""><span>arrow-down</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/keyboard-arrow-right.svg" alt=""><span>keyboard-arrow-right</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/keyboard-arrow-left.svg" alt=""><span>keyboard-arrow-left</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/keyboard-arrow-up.svg" alt=""><span>keyboard-arrow-up</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/keyboard-arrow-down.svg" alt=""><span>keyboard-arrow-down</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/menu.svg" alt=""><span>menu</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/more-horizontal.svg" alt=""><span>more-horizontal</span></div>
+        </div>
+      </div>
+      <div class="icon-group">
+        <h3 class="color-group__title">행동</h3>
+        <div class="icon-grid">
+          <div class="icon-example"><img class="nova-icon" src="icons/add.svg" alt=""><span>add</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/remove.svg" alt=""><span>remove</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/close.svg" alt=""><span>close</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/search.svg" alt=""><span>search</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/filter.svg" alt=""><span>filter</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/download.svg" alt=""><span>download</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/upload.svg" alt=""><span>upload</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/play.svg" alt=""><span>play</span></div>
+        </div>
+      </div>
+      <div class="icon-group">
+        <h3 class="color-group__title">확인과 정보</h3>
+        <div class="icon-grid">
+          <div class="icon-example"><img class="nova-icon" src="icons/check.svg" alt=""><span>check</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/check-circle.svg" alt=""><span>check-circle</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/info.svg" alt=""><span>info</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/warning.svg" alt=""><span>warning</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/link.svg" alt=""><span>link</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/visibility.svg" alt=""><span>visibility</span></div>
+        </div>
+      </div>
+      <div class="icon-group">
+        <h3 class="color-group__title">운영과 콘텐츠</h3>
+        <div class="icon-grid">
+          <div class="icon-example"><img class="nova-icon" src="icons/calendar.svg" alt=""><span>calendar</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/clock.svg" alt=""><span>clock</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/file.svg" alt=""><span>file</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/grid.svg" alt=""><span>grid</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/person.svg" alt=""><span>person</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/lock.svg" alt=""><span>lock</span></div>
+          <div class="icon-example"><img class="nova-icon" src="icons/mail.svg" alt=""><span>mail</span></div>
+        </div>
+      </div>
+      <div class="icon-group">
+        <h3 class="color-group__title">Outline / Fill</h3>
+        <div class="icon-grid">
+          <div><p class="color-group__title">check-circle</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/check-circle.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/check-circle-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">info</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/info.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/info-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">warning</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/warning.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/warning-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">clock</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/clock.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/clock-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">visibility</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/visibility.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/visibility-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">mail</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/mail.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/mail-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">file</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/file.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/file-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">calendar</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/calendar.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/calendar-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">person</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/person.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/person-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">lock</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/lock.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/lock-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">play</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/play.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/play-fill.svg" alt="">Fill</span></div></div>
+          <div><p class="color-group__title">grid</p><div class="icon-pair"><span class="icon-pair__item"><img class="nova-icon" src="icons/grid.svg" alt="">Outline</span><span class="icon-pair__item"><img class="nova-icon" src="icons/grid-fill.svg" alt="">Fill</span></div></div>
+        </div>
+      </div>
+    </div></section>
+  </main>
+  <footer class="guide-footer"><div class="nova-container">IDENFLU · NOVA &nbsp; / &nbsp; Design foundations</div></footer>
+</body>
+</html>
