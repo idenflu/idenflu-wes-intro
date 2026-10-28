@@ -44,7 +44,7 @@ NOVA WES/WCS 소개 페이지와 발표 자료를 위한 출발점이다. OpenAI
 
 ## 아이콘
 
-`design-system/icons/`에 방향·탐색, 행동, 확인·정보, 운영·콘텐츠 아이콘을 개별 SVG로 제공한다. `05 / ICONS`에서 이름과 모양을 확인할 수 있다. 아이콘은 Lucide 1.62.0을 기준으로 Outline에는 1.5px 선 두께를 적용하고, 일부 아이콘에 `-fill.svg` 변형을 제공한다. Fill은 상태나 선택을 강조할 때 제한적으로 사용한다. 라이선스는 `design-system/icons/LICENSE.txt`에 포함되어 있다.
+`design-system/icons/`에 방향·탐색, 행동, 확인·정보, 운영·콘텐츠 아이콘을 개별 SVG로 제공한다. `05 / ICONS`에서 이름과 모양을 확인할 수 있다. 아이콘은 Lucide 1.62.0을 기준으로 Outline에는 1.5px 선 두께와 평평한 선 끝, 각진 연결을 적용하고, 일부 아이콘에 `-fill.svg` 변형을 제공한다. 문서·표·메일 등은 모서리의 곡률을 줄이고, 원형처럼 의미가 있는 곡선은 유지한다. Fill은 상태나 선택을 강조할 때 제한적으로 사용한다. 라이선스는 `design-system/icons/LICENSE.txt`에 포함되어 있다.
 
 기본 크기는 20px이며 SVG의 `viewBox`는 24×24다. 텍스트와 함께 쓰는 장식 아이콘은 `<img class="nova-icon" src="design-system/icons/arrow-right.svg" alt="">`처럼 빈 대체 텍스트를 사용한다. 아이콘만 있는 버튼은 버튼에 `aria-label`을 제공한다. SVG를 인라인으로 넣으면 선 색상 `currentColor`가 텍스트 색상을 따른다. `<img>`로 불러올 때는 부모의 텍스트 색상이 SVG에 상속되지 않는다. 마스크를 사용하는 Fill SVG를 같은 문서에 여러 번 인라인으로 넣을 때는 각 SVG의 mask ID와 참조를 고유하게 변경한다.
 
