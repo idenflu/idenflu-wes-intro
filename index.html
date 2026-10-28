@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="design-system/font.css">
   <link rel="stylesheet" href="design-system/components.css">
   <link rel="stylesheet" href="presentation/presentation.css?v=eeff4f5d">
-  <link rel="stylesheet" href="presentation/diagrams.css?v=f7ef77cc">
+  <link rel="stylesheet" href="presentation/diagrams.css?v=619f875d">
   <link rel="stylesheet" href="presentation/product-details.css">
   <script src="presentation/presentation.js" defer></script>
 </head>
@@ -123,11 +123,10 @@
             <div class="diagram-heading"><h2 class="slide-title" id="title-5">표준화된 기반, 현장에 맞춘 확장</h2><p class="slide-copy">표준화와 검증을 바탕으로 안정적인 서비스를 제공합니다.</p></div>
             <figure class="explain-diagram position-spectrum" aria-label="SI 개발과 패키지 제품 사이에서, NOVA가 표준화된 플랫폼과 현장별 확장·검증을 결합하는 개념적 범위">
               <ol class="position-spectrum__items">
-                <li><h3>SI 개발</h3><p><span class="position-spectrum__point"><span class="position-spectrum__point-label">장점</span> · 현장 요구를 폭넓게 반영</span><span class="position-spectrum__point"><span class="position-spectrum__point-label">고려할 점</span> · 개발·유지보수 부담이 클 수 있음</span></p></li>
-                <li class="position-spectrum__nova"><span class="position-spectrum__range-label">NOVA 적용 범위</span><h3>NOVA</h3><p><span class="position-spectrum__point">표준화된 플랫폼 기반</span><span class="position-spectrum__point">현장 맞춤 확장 · 적용 검증</span></p></li>
-                <li><h3>패키지 제품</h3><p><span class="position-spectrum__point"><span class="position-spectrum__point-label">장점</span> · 검증된 기능을 빠르게 도입</span><span class="position-spectrum__point"><span class="position-spectrum__point-label">고려할 점</span> · 현장 맞춤에 제약 가능</span></p></li>
+                <li><h3>SI 개발</h3><p><span class="position-spectrum__point">프로젝트별 설계·개발</span><span class="position-spectrum__point">기간·비용·안정성 확보 부담</span></p></li>
+                <li class="position-spectrum__nova"><h3>NOVA</h3><p><span class="position-spectrum__point">표준화·검증된 플랫폼 기반</span><span class="position-spectrum__point">현장에 맞춘 업무·설비 확장</span></p></li>
+                <li><h3>패키지 제품</h3><p><span class="position-spectrum__point">제품 기능에 맞춘 도입</span><span class="position-spectrum__point">업무·운영 방식을 조정하는 부담</span></p></li>
               </ol>
-              <figcaption class="position-spectrum__summary">표준화된 기반으로 안정성을 높이고, 현장에 맞게 확장합니다.</figcaption>
             </figure>
           </div>
           <div class="slide__bottom"><span>개념적 위치이며, 개발과 설정 범위는 현장 요구에 따라 달라집니다.</span><span class="slide__page">05 / 23</span></div>
@@ -141,7 +140,7 @@
               <div class="solution-map__views">
                 <div class="diagram-node "><span class="diagram-node__kicker">NOVA의 운영 화면</span><h3>NOVA Workspace</h3><p>현황 · 이력 · 사용자 · 설정</p></div><div class="diagram-node "><span class="diagram-node__kicker">현장 시각화</span><h3>NOVA Studio</h3><p>2.5D·3D 현장 배치 · 상태 · 알람</p></div>
               </div>
-              <div class="diagram-branches" aria-hidden="true"><svg viewBox="0 0 800 48" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M400 47V27H200V2M400 27H600V2" vector-effect="non-scaling-stroke"/><path d="m194 8 6-6 6 6m388 0 6-6 6 6" vector-effect="non-scaling-stroke"/></svg><span>운영 데이터</span></div>
+              <div class="diagram-branches" aria-hidden="true"><svg viewBox="0 0 800 48" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M400 47V27H200V2M400 27H600V2" vector-effect="non-scaling-stroke"/><path d="m194 8 6-6 6 6m388 0 6-6 6 6" vector-effect="non-scaling-stroke"/></svg></div>
               <div class="solution-map__core"><h3>NOVA</h3><span>WES · 작업 조율</span><span>WCS · 설비 연동</span></div>
             </figure>
           </div>
@@ -154,7 +153,18 @@
             <div class="diagram-heading"><h2 class="slide-title" id="title-7">작업 순서를 설비 실행으로</h2><p class="slide-copy">WES가 실행할 작업을 조율하고, WCS가 설비별 명령 전달과 상태 수집을 맡습니다.</p></div>
             <figure class="explain-diagram" aria-label="상위 시스템의 요청이 WES 작업 조율, WCS 명령 변환을 거쳐 설비에 전달되고 상태가 회수되는 흐름">
               <div class="diagram-flow diagram-flow--four">
-                <div class="diagram-node "><span class="diagram-node__kicker">요청</span><h3>상위 시스템</h3><p>ERP · WMS · MES</p></div><div class="diagram-link" aria-hidden="true"><span>작업 요청</span><svg class="diagram-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M2 10h34m-6-6 6 6-6 6"/></svg></div><div class="diagram-node "><span class="diagram-node__kicker">NOVA / 실행</span><h3>WES</h3><p>작업 구성<br>우선순위 · 예외 관리</p></div><div class="diagram-link" aria-hidden="true"><span>작업 지시</span><svg class="diagram-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M2 10h34m-6-6 6 6-6 6"/></svg></div><div class="diagram-node "><span class="diagram-node__kicker">NOVA / 제어</span><h3>WCS</h3><p>명령 변환<br>상태 수집 · 연결 확인</p></div><div class="diagram-link" aria-hidden="true"><span>설비 명령</span><svg class="diagram-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M2 10h34m-6-6 6 6-6 6"/></svg></div><div class="diagram-node "><span class="diagram-node__kicker">현장</span><h3>설비</h3><p>지시 실행<br>진행 · 완료 · 알람</p></div>
+                <div class="diagram-node"><span class="diagram-node__kicker">요청</span><h3>상위 시스템</h3><p>ERP · WMS · MES</p></div>
+                <div class="diagram-link" aria-hidden="true"><span>작업 요청</span><svg class="diagram-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M2 10h34m-6-6 6 6-6 6"/></svg></div>
+                <div class="execution-group" role="group" aria-labelledby="execution-group-title">
+                  <div class="execution-group__header"><h3 id="execution-group-title">NOVA</h3><span>실행·제어</span></div>
+                  <div class="execution-group__flow">
+                    <div class="diagram-node"><span class="diagram-node__kicker">작업 조율</span><h4>WES</h4><p>작업 구성<br>우선순위 · 예외 관리</p></div>
+                    <div class="diagram-link" aria-hidden="true"><span>작업 지시</span><svg class="diagram-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M2 10h34m-6-6 6 6-6 6"/></svg></div>
+                    <div class="diagram-node"><span class="diagram-node__kicker">설비 연동</span><h4>WCS</h4><p>명령 변환<br>상태 수집 · 연결 확인</p></div>
+                  </div>
+                </div>
+                <div class="diagram-link" aria-hidden="true"><span>설비 명령</span><svg class="diagram-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M2 10h34m-6-6 6 6-6 6"/></svg></div>
+                <div class="diagram-node"><span class="diagram-node__kicker">현장</span><h3>설비</h3><p>지시 실행<br>진행 · 완료 · 알람</p></div>
               </div>
               <div class="diagram-return"><span>설비 상태 · 실행 결과를 회수해 다음 작업에 반영</span></div>
             </figure>
