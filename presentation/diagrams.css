@@ -47,6 +47,20 @@
 .solution-map__core { min-height: clamp(3.5rem, 6cqw, 5rem); display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--nova-space-2) clamp(1rem, 3cqw, 3rem); padding: var(--nova-space-3) var(--nova-space-5); border-radius: var(--nova-radius-sm); background: var(--nova-color-ink); color: var(--nova-color-white); }
 .solution-map__core > span { font-size: clamp(.75rem, 1.1cqw, .9375rem); }
 
+/* An illustrative spectrum, without suggesting a measured market position. */
+.position-spectrum__items { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3cqw, 3rem); margin: 0; padding: 0; list-style: none; }
+.position-spectrum__items::before, .position-spectrum__items::after { position: absolute; content: ""; }
+.position-spectrum__items::before { top: .1875rem; right: 0; left: 0; height: .125rem; background: var(--nova-color-line); }
+.position-spectrum__items::after { top: -.25rem; right: 20%; left: 20%; height: 1rem; background: var(--nova-color-ink); clip-path: polygon(0 50%, .5rem 0, .5rem 25%, calc(100% - .5rem) 25%, calc(100% - .5rem) 0, 100% 50%, calc(100% - .5rem) 100%, calc(100% - .5rem) 75%, .5rem 75%, .5rem 100%); }
+.position-spectrum__items > li { position: relative; min-width: 0; padding-top: clamp(1.5rem, 2.5cqw, 2rem); text-align: center; }
+.position-spectrum__range-label { position: absolute; top: -1.625rem; right: 0; left: 0; color: var(--nova-color-muted); font-size: clamp(.625rem, 1cqw, .75rem); line-height: 1; }
+.position-spectrum h3 { margin: 0; color: var(--nova-color-ink); font-size: clamp(1rem, 1.8cqw, 1.5rem); font-weight: var(--nova-weight-medium); line-height: 1.35; letter-spacing: -.025em; }
+.position-spectrum p { max-width: 19rem; margin: var(--nova-space-3) auto 0; color: var(--nova-color-text); font-size: clamp(.75rem, 1.15cqw, 1rem); line-height: 1.65; }
+.position-spectrum__point { display: block; }
+.position-spectrum__point + .position-spectrum__point { margin-top: var(--nova-space-2); }
+.position-spectrum__point-label { color: var(--nova-color-muted); }
+.position-spectrum__summary { margin-top: clamp(2rem, 4cqw, 3.5rem); color: var(--nova-color-ink); font-size: clamp(.875rem, 1.4cqw, 1.125rem); font-weight: var(--nova-weight-medium); line-height: 1.6; text-align: center; }
+
 /* The priority example shows the same waiting jobs before and after. */
 .priority-diagram__comparison { display: grid; grid-template-columns: minmax(0, 1fr) clamp(4rem, 8cqw, 7rem) minmax(0, 1fr); align-items: center; }
 .queue-state > .diagram-label { margin-bottom: var(--nova-space-3); }
@@ -129,6 +143,14 @@
   .solution-map__views .diagram-node p, .solution-map__views .diagram-node__kicker { font-size: .6875rem; }
   .solution-map__core { flex-direction: column; gap: var(--nova-space-1); padding: var(--nova-space-4); }
   .solution-map__core > span { font-size: .8125rem; }
+  .position-spectrum__items { grid-template-columns: 1fr; gap: var(--nova-space-8); }
+  .position-spectrum__items::before { top: 0; bottom: 0; left: .1875rem; right: auto; width: .125rem; height: auto; }
+  .position-spectrum__items::after { top: 20%; right: auto; bottom: 20%; left: -.25rem; width: 1rem; height: auto; clip-path: polygon(50% 0, 100% .5rem, 75% .5rem, 75% calc(100% - .5rem), 100% calc(100% - .5rem), 50% 100%, 0 calc(100% - .5rem), 25% calc(100% - .5rem), 25% .5rem, 0 .5rem); }
+  .position-spectrum__items > li { padding: 0 0 0 var(--nova-space-8); text-align: left; }
+  .position-spectrum__range-label { position: static; display: block; margin-bottom: var(--nova-space-2); font-size: .75rem; }
+  .position-spectrum h3 { font-size: 1.125rem; }
+  .position-spectrum p { max-width: none; margin: var(--nova-space-2) 0 0; font-size: .875rem; }
+  .position-spectrum__summary { margin-top: var(--nova-space-10); font-size: 1rem; text-align: left; }
   .diagram-branches { height: 3rem; }
   .diagram-branches > span, .diagram-up-link > span { font-size: .6875rem; }
   .priority-diagram__comparison { grid-template-columns: 1fr; gap: var(--nova-space-4); }
